@@ -134,10 +134,9 @@ Eu como Mãe de uma criança quero levar meu filho em ambientes seguros e em que
 ## Projeto de Interface:
 ### Wireframe:
  https://www.figma.com/design/CMkz5jHOl854m2UNuIhGdO/G4---Espa%C3%A7os-Seguros-para-Atividades-ao-Ar-Livre?node-id=0-1&t=voNOdiNS5YjjDp4r-1
-### Fluxo de usuário com design das páginas finalizado:
+### Fluxo de usuário com design das páginas finalizado e Protótipo interativo:
 https://www.figma.com/design/CMkz5jHOl854m2UNuIhGdO/G4---Espa%C3%A7os-Seguros-para-Atividades-ao-Ar-Livre?node-id=53-2&t=Udf0tlWoGRWP1EuX-1 
-### Protótipo Interativo:
-( aqui será inserido o link do Protótipo interativo quando concluído )
+
 # Metodologia:
 ## Ferramentas:
 **Editor de código**: Visual Studio Code. 
@@ -209,4 +208,5 @@ https://www.otempo.com.br/cidades/2024/9/27/parque-municipal-de-bh-ganha--botao-
 https://www.otempo.com.br/super-noticia/crimes/2025/7/5/furtos-madrugada-assombram-parques-publicos-belo-horizonte
 
 * https://repositorio.fjp.mg.gov.br/handle/mono/2388  
+
 * https://estudosemdesign.emnuvens.com.br/design/article/view/777  
