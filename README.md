@@ -24,13 +24,13 @@ https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2026-1-ti1-0438100-greenguard.
 
 # Contexto do projeto
 ## Problema:
-Atualmente, é difícil encontrar informações organizadas sobre parques em um único lugar. Isso acaba dificultando a escolha do local para se realizar atividades e o planejamento delas. Além disso, a falta de dados atualizados sobre segurança, iluminação e ocorrências criminais nos parques de BH contribui para a sensação de insegurança de quem frequenta esses ambientes afim de praticar atividades ao ar livre. Em Belo Horizonte, por exemplo, a percepção de segurança no período noturno é considerada baixa, e existem registros de furtos e vandalismo em parques públicos.
+Atualmente, é difícil encontrar informações organizadas sobre parques em um único lugar. Isso acaba dificultando a escolha do local para se realizar atividades e o planejamento delas. Além disso, a falta de dados atualizados sobre segurança, iluminação e ocorrências criminais nos parques de BH contribui para a sensação de insegurança de quem frequenta esses ambientes a fim de praticar atividades ao ar livre. Em Belo Horizonte, por exemplo, a percepção de segurança no período noturno é considerada baixa, e existem registros de furtos e vandalismo em parques públicos.
 
 ## Objetivo do projeto:
-O objetivo é desenvolver uma aplicação web que facilite a busca e visualização de informações sobre os parques de BH. Permitindo que o usuário encontre locais próximos dele, visualize dados relevantes como mapas dos parques, endereços, pontos de apoio e consulte avaliações de outros usuários feitas pelo site. Dessa forma, os praticantes de atividades ao ar livre poderão ter uma noção melhor do ambiente que pretendem visitar antes de visitá-lo, auxiliando com a segurança deles.
+O objetivo é desenvolver uma aplicação web que facilite a busca e visualização de informações sobre os parques de BH, permitindo que o usuário encontre locais próximos dele, visualize dados relevantes como mapas dos parques, endereços, pontos de apoio e consulte avaliações de outros usuários feitas pelo site. Dessa forma, os praticantes de atividades ao ar livre poderão ter uma noção melhor do ambiente que pretendem visitar antes de visitá-lo, auxiliando na segurança deles.
 
 ## Justificativa:
-A falta de acesso prático a mapeamento e informações claras sobre os parques pode causar insegurança nas pessoas que realizam atividades ao ar livre, principalmente em Belo Horizonte que, como citado anteriormente, possui uma baixa percepção de segurança. Estudos mostram que fatores como iluminação, infraestrutura e histórico de ocorrências influenciam diretamente nessa percepção. Nesse contexto, o projeto se propõe a centralizar essas informações no contexto dos parques da cidade e torná-las mais acessíveis às pessoas que desejam se sentir mais seguras.
+A falta de acesso prático a mapeamento e informações claras sobre os parques pode causar insegurança nas pessoas que realizam atividades ao ar livre, principalmente em Belo Horizonte, que, como citado anteriormente, possui uma baixa percepção de segurança. Estudos mostram que fatores como iluminação, infraestrutura e histórico de ocorrências influenciam diretamente nessa percepção. Nesse contexto, o projeto se propõe a centralizar essas informações no contexto dos parques da cidade e torná-las mais acessíveis às pessoas que desejam se sentir mais seguras.
 
 ## Público-alvo:
 ### Importantes:
@@ -95,10 +95,10 @@ Dessa forma, o problema não está apenas na existência de crimes, mas na falta
 
 **Objetivo Chave**: Seu principal objetivo é se sentir segura ao caminhar sozinha, conseguir se localizar facilmente dentro do parque e se informar sobre eventos de atividades físicas para idosos.
 
-**Como devemos tratá-la**: Devemos tratá-la com simplicidade e clareza, oferecendo uma interface simples e fácil de navegar por, um mapa simples do parque que ela ira visitar, informações sobre possíveis eventos e alertas.
+**Como devemos tratá-la**: Devemos tratá-la com simplicidade e clareza, oferecendo uma interface simples e fácil de navegar por, um mapa simples do parque que ela irá visitar, informações sobre possíveis eventos e alertas.
 O comportamento que deixaria ela feliz seria o site funcionando rapidamente, mostrando rotas seguras de caminhada e permitindo que ela encontre as informações e novidades que precisa.
 
-**Nunca devemos**: Nunca devemos complicar a interface ou usar linguagem difícil e esconder funções importantes (mapa, funções de ajuda ajuda). Ela não suporta e fica furiosa com apps lentos e ou confusos.
+**Nunca devemos**: Nunca devemos complicar a interface ou usar linguagem difícil e esconder funções importantes (mapa, funções de ajuda). Ela não suporta e fica furiosa com apps lentos  ou confusos.
 
 **Persona 2: Lucas Almeida**  
 **Idade**: 8 anos  
@@ -109,11 +109,11 @@ O comportamento que deixaria ela feliz seria o site funcionando rapidamente, mos
 
 **Sonhos**: Poder brincar livremente em diferentes parques. Se divertir sem preocupação e ter momentos felizes com sua família.
 
-**Objetos e Lugares**: Frequenta o Parque Municipal Américo Renné Giannetti com a família. Brincar em meios as árvores, anda de bicicleta pelas trilhas e joga futebol. Vai ao parque principalmente nos fins de semana.
+**Objetos e Lugares**: Frequenta o Parque Municipal Américo Renné Giannetti com a família. Brincar em meios às árvores, anda de bicicleta pelas trilhas e joga futebol. Vai ao parque principalmente nos fins de semana.
 
 **Objetivo Chave**: Se divertir e brincar. Explorar o ambiente sem medo. Estar próximo dos pais ou responsáveis. Conhecer novos parques.
 
-**Como devemos tratá-la**: Transmitir sensação de segurança a ele e seus responsáveis por meio de informações claras sobre parques adequados para Crianças, rotas seguras e ambientes bem iluminados.
+**Como devemos tratá-la**: Transmitir sensação de segurança a ele e seus responsáveis por meio de informações claras sobre parques adequados para crianças, rotas seguras e ambientes bem iluminados.
 
 **Nunca devemos**: Deixar os responsáveis desinformados sobre áreas mal iluminadas, sem vigilância, áreas de risco ou parques que podem não ser o ambiente ideal para seu filho. 
 
@@ -134,10 +134,10 @@ Eu como Mãe de uma criança quero levar meu filho em ambientes seguros e em que
 ## Projeto de Interface:
 ### Wireframe:
  https://www.figma.com/design/CMkz5jHOl854m2UNuIhGdO/G4---Espa%C3%A7os-Seguros-para-Atividades-ao-Ar-Livre?node-id=0-1&t=voNOdiNS5YjjDp4r-1
-### Fluxo de usuário:
-( aqui será inserido o link do Figma quando concluído )
+### Fluxo de usuário com design das páginas finalizado:
+https://www.figma.com/design/CMkz5jHOl854m2UNuIhGdO/G4---Espa%C3%A7os-Seguros-para-Atividades-ao-Ar-Livre?node-id=53-2&t=Udf0tlWoGRWP1EuX-1 
 ### Protótipo Interativo:
-( aqui será inserido o link do Protótipi interativo quando concluído )
+( aqui será inserido o link do Protótipo interativo quando concluído )
 # Metodologia:
 ## Ferramentas:
 **Editor de código**: Visual Studio Code. 
@@ -152,13 +152,13 @@ Escolhidas por serem a base do desenvolvimento web, permitindo criar a estrutura
 
 Usado pela praticidade e agilidade na comunicação entre os membros do grupo no dia a dia.
 
-**Organização e planejamento**: Miro e Whatsapp.
+**Organização e planejamento**: Miro e WhatsApp.
 
-O miro foi escolhido por facilitar a criação de quadros, ajudando na organização de ideias e colaboração da equipe entre si.
+O Miro foi escolhido por facilitar a criação de quadros, ajudando na organização de ideias e colaboração da equipe entre si.
 
 **Prototipação**: Figma.
 
-Utilizado por permitir a criação de wireframes/protótipos visuais de forma colaborativa, oque facilitará a validação das ideias entre os membros do grupo antes da implementação.
+Utilizado por permitir a criação de wireframes/protótipos visuais de forma colaborativa, o que facilitará a validação das ideias entre os membros do grupo antes da implementação.
 
 **Versionamento**: GitHub.
 
@@ -166,13 +166,13 @@ Usado para controle de versões do projeto, permitindo armazenar o código, acom
 
 ## Organização da equipe e divisão de papéis
 
-A equipe se organizou usando ideias do Scrum, trabalhando de forma colaborativa e dividindo o projeto em pequenas etapas. Isso ajudou a desenvolver essa parte inicial do projeto aos poucos, permitindo ajustes conforme necessário ao longo do processo. Como ajustes nas personas e etc, por exemplo.
+A equipe se organizou usando ideias do Scrum, trabalhando de forma colaborativa e dividindo o projeto em pequenas etapas. Isso ajudou a desenvolver essa parte inicial do projeto aos poucos, permitindo ajustes conforme necessário ao longo do processo. Como ajustes nas personas, por exemplo.
 
-Durante o desenvolvimento, realizamos o backlog das tarefas que precisavam ser feitas via Whatsapp e alinhamentos frequentes para acompanhar o andamento.
+Durante o desenvolvimento, realizamos o backlog das tarefas que precisavam ser feitas via WhatsApp e alinhamentos frequentes para acompanhar o andamento.
 
 Todos os membros participaram juntos da criação das Personas, CSD, Mapa de Stakeholders e propostas de valor, contribuindo com ideias e melhorias.
 
-Mesmo assim, cada integrante assumiu alguma responsabilidade principal também, novas responsabilidades serão atreladas aos membros quando o desenvolvimento começar de fato:
+Mesmo assim, cada integrante também assumiu alguma responsabilidade principal, novas responsabilidades serão atreladas aos membros quando o desenvolvimento começar de fato:
 
 ### Responsabilidades dos membros da Equipe
 
@@ -185,7 +185,11 @@ Mesmo assim, cada integrante assumiu alguma responsabilidade principal também, 
 * Pedro Miguel Souza Dias - Prototipação  
 
 ## Quadro de controle de tarefas (Kanban)
-( Não iniciado )
+
+- Backlog: Código do projeto.
+- A Fazer: 
+- Em Andamento: Documentação.
+- Concluído: Matriz CSD, Mapa de Stake Holders, Personas, Proposta de Valor, Wireframe, Fluxo de telas, Canva, Apresentação.
 
 ## Referências Bibliográficas
 
