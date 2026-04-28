@@ -93,8 +93,8 @@ main section input {
 
 .filter-group {
     flex: 1;
-    background-color: #d1d1d1;
-    border-radius: 4px;
+    background-color: white;
+    border-radius: 2px;
     overflow: hidden;
 }
 
