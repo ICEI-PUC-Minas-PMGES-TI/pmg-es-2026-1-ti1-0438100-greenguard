@@ -143,5 +143,17 @@ main section button {
     justify-content: center;
     cursor: pointer;
 }
+.botao {
+    background: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 8px;
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
 
 main section button img { width: 22px; height: 22px; }

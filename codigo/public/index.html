@@ -33,25 +33,17 @@
       <div id="filter-panel" class="filter-hidden">
   
   <div class="filter-group">
-    <div class="filter-header" onclick="toggleDropdown(this)">
-      <span>Turno</span>
-      <i class="bi bi-caret-down-fill"></i>
+    <div class="filter-header">
+      <span>Data Início</span>
     </div>
-    <ul class="filter-options dropdown-closed">
-      <li onclick="selectOption(this)">Dia</li>
-      <li onclick="selectOption(this)">Noite</li>
-    </ul>
+    <input type="date" placeholder="dd/mm/aaaa">
   </div>
 
   <div class="filter-group">
-    <div class="filter-header" onclick="toggleDropdown(this)">
-      <span>Atividade</span>
-      <i class="bi bi-caret-down-fill"></i>
+    <div class="filter-header">
+      <span>Data Fim</span>
     </div>
-    <ul class="filter-options dropdown-closed">
-      <li onclick="selectOption(this)">Caminhada</li>
-      <li onclick="selectOption(this)">Esporte</li>
-    </ul>
+    <input type="date" placeholder="dd/mm/aaaa">
   </div>
 
   <div class="filter-group">
@@ -60,8 +52,9 @@
       <i class="bi bi-caret-down-fill"></i>
     </div>
     <ul class="filter-options dropdown-closed">
-      <li onclick="selectOption(this)">Até 5km</li>
-      <li onclick="selectOption(this)">Até 10km</li>
+      <li onclick="selectOption(this)">Elogio</li>
+      <li onclick="selectOption(this)">Assalto</li>
+      <li onclick="selectOption(this)">Reclamação</li>
     </ul>
   </div>
 
@@ -80,5 +73,8 @@
 
   <script src="./assets/js/login.js"></script>
 </body>
+
+  <button class="botao">Criar post</button>
+
 
 </html>
