@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tela Genérica</title>
   <link rel="stylesheet" href="./assets/css/styles.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -22,59 +24,165 @@
   </header>
 
   <main>
-    
 
-<section class="hero-section">
-  <div class="search-container">
-    
-    <div class="input-group-wrapper">
-      <input type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
-      
-      <div id="filter-panel" class="filter-hidden">
-  
-  <div class="filter-group">
-    <div class="filter-header">
-      <span>Data Início</span>
-    </div>
-    <input type="date" placeholder="dd/mm/aaaa">
-  </div>
 
-  <div class="filter-group">
-    <div class="filter-header">
-      <span>Data Fim</span>
-    </div>
-    <input type="date" placeholder="dd/mm/aaaa">
-  </div>
+    <section class="hero-section">
+      <div class="search-container">
 
-  <div class="filter-group">
-    <div class="filter-header" onclick="toggleDropdown(this)">
-      <span>Assunto</span>
-      <i class="bi bi-caret-down-fill"></i>
-    </div>
-    <ul class="filter-options dropdown-closed">
-      <li onclick="selectOption(this)">Elogio</li>
-      <li onclick="selectOption(this)">Assalto</li>
-      <li onclick="selectOption(this)">Reclamação</li>
-    </ul>
-  </div>
+        <div class="input-group-wrapper">
+          <input type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
 
-</div>
-    </div>
+          <div id="filter-panel" class="filter-hidden">
 
-    <div id="double_btn">
-      <button><img src="./assets/images/lupa.png" alt=""></button>
-      <button onclick="toggleFilters()"><img src="./assets/images/filtro.png" alt=""></button>
-    </div>
+            <div class="filter-group">
+              <div class="filter-header">
+                <span>Data Início</span>
+              </div>
+              <input type="date" placeholder="dd/mm/aaaa">
+            </div>
 
-  </div>
-</section>
+            <div class="filter-group">
+              <div class="filter-header">
+                <span>Data Fim</span>
+              </div>
+              <input type="date" placeholder="dd/mm/aaaa">
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-header" onclick="toggleDropdown(this)">
+                <span>Assunto</span>
+                <i class="bi bi-caret-down-fill"></i>
+              </div>
+              <ul class="filter-options dropdown-closed">
+                <li onclick="selectOption(this)">Elogio</li>
+                <li onclick="selectOption(this)">Assalto</li>
+                <li onclick="selectOption(this)">Reclamação</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div id="double_btn">
+          <button><img src="./assets/images/lupa.png" alt=""></button>
+          <button onclick="toggleFilters()"><img src="./assets/images/filtro.png" alt=""></button>
+        </div>
+
+      </div>
+    </section>
 
   </main>
 
   <script src="./assets/js/login.js"></script>
 </body>
 
-  <button class="botao">Criar post</button>
+<button class="botao">Criar post</button>
 
+<div class="posts">
+
+  <article class="post-card">
+
+    <div class="post-content">
+      <h1 class="post-title">Parque Municipal BH</h1>
+
+      <div class="post-author">
+        <img class="author-avatar" src="./assets/images/user-imagem.png">
+        <h2 class="author-name">Julia Afonso</h2>
+      </div>
+
+      <p class="post-description">
+        minima veniam, quis nostrum exercitationem ullam corporis suscipit
+        laboriosam, nisi ut aliquid ex ea minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
+        nisi ut aliquid.
+      </p>
+    </div>
+
+    <div class="post-image"></div>
+
+    <div class="category-likes">
+      <div class="title-category">
+      <div class="bolinha"></div>
+        <p class="post-category">Assalto</p>
+      </div>
+
+      <div class="likes">
+        <i class="bi bi-heart" style="font-size:30px;"></i>
+        <p class="like-count">123K</p>
+      </div>
+    </div>
+
+  </article>
+  <article class="post-card">
+
+    <div class="post-content">
+      <h1 class="post-title">Parque Municipal BH</h1>
+
+      <div class="post-author">
+        <img class="author-avatar" src="./assets/images/user-imagem.png">
+        <h2 class="author-name">Julia Afonso</h2>
+      </div>
+
+      <p class="post-description">
+        minima veniam, quis nostrum exercitationem ullam corporis suscipit
+        laboriosam, nisi ut aliquid ex ea minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
+        nisi ut aliquid.
+      </p>
+    </div>
+
+    <div class="post-image"></div>
+
+    <div class="category-likes">
+      <div class="title-category">
+      <div class="bolinha"></div>
+        <p class="post-category">Assalto</p>
+      </div>
+
+      <div class="likes">
+        <i class="bi bi-heart" style="font-size:30px;"></i>
+        <p class="like-count">123K</p>
+      </div>
+    </div>
+
+  </article>
+  <article class="post-card">
+
+    <div class="post-content">
+      <h1 class="post-title">Parque Municipal BH</h1>
+
+      <div class="post-author">
+        <img class="author-avatar" src="./assets/images/user-imagem.png">
+        <h2 class="author-name">Julia Afonso</h2>
+      </div>
+
+      <p class="post-description">
+        minima veniam, quis nostrum exercitationem ullam corporis suscipit
+        laboriosam, nisi ut aliquid ex ea minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
+        nisi ut aliquid.
+      </p>
+    </div>
+
+    <div class="post-image"></div>
+
+    <div class="category-likes">
+      <div class="title-category">
+      <div class="bolinha"></div>
+        <p class="post-category">Assalto</p>
+      </div>
+
+      <div class="likes">
+        <i class="bi bi-heart" style="font-size:30px;"></i>
+        <p class="like-count">123K</p>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+</article>
+
+
+</div>
+
+</section>
 
 </html>

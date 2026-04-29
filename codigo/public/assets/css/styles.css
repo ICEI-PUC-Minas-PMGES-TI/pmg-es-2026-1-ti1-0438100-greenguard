@@ -20,6 +20,10 @@ header {
     justify-content: space-between;
     padding: 10px 40px;
     height: 94px;
+    background-color: white;
+    width: 100%;
+    position: fixed;
+    z-index: 10000;
 }
 
 header #foto_perfil {
@@ -155,5 +159,149 @@ main section button {
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
+.posts{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+    color: white;
+    width:min(950px,90vw);
+    margin:40px auto;
+    padding:22px;
+    background:#B1FFD0;
+    height: 31vw;
+    overflow: auto;
+}
+
+.post-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    padding:26px;
+    background:#00C04D;
+    box-sizing:border-box;
+}
+
+.post-content{
+    width:34%;
+}
+
+.post-author{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.author-avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+
+.post-image{
+    width:30%;
+    min-width:220px;
+    height:150px;
+    background-image:url("../images/celular_roubado.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.post-footer{
+    width:18%;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+.likes{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+.author-name {
+    font-size: 20px;
+}
+.post-description {
+    font-size: 15px;
+}
+.post-category {
+    font-size: 22px;
+    text-decoration: none;
+}
+.bolinha{
+    height: 8px;
+    width: 8px;
+    background-color: blue;
+}
+.title-category{
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.category-likes{
+    margin-right: 7%;
+}
+::-webkit-scrollbar{
+    width:12px;
+}
+
+::-webkit-scrollbar-button{
+    display:none;
+}
+
+::-webkit-scrollbar-track{
+    background:#ffffff;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2e8b57;
+    border-radius:12px;
+    border:2px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#3aa76d;
+}
+
+@media (max-width:900px){
+
+    .posts{
+        width:95vw;
+        height: fit-content;
+        padding:15px;
+        overflow: unset;
+    }
+
+    .post-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:25px;
+    }
+
+    .post-content, .post-image, .post-footer{
+        width:100%;
+    }
+
+    .post-image{
+        min-width:unset;
+        height:240px;
+    }
+
+    .post-footer{
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+    }
+}
+
+
 
 main section button img { width: 22px; height: 22px; }
