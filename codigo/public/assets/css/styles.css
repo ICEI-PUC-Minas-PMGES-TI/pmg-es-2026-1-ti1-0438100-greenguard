@@ -1,5 +1,5 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"); 
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"); 
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 h3 {
     color: #093070;
@@ -53,4 +53,221 @@ h4 {
 
 main {
     padding: 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(154, 216, 154, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.post-card-modal {
+  background-color: #01fb057f;
+  border-radius: 18px;
+  padding-top: 28px;
+  padding-bottom: 24px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.18);
+  animation: fadeUp 0.35s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.field-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2d5a27;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.desc-textarea {
+  width: 100%;
+  border: 1.5px solid #c8e6c9;
+  border-radius: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 14px;
+  padding-right: 14px;
+  font-size: 0.88rem;
+  color: #444444;
+  resize: none;
+  min-height: 110px;
+  outline: none;
+  background-color: #f9fdf9;
+  transition: border-color 0.2s;
+}
+
+.desc-textarea:focus {
+  border-color: #4caf50;
+  background-color: #ffffff;
+}
+
+
+
+.section-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+
+
+.category-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.cat-btn {
+  border: none;
+  border-radius: 20px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+.cat-btn:hover {
+  filter: brightness(1.1);
+  transform: scale(1.04);
+}
+
+.cat-btn.active {
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.15);
+}
+
+.cat-btn.assalto {
+  background-color: #ff8c00;
+}
+
+.cat-btn.reclamacao {
+  background-color: #2196f3;
+}
+
+.cat-btn.seguranca {
+  background-color: #053760;
+}
+
+.park-input {
+  width: 100%;
+  border: 1.5px solid #c8e6c9;
+  border-radius: 10px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 13px;
+  padding-right: 13px;
+  font-size: 0.83rem;
+  color: #444444;
+  outline: none;
+  background-color: #f9fdf9;
+  transition: border-color 0.2s;
+}
+
+.park-input:focus {
+  border-color: #4caf50;
+  background-color: #ffffff;
+}
+
+.photo-box {
+  width: 90px;
+  height: 90px;
+  border: 2px dashed #b2dfb0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #a5c8a3;
+  background-color: #f5fdf5;
+  transition: border-color 0.2s, background-color 0.2s;
+  font-size: 1.5rem;
+  gap: 2px;
+  position: relative;
+}
+
+.photo-box:hover {
+  border-color: #4caf50;
+  background-color: #ecf7ec;
+  color: #4caf50;
+}
+
+.photo-box input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.photo-box .plus-icon {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.send-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 22px;
+  background-color: #43a047;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-left: 60px;
+  padding-right: 60px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.send-btn:hover {
+  background-color: #388e3c;
+  transform: scale(1.03);
 }
