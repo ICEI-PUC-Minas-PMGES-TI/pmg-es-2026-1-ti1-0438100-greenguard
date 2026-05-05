@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+/* Header Styles */
+.main-header {
+    background-color: #c0c0c0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 60px;
+    border-bottom: 2px solid #999;
+}
+
+.logo, .profile-pic, .settings {
+    background-color: #a0a0a0;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+}
+
+/* Banner e Busca */
+.hero-banner {
+    background-color: #999999;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #333;
+}
+
+.search-container {
+    position: absolute;
+    bottom: -40px;
+    width: 80%;
+    max-width: 700px;
+}
+
+.search-bar-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.search-bar-row input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background-color: #e0e0e0;
+}
+
+.filter-btn {
+    padding: 0 15px;
+    background-color: #e0e0e0;
+    border: none;
+    cursor: pointer;
+}
+
+.filters-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.filters-row select {
+    background-color: #a0a0a0;
+    border: none;
+    padding: 8px;
+    min-width: 120px;
+    color: white;
+}
+
+/* Card de Resultados */
+.results-area {
+    margin-top: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.park-card {
+    background-color: #e0e0e0;
+    width: 300px;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.card-header {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.park-photo {
+    background-color: #999;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.park-info {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.park-name {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.security-level span {
+    color: #666;
+}
+
+.view-more {
+    display: block;
+    color: #333;
+    text-decoration: underline;
+    margin-bottom: 15px;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.card-actions button {
+    flex: 1;
+    padding: 10px 5px;
+    border: none;
+    background-color: #b0b0b0;
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.card-actions button:hover {
+    background-color: #a0a0a0;
+}
