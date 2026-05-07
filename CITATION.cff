@@ -2,8 +2,8 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: 
 authors:
-  - family-names: 
-    given-names: 
+  - family-names: Martins Caldeira
+    given-names: Caio
   - family-names: 
     given-names: 
   - family-names: 
@@ -23,9 +23,14 @@ authors:
     family-names: 
     given-names: 
 keywords:
-  - 
-  - 
-repository-code: 
+  - Parques Públicos
+  - Lazer
+  - Bem-estar
+  - Sustentabilidade
+  - Ecologia
+  - Denúncia
+
+repository-code: https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2026-1-ti1-0438100-greenguard.git
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14

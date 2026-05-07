@@ -11,8 +11,12 @@ p{
     margin: 0;
 }
 
-figure { margin: 0; }
-#foto_perfil, #logo { display: block; }
+figure { 
+    margin: 0;
+ }
+#foto_perfil, #logo { 
+    display: block;
+ }
 
 header {
     display: flex;
@@ -145,3 +149,107 @@ main section button {
 }
 
 main section button img { width: 22px; height: 22px; }
+
+
+
+.post_forum_previa{
+   width: 335px ;
+   background-color: #00C04D;
+   padding: 10px;
+}
+
+.post_forum_previa {
+border-radius: 6px;
+
+}
+
+.post_forum_previa p{
+    font-size: 7px;
+    margin-top: 10px;
+    color: white;
+}
+
+.post_forum_previa h3{
+    font-size: 18px;
+    margin-top: 10px;
+        color: white;
+
+}
+
+.row_foto_nome{
+display: flex;
+flex-direction: row;
+align-items: center;
+
+}
+
+.row_foto_nome h4{
+    font-size: 15px;
+        color: white;
+
+}
+
+.row_foto_nome img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.row_txt_img{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.img_post{
+    width: 150px;
+    height: 90%;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.forum_denuncia{
+    background-color: #B1FFD0;
+    width: 361px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+align-items: center;
+justify-content: center;
+padding: 15px 0px 10px 0px;
+border-radius: 10px;
+}
+
+.forum_denuncia button {
+    background-color: #00CF53;
+    width: 90%;
+    height: 50px;
+    margin-top: 15px ;
+    font-weight: bold;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    
+}
+
+#sec-forum h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+    color: #00C04D;
+}
+
+
+#sec-forum{
+    margin-left: 30px;
+}
+
+.tempo_post{
+    margin: 0;
+    line-height: 1px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
