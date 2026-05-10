@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-    <script src="./assets/js/login.js"></script>
-  </head>
-  <body>
-      <header>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tela Genérica</title>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
     <figure><img id="logo" src="./assets/images/logo.png" alt="Logo"></figure>
     <div>
       <figure><img id="foto_perfil" src="./assets/images/foto_perfil.jpeg" alt="Ícone do usuário"></figure>
@@ -16,15 +21,85 @@
     </div>
   </header>
 
-    <main id="main_flex">
-        <div id="btn_voltar">
-           <a href=""> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="rgb(255, 255, 255)" d="M41.4 297.4C28.9 309.9 28.9 330.2 41.4 342.7L169.4 470.7C181.9 483.2 202.2 483.2 214.7 470.7C227.2 458.2 227.2 437.9 214.7 425.4L141.3 352L576 352C593.7 352 608 337.7 608 320C608 302.3 593.7 288 576 288L141.3 288L214.7 214.6C227.2 202.1 227.2 181.8 214.7 169.3C202.2 156.8 181.9 156.8 169.4 169.3L41.4 297.3z"/></svg></a>
-        </div>
-        
-        <div id="card">
+  <main>
+    
 
-        </div>
+<section class="hero-section">
+  <div class="search-container">
+    
+    <div class="input-group-wrapper">
+      <input type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
+      
+      <div id="filter-panel" class="filter-hidden">
+  
+  <div class="filter-group">
+    <div class="filter-header" onclick="toggleDropdown(this)">
+      <span>Turno</span>
+      <i class="bi bi-caret-down-fill"></i>
+    </div>
+    <ul class="filter-options dropdown-closed">
+      <li onclick="selectOption(this)">Dia</li>
+      <li onclick="selectOption(this)">Noite</li>
+    </ul>
+  </div>
 
-    </main>
-  </body>
+  <div class="filter-group">
+    <div class="filter-header" onclick="toggleDropdown(this)">
+      <span>Atividade</span>
+      <i class="bi bi-caret-down-fill"></i>
+    </div>
+    <ul class="filter-options dropdown-closed">
+      <li onclick="selectOption(this)">Caminhada</li>
+      <li onclick="selectOption(this)">Esporte</li>
+    </ul>
+  </div>
+
+  <div class="filter-group">
+    <div class="filter-header" onclick="toggleDropdown(this)">
+      <span>Distância</span>
+      <i class="bi bi-caret-down-fill"></i>
+    </div>
+    <ul class="filter-options dropdown-closed">
+      <li onclick="selectOption(this)">Até 5km</li>
+      <li onclick="selectOption(this)">Até 10km</li>
+    </ul>
+  </div>
+
+</div>
+    </div>
+
+    <div id="double_btn">
+      <button><img src="./assets/images/lupa.png" alt=""></button>
+      <button onclick="toggleFilters()"><img src="./assets/images/filtro.png" alt=""></button>
+    </div>
+
+  </div>
+</section>
+
+<section class="cards-section">
+  <div class="park-card">
+    <div class="card-img">
+      <img src="./assets/images/parque.jpg" alt="Parque Municipal de Belo Horizonte">
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Parque Municipal de Belo Horizonte</h3>
+      <p class="card-info">Nível de segurança &nbsp;<span class="stars">★★★★☆</span></p>
+      <p class="card-info">Localização : Av. Afonso Pena, 1.377 – Centro</p>
+      <p class="card-info">Horário de Funcionamento : <span class="badge-hours">seg - sáb de 7:00 às 22:00</span></p>
+      <a class="ver-mais">ver mais !</a>
+      <div class="card-actions">
+        <button class="btn-card">Me leve até lá !</button>
+        <button class="btn-card">Fazer Feedback !</button>
+      </div>
+    </div>
+  </div>
+
+  
+</section>
+
+  </main>
+
+  <script src="./assets/js/login.js"></script>
+</body>
+
 </html>
