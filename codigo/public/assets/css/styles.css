@@ -89,7 +89,19 @@ main section input {
     z-index: 5;
 }
 
-.filter-hidden { display: none !important; }
+.filter-hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+
+    transition: 0.3s ease;
+}
+
+.filter-show {
+    opacity: 1 !important;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
 .filter-group {
     flex: 1;
