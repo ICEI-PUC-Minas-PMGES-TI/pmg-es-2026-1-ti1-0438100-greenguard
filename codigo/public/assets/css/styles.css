@@ -253,3 +253,26 @@ border-radius: 10px;
     display: flex;
     justify-content: flex-end;
 }
+
+
+#map-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#map{
+  padding:20px;
+  width: 450px;
+  height: 500px;
+  border: 10px solid #B1FFD0;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.25);
+}
+
+#content{
+    display: flex;
+    gap: 30px;
+    align-items: center;    
+}
