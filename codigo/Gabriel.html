@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação e Feedback</title>
+    <link rel="stylesheet" href="./Gabriel.css">
+</head>
+<body>
+    <main class="page">
+        <section class="feedback-card">
+
+            <!-- Textarea direto no topo, sem título nem label -->
+            <textarea
+                id="comentario"
+                class="comment-box"
+                placeholder="Ex : Parque Municipal Belo Horizonte tem ótima estrutura e segurança ..."
+            ></textarea>
+
+            <!-- Linha inferior: feedback (esquerda) + classificação (direita) -->
+            <div class="bottom-row">
+
+                <!-- Coluna esquerda: tipo de feedback + botão enviar -->
+                <div class="left-col">
+                    <p class="col-title">Este feedback é ?</p>
+                    <div class="sentiment-group">
+                        <button type="button" class="sentiment-btn positive selected" data-sentiment="positivo">
+                            Positivo
+                        </button>
+                        <button type="button" class="sentiment-btn negative" data-sentiment="negativo">
+                            Negativo
+                        </button>
+                    </div>
+                    <button type="button" id="enviarBtn" class="send-btn">Enviar</button>
+                </div>
+
+                <!-- Coluna direita: classificação com estrelas -->
+                <div class="right-col">
+                    <p class="col-title">Classificação Geral</p>
+
+                    <div class="rating-row" data-rating-key="seguranca">
+                        <span class="rating-label">Nível de segurança :</span>
+                        <div class="stars" role="radiogroup" aria-label="Nível de segurança"></div>
+                    </div>
+
+                    <div class="rating-row" data-rating-key="iluminacao">
+                        <span class="rating-label">Iluminação :</span>
+                        <div class="stars" role="radiogroup" aria-label="Iluminação"></div>
+                    </div>
+
+                    <div class="rating-row" data-rating-key="movimentacao">
+                        <span class="rating-label">Movimentação :</span>
+                        <div class="stars" role="radiogroup" aria-label="Movimentação"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="./gabriel.js"></script>
+</body>
+</html>
