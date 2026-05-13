@@ -1,25 +1,12 @@
 {
   "usuarios": [
-    {
-      "id": 1,
-      "login": "admin",
-      "senha": "123",
-      "nome": "Administrador do Sistema",
-      "email": "admin@abc.com"
-    },
-    {
-      "id": 2,
-      "login": "user",
-      "senha": "123",
-      "nome": "Usuario Comum",
-      "email": "user@abc.com"
-    },
-    {
-      "login": "rommel",
-      "senha": "123",
-      "nome": "Rommel",
-      "email": "rommel@gmail.com",
-      "id": 3
-    }
+    { "id": 1, "login": "admin", "senha": "123", "nome": "Administrador do Sistema", "email": "admin@abc.com" },
+    { "id": 2, "login": "user", "senha": "123", "nome": "Usuario Comum", "email": "user@abc.com" },
+    { "login": "rommel", "senha": "123", "nome": "Rommel", "email": "rommel@gmail.com", "id": 3 }
+  ],
+  "posts": [
+    { "id": 1, "titulo": "Parque Municipal BH", "autor": "Julia Afonso", "descricao": "Assalto próximo ao lago durante a noite.", "categoria": "Assalto", "likes": 123, "imagem": "./assets/images/celular_roubado.jpg" },
+    { "id": 2, "titulo": "Parque Ecológico", "autor": "Carlos Henrique", "descricao": "Iluminação muito fraca.", "categoria": "Reclamação", "likes": 54, "imagem": "./assets/images/poste_apagado.jpg" },
+    { "id": 3, "titulo": "Parque Ecológico", "autor": "Amanda Silva", "descricao": "Ótima limpeza e manutenção do local durante o final de semana.", "categoria": "Elogio", "likes": 87, "imagem": "./assets/images/parque_ecologico.jpg" }
   ]
 }
