@@ -14,3 +14,9 @@ function selectOption(li) {
     // Fecha o painel verde após selecionar
     toggleFilters();
 }
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => e.target.classList.toggle('visivel', e.isIntersecting));
+});
+
+document.querySelectorAll('.park-card').forEach(card => observer.observe(card));
