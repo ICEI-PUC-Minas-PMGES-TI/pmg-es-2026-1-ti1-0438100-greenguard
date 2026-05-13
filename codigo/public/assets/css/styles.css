@@ -11,8 +11,14 @@ p{
     margin: 0;
 }
 
-figure { margin: 0; }
-#foto_perfil, #logo { display: block; }
+figure { 
+    margin: 0; 
+}
+
+#foto_perfil, 
+#logo { 
+    display: block; 
+}
 
 header {
     display: flex;
@@ -39,7 +45,10 @@ header div {
     gap: 0.5rem;
 }
 
-#logo { width: 94px; height: 94px; }
+#logo { 
+    width: 94px; 
+    height: 94px; 
+}
 
 .hero-section {
     background-image: url("../images/banner.png");
@@ -93,7 +102,9 @@ main section input {
     z-index: 5;
 }
 
-.filter-hidden { display: none !important; }
+.filter-hidden { 
+    display: none !important; 
+}
 
 .filter-group {
     flex: 1;
@@ -113,7 +124,9 @@ main section input {
     cursor: default;
 }
 
-.filter-header i { color: #00ca45; }
+.filter-header i { 
+    color: #00ca45; 
+}
 
 .filter-options {
     list-style: none;
@@ -134,7 +147,10 @@ main section input {
     color: white;
 }
 
-#double_btn { display: flex; gap: 5px; }
+#double_btn { 
+    display: flex; 
+    gap: 5px; 
+}
 
 main section button {
     width: 47px;
@@ -147,6 +163,7 @@ main section button {
     justify-content: center;
     cursor: pointer;
 }
+
 .botao {
     background: #4CAF50;
     color: white;
@@ -159,6 +176,7 @@ main section button {
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
+
 .posts{
     display:grid;
     grid-template-columns:1fr;
@@ -180,6 +198,7 @@ main section button {
     padding:26px;
     background:#00C04D;
     box-sizing:border-box;
+    gap: 25px;
 }
 
 .post-content{
@@ -206,6 +225,7 @@ main section button {
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
+    flex-shrink: 0;
 }
 
 .post-footer{
@@ -225,30 +245,41 @@ main section button {
     font-size: 20px;
     font-weight: bold;
 }
+
 .author-name {
     font-size: 20px;
 }
+
 .post-description {
     font-size: 15px;
 }
+
 .post-category {
     font-size: 22px;
     text-decoration: none;
+    white-space: nowrap;
 }
+
 .bolinha{
     height: 8px;
     width: 8px;
     background-color: blue;
+    flex-shrink: 0;
 }
+
 .title-category{
     align-items: center;
     gap: 10px;
     display: flex;
     flex-direction: row;
 }
+
 .category-likes{
     margin-right: 7%;
+    width: 140px;
+    min-width: 140px;
 }
+
 ::-webkit-scrollbar{
     width:12px;
 }
@@ -286,7 +317,9 @@ main section button {
         gap:25px;
     }
 
-    .post-content, .post-image, .post-footer{
+    .post-content, 
+    .post-image, 
+    .post-footer{
         width:100%;
     }
 
@@ -300,8 +333,15 @@ main section button {
         justify-content:space-between;
         align-items:center;
     }
+
+    .category-likes{
+        width: 100%;
+        min-width: unset;
+        margin-right: 0;
+    }
 }
 
-
-
-main section button img { width: 22px; height: 22px; }
+main section button img { 
+    width: 22px; 
+    height: 22px; 
+}
