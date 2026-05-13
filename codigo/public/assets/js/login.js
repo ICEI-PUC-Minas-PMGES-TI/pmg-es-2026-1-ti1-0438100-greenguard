@@ -1,6 +1,6 @@
 function toggleFilters() {
     const panel = document.getElementById('filter-panel');
-    panel.classList.toggle('filter-hidden');
+    panel.classList.toggle('filter-show');
 }
 
 function selectOption(li) {
