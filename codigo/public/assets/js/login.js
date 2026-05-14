@@ -20,3 +20,17 @@ const observer = new IntersectionObserver(entries => {
 });
 
 document.querySelectorAll('.park-card').forEach(card => observer.observe(card));
+
+// Inicializa o mapa
+const map = L.map('map').setView([-19.865, -43.971], 14);
+
+// Camada do mapa
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+// Marcador
+L.marker([-19.865, -43.971])
+    .addTo(map)
+    .bindPopup('Parque Ecológico da Pampulha')
+    .openPopup();

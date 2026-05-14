@@ -118,7 +118,7 @@ main section input {
 
 .filter-group {
     flex: 1;
-    background-color: white;
+    background-color: #d1d1d1;
     border-radius: 2px;
     overflow: hidden;
 }
@@ -570,4 +570,8 @@ svg{
     font-size: 15px;
     border-radius: 8px;
     cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: black;
 }
