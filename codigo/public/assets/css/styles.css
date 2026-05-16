@@ -61,7 +61,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(154, 216, 154, 0.45);
+  background-color: rgba(157, 255, 168, 0.45);
   backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
@@ -70,7 +70,7 @@ main {
 }
 
 .post-card-modal {
-  background-color: #01fb057f;
+  background-color: #89f48b7f;
   border-radius: 18px;
   padding-top: 28px;
   padding-bottom: 24px;
@@ -166,11 +166,11 @@ main {
 }
 
 .cat-btn.assalto {
-  background-color: #ff8c00;
+  background-color: #970909;
 }
 
 .cat-btn.reclamacao {
-  background-color: #2196f3;
+  background-color: #f37b13;
 }
 
 .cat-btn.seguranca {
@@ -193,7 +193,7 @@ main {
 }
 
 .park-input:focus {
-  border-color: #4caf50;
+  border-color: #94ffb0;
   background-color: #ffffff;
 }
 
