@@ -135,4 +135,6 @@ function showUserInfo (element) {
 }
 
 // Inicializa as estruturas utilizadas pelo LoginApp
-initLoginApp ();
+
+// tenho q descomentar essa parte depois
+// initLoginApp ();
