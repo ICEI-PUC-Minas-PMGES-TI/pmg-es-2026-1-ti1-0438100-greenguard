@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check-in Feed</title>
+  <link rel="stylesheet" href="./assets/css/rolagem_check-in.css" />
+</head>
+<body>
+
+  <section class="feed-wrapper">
+    <div class="feed-header">
+      <span class="feed-title">Check-ins recentes</span>
+    </div>
+
+    <div class="feed-scroll" id="feed">
+
+      <article class="checkin-card">
+        <div class="card-header">
+          <div class="avatar">CM</div>
+          <div class="card-meta">
+            <div class="card-location">Parque dos Mangabeiras</div>
+            <div class="card-date">22/04/2026 · Belo Horizonte</div>
+          </div>
+        </div>
+        <div class="card-images">
+          <div class="img-main">
+            <img src="foto-principal.jpg" alt="Foto do parque" />
+          </div>
+          <div class="img-side">
+            <div class="img-thumb"><img src="foto-2.jpg" alt="Foto 2" /></div>
+            <div class="img-thumb"><img src="foto-3.jpg" alt="Foto 3" /></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="like-btn" onclick="toggleLike(this)">
+            <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>123K</span>
+          </button>
+          <span class="checkin-badge">+10 pts</span>
+        </div>
+      </article>
+
+      <article class="checkin-card">
+        <div class="card-header">
+          <div class="avatar avatar--blue">JL</div>
+          <div class="card-meta">
+            <div class="card-location">Parque Serra do Rola-Moça</div>
+            <div class="card-date">21/04/2026 · Nova Lima</div>
+          </div>
+        </div>
+        <div class="card-images">
+          <div class="img-main">
+            <img src="./assets/images/parque3.png" alt="Foto do parque" />
+          </div>
+          <div class="img-side">
+            <div class="img-thumb"><img src="foto-2.jpg" alt="Foto 2" /></div>
+            <div class="img-thumb"><img src="foto-3.jpg" alt="Foto 3" /></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="like-btn" onclick="toggleLike(this)">
+            <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>47K</span>
+          </button>
+          <span class="checkin-badge">+10 pts</span>
+        </div>
+      </article>
+
+      <article class="checkin-card">
+        <div class="card-header">
+          <div class="avatar avatar--pink">JA</div>
+          <div class="card-meta">
+            <div class="card-location">Parque Américo Renné Giannetti</div>
+            <div class="card-date">20/04/2026 · Belo Horizonte</div>
+          </div>
+        </div>
+        <div class="card-images">
+          <div class="img-main">
+            <img src="./assets/images/parque1.png" alt="Foto do parque" />
+          </div>
+          <div class="img-side">
+            <div class="img-thumb"><img src="foto-2.jpg" alt="Foto 2" /></div>
+            <div class="img-thumb"><img src="foto-3.jpg" alt="Foto 3" /></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="like-btn" onclick="toggleLike(this)">
+            <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>89K</span>
+          </button>
+          <span class="checkin-badge">+10 pts</span>
+        </div>
+      </article>
+
+      <article class="checkin-card">
+        <div class="card-header">
+          <div class="avatar avatar--green">CC</div>
+          <div class="card-meta">
+            <div class="card-location">Parque das Mangabeiras Sul</div>
+            <div class="card-date">19/04/2026 · Belo Horizonte</div>
+          </div>
+        </div>
+        <div class="card-images">
+          <div class="img-main">
+            <img src="./assets/images/parque2.png" alt="Foto do parque" />
+          </div>
+          <div class="img-side">
+            <div class="img-thumb"><img src="foto-2.jpg" alt="Foto 2" /></div>
+            <div class="img-thumb"><img src="foto-3.jpg" alt="Foto 3" /></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="like-btn" onclick="toggleLike(this)">
+            <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>31K</span>
+          </button>
+          <span class="checkin-badge">+10 pts</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+ <script src="./assets/js/login.js"></script>
+
+</body>
+</html>

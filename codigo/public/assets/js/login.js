@@ -20,3 +20,4 @@ const observer = new IntersectionObserver(entries => {
 });
 
 document.querySelectorAll('.park-card').forEach(card => observer.observe(card));
+

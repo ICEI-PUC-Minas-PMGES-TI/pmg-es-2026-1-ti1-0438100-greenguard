@@ -1,0 +1,213 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* ── Container principal ── */
+.feed-wrapper {
+  background: #1a6e2e;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid #145a25;
+}
+
+/* ── Cabeçalho ── */
+.feed-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.feed-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #d4f5d4;
+  letter-spacing: 0.02em;
+}
+
+/* ── Área de scroll ── */
+.feed-scroll {
+  height: 360px;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #3a9a4a #1a6e2e;
+}
+
+.feed-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.feed-scroll::-webkit-scrollbar-track {
+  background: #1a6e2e;
+}
+
+.feed-scroll::-webkit-scrollbar-thumb {
+  background: #3a9a4a;
+  border-radius: 4px;
+}
+
+/* ── Card de check-in ── */
+.checkin-card {
+  background: #22883a;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.15s ease;
+}
+
+.checkin-card:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Cabeçalho do card ── */
+.card-header {
+  padding: 8px 12px 6px;
+  background: #2fa44a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Avatar ── */
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #7edb7e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: #145a25;
+  flex-shrink: 0;
+}
+
+.avatar--blue {
+  background: #b5d4f4;
+  color: #042c53;
+}
+
+.avatar--pink {
+  background: #f4c0d1;
+  color: #4b1528;
+}
+
+.avatar--green {
+  background: #c0dd97;
+  color: #173404;
+}
+
+/* ── Meta do card ── */
+.card-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-location {
+  font-size: 12px;
+  font-weight: 500;
+  color: #d4f5d4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-date {
+  font-size: 10px;
+  color: rgba(212, 245, 212, 0.65);
+  margin-top: 1px;
+}
+
+/* ── Grid de imagens ── */
+.card-images {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2px;
+  height: 110px;
+}
+
+.img-main {
+  background: #1a6e2e;
+  overflow: hidden;
+}
+
+.img-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.img-thumb {
+  flex: 1;
+  background: #1a6e2e;
+  overflow: hidden;
+}
+
+.img-main img,
+.img-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Rodapé do card ── */
+.card-footer {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Botão de curtida ── */
+.like-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  color: rgba(212, 245, 212, 0.75);
+  font-size: 12px;
+  transition: color 0.15s ease;
+}
+
+.like-btn:hover {
+  color: #ff8fa3;
+}
+
+.like-btn.liked {
+  color: #ff8fa3;
+}
+
+.heart-icon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  transition: fill 0.15s ease;
+}
+
+/* ── Badge de pontos ── */
+.checkin-badge {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #d4f5d4;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
