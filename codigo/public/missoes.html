@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenGuard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/missoes.css" />
+</head>
+<body>
+
+  <header>
+    <figure><img id="logo" src="./assets/images/logo.png" alt="Logo"></figure>
+    <div>
+      <figure><img id="foto_perfil" src="./assets/images/foto_perfil.jpeg" alt="Foto do usuário"></figure>
+      <p>Olá , <strong>Caio <br> Martins !</strong></p>
+    </div>
+  </header>
+
+  <div class="conteudo-principal">
+
+    <div class="painel-perfil">
+      <div class="foto-perfil">
+        <img src="./assets/images/foto_perfil.jpeg" alt="Foto do usuário" />
+      </div>
+
+      <h2 class="titulo-secao">Dados</h2>
+
+      <div class="bloco-dados">
+        <p class="dado-item">Colocação : 203°</p>
+        <p class="dado-item">Quantidade de posts feitos : 34 posts</p>
+        <p class="dado-item">Total de Check-ins : 9 check-ins</p>
+      </div>
+
+      <h2 class="titulo-secao">Missões Diárias</h2>
+
+      <div class="bloco-missoes">
+        <div class="missao-item">
+          <input type="checkbox" id="missao1" checked />
+          <label for="missao1">Curta 3 posts no Fórum</label>
+          <span class="pontos">+10pts</span>
+        </div>
+        <div class="missao-item">
+          <input type="checkbox" id="missao2" />
+          <label for="missao2">Faça 1 post no Fórum</label>
+          <span class="pontos">+6pts</span>
+        </div>
+        <div class="missao-item">
+          <input type="checkbox" id="missao3" />
+          <label for="missao3">Faça Check-in em um parque</label>
+          <span class="pontos">+20pts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="area-feed">
+      </div>
+
+  </div>
+
+  <script src="./modulos/login/login.html"></script>
+  <script src="./posts.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
