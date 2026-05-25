@@ -1,0 +1,52 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "usuario": {
+        "nome": "Julia Afonso",
+        "login": "@juliaafonso",
+        "nivelConta": 5,
+        "fotoPerfil": "https://meusite.com/perfis/julia.png"
+      },
+      "postagem": {
+        "tipoFeedback": "Assalto",
+        "experiencia": "Assalto próximo ao lago durante a noite.",
+        "imagemPost": "https://meusite.com/posts/assalto-lago.jpg",
+        "curtidas": 123,
+        "data": "2026-05-24 20:15"
+      }
+    },
+    {
+      "id": 2,
+      "usuario": {
+        "nome": "Carlos Henrique",
+        "login": "@carlosh",
+        "nivelConta": 3,
+        "fotoPerfil": "https://meusite.com/perfis/carlos.png"
+      },
+      "postagem": {
+        "tipoFeedback": "Reclamação",
+        "experiencia": "Iluminação muito fraca.",
+        "imagemPost": "https://meusite.com/posts/iluminacao.jpg",
+        "curtidas": 54,
+        "data": "2026-05-24 21:00"
+      }
+    },
+    {
+      "id": 3,
+      "usuario": {
+        "nome": "Amanda Silva",
+        "login": "@amandasilva",
+        "nivelConta": 1,
+        "fotoPerfil": "https://meusite.com/perfis/amanda.png"
+      },
+      "postagem": {
+        "tipoFeedback": "Elogio",
+        "experiencia": "Ótimo lugar para caminhada e lazer.",
+        "imagemPost": "https://meusite.com/posts/parque.jpg",
+        "curtidas": 87,
+        "data": "2026-05-24 18:40"
+      }
+    }
+  ]
+}
