@@ -575,3 +575,36 @@ a{
     text-decoration: none;
     color: black;
 }
+.ranking {
+    position: absolute;
+    right: 20px;
+    top: 420px;
+    width: 250px;
+    background: #00C04D;
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.ranking h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.ranking ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ranking li {
+    background: #014b1c;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
