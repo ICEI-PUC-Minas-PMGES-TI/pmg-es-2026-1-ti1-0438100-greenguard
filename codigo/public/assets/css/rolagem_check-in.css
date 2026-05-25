@@ -1,4 +1,5 @@
-* {
+Vou te dar o CSS completo e correto de uma vez, sem remendos:
+css* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -12,7 +13,6 @@ body {
   padding: 2rem;
 }
 
-/* ── Container principal ── */
 .feed-wrapper {
   background: #1a6e2e;
   border-radius: 12px;
@@ -22,7 +22,6 @@ body {
   border: 1px solid #145a25;
 }
 
-/* ── Cabeçalho ── */
 .feed-header {
   padding: 14px 16px 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
@@ -35,10 +34,9 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ── Área de scroll ── */
 .feed-scroll {
-  height: 360px;
-  overflow-y: auto;
+  height: 400px;
+  overflow-y: scroll;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -60,12 +58,12 @@ body {
   border-radius: 4px;
 }
 
-/* ── Card de check-in ── */
 .checkin-card {
   background: #22883a;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
   transition: transform 0.15s ease;
 }
 
@@ -73,7 +71,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* ── Cabeçalho do card ── */
 .card-header {
   padding: 8px 12px 6px;
   background: #2fa44a;
@@ -82,7 +79,6 @@ body {
   gap: 8px;
 }
 
-/* ── Avatar ── */
 .avatar {
   width: 28px;
   height: 28px;
@@ -97,22 +93,10 @@ body {
   flex-shrink: 0;
 }
 
-.avatar--blue {
-  background: #b5d4f4;
-  color: #042c53;
-}
+.avatar--blue { background: #b5d4f4; color: #042c53; }
+.avatar--pink { background: #f4c0d1; color: #4b1528; }
+.avatar--green { background: #c0dd97; color: #173404; }
 
-.avatar--pink {
-  background: #f4c0d1;
-  color: #4b1528;
-}
-
-.avatar--green {
-  background: #c0dd97;
-  color: #173404;
-}
-
-/* ── Meta do card ── */
 .card-meta {
   flex: 1;
   min-width: 0;
@@ -133,7 +117,6 @@ body {
   margin-top: 1px;
 }
 
-/* ── Grid de imagens ── */
 .card-images {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -166,7 +149,6 @@ body {
   display: block;
 }
 
-/* ── Rodapé do card ── */
 .card-footer {
   padding: 8px 12px;
   display: flex;
@@ -174,7 +156,6 @@ body {
   justify-content: space-between;
 }
 
-/* ── Botão de curtida ── */
 .like-btn {
   display: flex;
   align-items: center;
@@ -188,13 +169,8 @@ body {
   transition: color 0.15s ease;
 }
 
-.like-btn:hover {
-  color: #ff8fa3;
-}
-
-.like-btn.liked {
-  color: #ff8fa3;
-}
+.like-btn:hover { color: #ff8fa3; }
+.like-btn.liked { color: #ff8fa3; }
 
 .heart-icon {
   width: 16px;
@@ -203,7 +179,6 @@ body {
   transition: fill 0.15s ease;
 }
 
-/* ── Badge de pontos ── */
 .checkin-badge {
   font-size: 10px;
   background: rgba(255, 255, 255, 0.12);
