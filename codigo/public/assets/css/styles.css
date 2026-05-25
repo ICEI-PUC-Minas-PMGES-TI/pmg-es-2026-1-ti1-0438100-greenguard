@@ -11,8 +11,14 @@ p{
     margin: 0;
 }
 
-figure { margin: 0; }
-#foto_perfil, #logo { display: block; }
+figure { 
+    margin: 0; 
+}
+
+#foto_perfil, 
+#logo { 
+    display: block; 
+}
 
 header {
     display: flex;
@@ -20,6 +26,10 @@ header {
     justify-content: space-between;
     padding: 10px 40px;
     height: 94px;
+    background-color: white;
+    width: 100%;
+    position: fixed;
+    z-index: 10000;
 }
 
 header #foto_perfil {
@@ -35,7 +45,10 @@ header div {
     gap: 0.5rem;
 }
 
-#logo { width: 94px; height: 94px; }
+#logo { 
+    width: 94px; 
+    height: 94px; 
+}
 
 .hero-section {
     background-image: url("../images/banner.png");
@@ -89,11 +102,23 @@ main section input {
     z-index: 5;
 }
 
-.filter-hidden { display: none !important; }
+.filter-hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+
+    transition: 0.3s ease;
+}
+
+.filter-show {
+    opacity: 1 !important;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
 .filter-group {
     flex: 1;
-    background-color: white;
+    background-color: #d1d1d1;
     border-radius: 2px;
     overflow: hidden;
 }
@@ -109,7 +134,9 @@ main section input {
     cursor: default;
 }
 
-.filter-header i { color: #00ca45; }
+.filter-header i { 
+    color: #00ca45; 
+}
 
 .filter-options {
     list-style: none;
@@ -130,7 +157,10 @@ main section input {
     color: white;
 }
 
-#double_btn { display: flex; gap: 5px; }
+#double_btn { 
+    display: flex; 
+    gap: 5px; 
+}
 
 main section button {
     width: 47px;
@@ -143,6 +173,12 @@ main section button {
     justify-content: center;
     cursor: pointer;
 }
+
+main section button img { 
+    width: 22px; 
+    height: 22px; 
+}
+
 .botao {
     background: #4CAF50;
     color: white;
@@ -156,11 +192,273 @@ main section button {
     font-family: 'Poppins', sans-serif;
 }
 
+.posts{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+    color: white;
+    width:min(950px,90vw);
+    margin:40px auto;
+    padding:22px;
+    background:#B1FFD0;
+    height: 31vw;
+    overflow: auto;
+}
+
+.post-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    padding:26px;
+    background:#00C04D;
+    box-sizing:border-box;
+    gap: 25px;
+}
+
+.post-content{
+    width:34%;
+}
+
+.post-author{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.author-avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+
+.post-image{
+    width:30%;
+    min-width:220px;
+    height:150px;
+    background-image:url("../images/celular_roubado.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    flex-shrink: 0;
+}
+
+.post-footer{
+    width:18%;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+.likes{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.author-name {
+    font-size: 20px;
+}
+
+.post-description {
+    font-size: 15px;
+}
+
+.post-category {
+    font-size: 22px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.bolinha{
+    height: 8px;
+    width: 8px;
+    background-color: blue;
+    flex-shrink: 0;
+}
+
+.title-category{
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.category-likes{
+    margin-right: 7%;
+    width: 140px;
+    min-width: 140px;
+}
+
+::-webkit-scrollbar{
+    width:12px;
+}
+
+::-webkit-scrollbar-button{
+    display:none;
+}
+
+::-webkit-scrollbar-track{
+    background:#ffffff;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2e8b57;
+    border-radius:12px;
+    border:2px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#3aa76d;
+}
+
+@media (max-width:900px){
+    .posts{
+        width:95vw;
+        height: fit-content;
+        padding:15px;
+        overflow: unset;
+    }
+
+    .post-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:25px;
+    }
+
+    .post-content, 
+    .post-image, 
+    .post-footer{
+        width:100%;
+    }
+
+    .post-image{
+        min-width:unset;
+        height:240px;
+    }
+
+    .post-footer{
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .category-likes{
+        width: 100%;
+        min-width: unset;
+        margin-right: 0;
+    }
+}
+
+/* ===== ESTILOS KAIQUE - cards de parques ===== */
+
+.cards-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: flex-start;
+    padding: 48px 60px;
+}
+
+.park-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.park-card.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.park-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,202,69,0.18);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.park-card .card-body {
+    padding: 16px 20px 20px;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.card-info {
+    font-size: 0.82rem;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.stars { color: #f5a623; }
+
+.badge-hours {
+    display: inline-block;
+    background: #00ca45;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 2px 8px;
+}
+
+.ver-mais {
+    display: inline-block;
+    color: #00ca45;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 8px 0 14px;
+}
+
+.ver-mais:hover { text-decoration: underline; }
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-card {
+    flex: 1;
+    padding: 10px 4px;
+    background: #00ca45;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins';
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-card:hover { filter: brightness(1.1); }
+
+/* ===== ESTILOS PEDRO - página de perfil ===== */
+
 #btn_voltar{
     width: 100%;
     height: 40px;
     background-color: #00CF53;
-
 }
 
 svg{
@@ -183,7 +481,6 @@ svg{
     align-items: center;
     flex-direction: column;
 }
-main section button img { width: 22px; height: 22px; }
 
 #imgperfil_card{
     width: 20%;
@@ -249,3 +546,68 @@ main section button img { width: 22px; height: 22px; }
     height: 50px;
 }
 
+#main_flex {
+    padding-top: 110px;
+}
+
+#card {
+    font-family: 'Poppins', sans-serif;
+}
+
+#card h1, #card h2, #card h3, #card p, #card a, #card input, #card button {
+    font-family: 'Poppins', sans-serif;
+}
+
+#red_senha {
+    font-family: 'Poppins', sans-serif;
+    color: #00ca45;
+    font-size: 14px;
+}
+
+#salvar_alt {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.modal{
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.5);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+.modal-content{
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
+
+    position: relative;
+}
+
+.close{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+
+    font-size: 25px;
+    cursor: pointer;
+}
