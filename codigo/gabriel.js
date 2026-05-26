@@ -89,3 +89,53 @@ function handleSend() {
 setupRatings();
 setupSentimentToggle();
 sendButton.addEventListener("click", handleSend);
+
+fetch("feedback.json")
+    .then(response => response.json())
+    .then(data => {
+
+        /* usuario */
+        if (data.usuario) {
+
+            console.log(
+                "Login:",
+                data.usuario.login
+            );
+
+            console.log(
+                "Nível:",
+                data.usuario.nivelConta
+            );
+        }
+
+        /* comentario */
+        feedbackData.comentario =
+            data.comentario || "";
+
+        /* sentimento */
+        feedbackData.sentimento =
+            data.sentimento || "positivo";
+
+        /* classificacao */
+        feedbackData.classificacao =
+            data.classificacao || {
+                seguranca: 0,
+                iluminacao: 0,
+                movimentacao: 0
+            };
+
+        commentInput.value =
+            feedbackData.comentario;
+
+        setupRatings();
+
+    })
+
+    .catch(error => {
+
+        console.log(
+            "Erro ao carregar JSON:",
+            error
+        );
+
+    });
