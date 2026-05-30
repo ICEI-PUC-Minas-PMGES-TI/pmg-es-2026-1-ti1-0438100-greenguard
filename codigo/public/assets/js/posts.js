@@ -118,3 +118,57 @@ function ativarLikes() {
 }
 
 carregarPosts();
+
+// ==========================
+// MODAL
+// ==========================
+
+const modal = document.getElementById('modalPost');
+const abrirModal = document.getElementById('abrirModal');
+
+if (abrirModal && modal) {
+
+    abrirModal.addEventListener('click', () => {
+
+        modal.classList.add('active');
+
+        // trava o scroll da página
+        document.body.style.overflow = 'hidden';
+
+    });
+
+    modal.addEventListener('click', (event) => {
+
+        // fecha ao clicar fora do card
+        if (event.target === modal) {
+
+            modal.classList.remove('active');
+
+            // libera o scroll novamente
+            document.body.style.overflow = '';
+
+        }
+
+    });
+
+}
+
+// ==========================
+// CATEGORIAS
+// ==========================
+
+const botoesCategoria = document.querySelectorAll('.cat-btn');
+
+botoesCategoria.forEach(botao => {
+
+    botao.addEventListener('click', () => {
+
+        botoesCategoria.forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        botao.classList.add('active');
+
+    });
+
+});

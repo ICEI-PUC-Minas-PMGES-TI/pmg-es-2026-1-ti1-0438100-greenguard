@@ -1,12 +1,111 @@
 {
   "usuarios": [
-    { "id": 1, "login": "admin", "senha": "123", "nome": "Administrador do Sistema", "email": "admin@abc.com" },
-    { "id": 2, "login": "user", "senha": "123", "nome": "Usuario Comum", "email": "user@abc.com" },
-    { "login": "rommel", "senha": "123", "nome": "Rommel", "email": "rommel@gmail.com", "id": 3 }
+    {
+      "id": 1,
+      "login": "juliaafonso",
+      "senha": "123",
+      "nome": "Julia Afonso",
+      "email": "julia@email.com",
+      "foto_perfil": "./assets/images/perfil/julia.jpg",
+      "nivel": 3,
+      "xp": 350
+    },
+    {
+      "id": 2,
+      "login": "carlosh",
+      "senha": "123",
+      "nome": "Carlos Henrique",
+      "email": "carlos@email.com",
+      "foto_perfil": "./assets/images/perfil/carlos.jpg",
+      "nivel": 2,
+      "xp": 200
+    },
+    {
+      "id": 3,
+      "login": "amandasilva",
+      "senha": "123",
+      "nome": "Amanda Silva",
+      "email": "amanda@email.com",
+      "foto_perfil": "./assets/images/perfil/amanda.jpg",
+      "nivel": 1,
+      "xp": 50
+    }
   ],
   "posts": [
-    { "id": 1, "titulo": "Parque Municipal BH", "autor": "Julia Afonso", "descricao": "Assalto próximo ao lago durante a noite.", "categoria": "Assalto", "likes": 123, "imagem": "./assets/images/celular_roubado.jpg" },
-    { "id": 2, "titulo": "Parque Ecológico", "autor": "Carlos Henrique", "descricao": "Iluminação muito fraca.", "categoria": "Reclamação", "likes": 54, "imagem": "./assets/images/poste_apagado.jpg" },
-    { "id": 3, "titulo": "Parque Ecológico", "autor": "Amanda Silva", "descricao": "Ótima limpeza e manutenção do local durante o final de semana.", "categoria": "Elogio", "likes": 87, "imagem": "./assets/images/parque_ecologico.jpg" }
+    {
+      "id": 1,
+      "autor_id": 1,
+      "autor": "Julia Afonso",
+      "titulo": "Parque Municipal BH",
+      "categoria": "Assalto",
+      "descricao": "Assalto próximo ao lago durante a noite.",
+      "data": "2026-04-20 19:30",
+      "likes": 123,
+      "imagem": "./assets/images/celular_roubado.jpg"
+    },
+    {
+      "id": 2,
+      "autor_id": 2,
+      "autor": "Carlos Henrique",
+      "titulo": "Parque Ecológico",
+      "categoria": "Reclamação",
+      "descricao": "Iluminação muito fraca.",
+      "data": "2026-04-23 21:00",
+      "likes": 54,
+      "imagem": "./assets/images/poste_apagado.jpg"
+    },
+    {
+      "id": 3,
+      "autor_id": 3,
+      "autor": "Amanda Silva",
+      "titulo": "Parque Ecológico",
+      "categoria": "Elogio",
+      "descricao": "Ótima limpeza e manutenção do local durante o final de semana.",
+      "data": "2026-05-01 18:40",
+      "likes": 87,
+      "imagem": "./assets/images/parque_ecologico.jpg"
+    }
+  ],
+  "checkins": [
+    {
+      "id": 1,
+      "usuario_id": 3,
+      "parque": "Parque dos Mangabeiras",
+      "data": "2026-04-22 10:15",
+      "likes": 34,
+      "imagem": "./assets/images/checkins/checkin1.jpg"
+    },
+    {
+      "id": 2,
+      "usuario_id": 1,
+      "parque": "Parque Municipal de BH",
+      "data": "2026-04-28 09:00",
+      "likes": 57,
+      "imagem": "./assets/images/checkins/checkin2.jpg"
+    },
+    {
+      "id": 3,
+      "usuario_id": 2,
+      "parque": "Parque Ecológico da Pampulha",
+      "data": "2026-05-03 16:30",
+      "likes": 91,
+      "imagem": "./assets/images/checkins/checkin3.jpg"
+    },
+    {
+      "id": 4,
+      "usuario_id": 3,
+      "parque": "Parque Jardim América",
+      "data": "2026-05-10 11:45",
+      "likes": 18,
+      "imagem": "./assets/images/checkins/checkin4.jpg"
+    },
+    {
+      "id": 5,
+      "usuario_id": 1,
+      "parque": "Parque das Mangabeiras",
+      "data": "2026-05-17 14:20",
+      "likes": 43,
+      "imagem": "./assets/images/checkins/checkin5.jpg"
+    }
   ]
 }

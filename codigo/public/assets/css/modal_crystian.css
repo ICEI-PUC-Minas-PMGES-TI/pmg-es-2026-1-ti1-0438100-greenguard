@@ -2,13 +2,24 @@
 
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
     background-color: rgba(154, 216, 154, 0.45);
     backdrop-filter: blur(3px);
-    display: flex;
+
+    display: none; /* escondido */
+
     align-items: center;
     justify-content: center;
+
     z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
 }
 
 .post-card-modal {
@@ -22,8 +33,18 @@
 }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0px); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.post-card-modal {
+    animation: fadeUp 0.18s ease-out;
 }
 
 .field-label {
