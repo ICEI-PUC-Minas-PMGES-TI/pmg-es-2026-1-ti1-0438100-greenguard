@@ -39,7 +39,7 @@ body {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 24px;
   scrollbar-width: thin;
   scrollbar-color: #3a9a4a #1a6e2e;
 }

@@ -5,136 +5,352 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tela Genérica</title>
-  <link rel="stylesheet" href="./assets/css/styles.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
 
   <header>
-    <figure><img id="logo" src="./assets/images/logo.png" alt="Logo"></figure>
-    <div>
-      <figure><img id="foto_perfil" src="./assets/images/foto_perfil.jpeg" alt="Ícone do usuário"></figure>
-      <p>Olá , <strong>Caio <br> Martins !</strong></p>
-    </div>
+    <a href="index.html">
+      <figure><img id="logo" src="./assets/images/logo.png" alt="Logo"></figure>
+    </a>
+    <a href="pedro.html">
+      <div>
+        <figure><img id="foto_perfil" src="./assets/images/foto_perfil.jpeg" alt="Ícone do usuário"></figure>
+        <p>Olá , <strong>Caio <br> Martins !</strong></p>
+      </div>
+    </a>
   </header>
 
   <main>
-    
 
-<section class="hero-section">
-  <div class="search-container">
-    
-    <div class="input-group-wrapper">
-      <input type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
-      
-      <div id="filter-panel" class="filter-hidden">
-  
-  <div class="filter-group">
-    <div class="filter-header" onclick="toggleDropdown(this)">
-      <span>Turno</span>
-      <i class="bi bi-caret-down-fill"></i>
-    </div>
-    <ul class="filter-options dropdown-closed">
-      <li onclick="selectOption(this)">Dia</li>
-      <li onclick="selectOption(this)">Noite</li>
-    </ul>
-  </div>
 
-  <div class="filter-group">
-    <div class="filter-header" onclick="toggleDropdown(this)">
-      <span>Atividade</span>
-      <i class="bi bi-caret-down-fill"></i>
-    </div>
-    <ul class="filter-options dropdown-closed">
-      <li onclick="selectOption(this)">Caminhada</li>
-      <li onclick="selectOption(this)">Esporte</li>
-    </ul>
-  </div>
+    <section class="hero-section">
+      <div class="search-container">
 
-  <div class="filter-group">
-    <div class="filter-header" onclick="toggleDropdown(this)">
-      <span>Distância</span>
-      <i class="bi bi-caret-down-fill"></i>
-    </div>
-    <ul class="filter-options dropdown-closed">
-      <li onclick="selectOption(this)">Até 5km</li>
-      <li onclick="selectOption(this)">Até 10km</li>
-    </ul>
-  </div>
+        <div class="input-group-wrapper">
+          <input type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
 
-</div>
-    </div>
+          <div id="filter-panel" class="filter-hidden">
 
-    <div id="double_btn">
-      <button><img src="./assets/images/lupa.png" alt=""></button>
-      <button onclick="toggleFilters()"><img src="./assets/images/filtro.png" alt=""></button>
-    </div>
+            <div class="filter-group">
+              <div class="filter-header" onclick="toggleDropdown(this)">
+                <span>Turno</span>
+                <i class="bi bi-caret-down-fill"></i>
+              </div>
+              <ul class="filter-options dropdown-closed">
+                <li onclick="selectOption(this)">Dia</li>
+                <li onclick="selectOption(this)">Noite</li>
+              </ul>
+            </div>
 
-  </div>
-</section>
+            <div class="filter-group">
+              <div class="filter-header" onclick="toggleDropdown(this)">
+                <span>Atividade</span>
+                <i class="bi bi-caret-down-fill"></i>
+              </div>
+              <ul class="filter-options dropdown-closed">
+                <li onclick="selectOption(this)">Caminhada</li>
+                <li onclick="selectOption(this)">Esporte</li>
+              </ul>
+            </div>
 
-<section class="cards-section">
-  <div class="park-card">
-    <div class="card-img">
-      <img src="./assets/images/parque1.png" alt="Parque Municipal de Belo Horizonte">
-    </div>
-    <div class="card-body">
-      <h3 class="card-title">Parque Municipal de Belo Horizonte</h3>
-      <p class="card-info">Nível de segurança &nbsp;<span class="stars">★★★★☆</span></p>
-      <p class="card-info">Localização : Av. Afonso Pena, 1.377 – Centro</p>
-      <p class="card-info">Horário de Funcionamento : <span class="badge-hours">seg - sáb de 7:00 às 22:00</span></p>
-      <a class="ver-mais">ver mais !</a>
-      <div class="card-actions">
-        <button class="btn-card">Me leve até lá!</button>
-        <button class="btn-card">Fazer Feedback!</button>
+            <div class="filter-group">
+              <div class="filter-header" onclick="toggleDropdown(this)">
+                <span>Distância</span>
+                <i class="bi bi-caret-down-fill"></i>
+              </div>
+              <ul class="filter-options dropdown-closed">
+                <li onclick="selectOption(this)">Até 5km</li>
+                <li onclick="selectOption(this)">Até 10km</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div id="double_btn">
+          <button><img src="./assets/images/lupa.png" alt=""></button>
+          <button onclick="toggleFilters()"><img src="./assets/images/filtro.png" alt=""></button>
+        </div>
+
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="park-card">
-    <div class="card-img">
-      <img src="./assets/images/parque3.png" alt="Parque Municipal de Belo Horizonte">
-    </div>
-    <div class="card-body">
-      <h3 class="card-title">Parque Municipal de Belo Horizonte</h3>
-      <p class="card-info">Nível de segurança &nbsp;<span class="stars">★★★☆☆</span></p>
-      <p class="card-info">Av. Ximango, 809</p>
-      <p class="card-info">Horário de Funcionamento : <span class="badge-hours">seg - sex de 6:00 às 23:00</span></p>
-      <a class="ver-mais">ver mais !</a>
-      <div class="card-actions">
-        <button class="btn-card">Me leve até lá!</button>
-        <button class="btn-card">Fazer Feedback!</button>
-      </div>
-    </div>
-  </div>
+    <div id="content">
 
-    <div class="park-card">
-    <div class="card-img">
-      <img src="./assets/images/parque2.png" alt="Parque Municipal de Belo Horizonte">
-    </div>
-    <div class="card-body">
-      <h3 class="card-title">Parque Municipal de Belo Horizonte</h3>
-      <p class="card-info">Nível de segurança &nbsp;<span class="stars">★★★★</span></p>
-      <p class="card-info">Localização: R. Augusto José dos Santos, 366</p>
-      <p class="card-info">Horário de Funcionamento : <span class="badge-hours">seg - dom de 7:00 às 18:00</span></p>
-      <a class="ver-mais">ver mais !</a>
-      <div class="card-actions">
-        <button class="btn-card">Me leve até lá!</button>
-        <button class="btn-card">Fazer Feedback!</button>
-      </div>
-    </div>
-  </div>
+      <a href="forum.html">
+        <section id="sec-forum">
+          <h2>Fórum de Denúncia</h2>
 
-</section>
- 
+          <div class="forum_denuncia">
+            <article class="post_forum_previa">
+              <p class="tempo_post">há 3min</p>
+              <h3>Parque Ecológico da Pampulha</h3>
 
-</main>
+              <div class="row_txt_img">
+
+                <div>
+                  <div class="row_foto_nome">
+                    <figure><img src="./assets/images/foto_perfil_pedro.png" alt=""></figure>
+                    <h4>Pedro Miguel</h4>
+                  </div>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod deleniti iusto consectetur itaque
+                    pariatur aliquid sit ullam voluptates atque officiis, incidunt quo neque alias accusantium est eum
+                    repellendus a praesentium!</p>
+                </div>
+
+
+                <div><img class="img_post" src="./assets/images/celular_roubado.jpg"></div>
+              </div>
+
+            </article>
+
+            <article class="post_forum_previa">
+              <p class="tempo_post">há 3min</p>
+
+              <h3>Parque Ecológico da Pampulha</h3>
+
+              <div class="row_txt_img">
+
+                <div>
+                  <div class="row_foto_nome">
+                    <figure><img src="./assets/images/foto_perfil_julia.png" alt=""></figure>
+                    <h4>Julia Afonso</h4>
+                  </div>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod deleniti iusto consectetur itaque
+                    pariatur aliquid sit ullam voluptates atque officiis, incidunt quo neque alias accusantium est eum
+                    repellendus a praesentium!</p>
+                </div>
+
+
+                <div><img class="img_post" src="./assets/images/poste_apagado.jpg" alt=""></div>
+              </div>
+
+            </article>
+
+
+
+
+
+
+            <button>Ir para o Fórum !</button>
+
+          </div>
+
+
+
+        </section>
+      </a>
+
+      <section id="map-section">
+        <div id="map"></div>
+      </section>
+
+
+      <section id="right-side">
+
+        <!-- RECOMENDAÇÕES -->
+        <a href="kaique.html">
+          <div class="box-side">
+
+            <h2>Recomendações</h2>
+
+            <div class="side-card scroll-card">
+
+              <!-- ITEM -->
+              <div class="park-item">
+
+                <div class="park-left">
+                  <img src="./assets/images/parque1.png" alt="">
+
+                  <div>
+                    <p>Parque Municipal</p>
+                    <p>Belo Horizonte</p>
+                  </div>
+                </div>
+
+                <div class="park-right">
+
+                  <span class="distance">4.3 km</span>
+
+                  <div class="stars">
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- ITEM -->
+              <div class="park-item">
+
+                <div class="park-left">
+                  <img src="./assets/images/parque2.png" alt="">
+
+                  <div>
+                    <p>Parque Ecológico</p>
+                    <p>Pampulha</p>
+                  </div>
+                </div>
+
+                <div class="park-right">
+
+                  <span class="distance">4.7 km</span>
+
+                  <div class="stars">
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- ITEM -->
+              <div class="park-item">
+
+                <div class="park-left">
+                  <img src="./assets/images/parque3.png" alt="">
+
+                  <div>
+                    <p>Parque das</p>
+                    <p>Mangabeiras</p>
+                  </div>
+                </div>
+
+                <div class="park-right">
+
+                  <span class="distance">5.2 km</span>
+
+                  <div class="stars">
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </a>
+
+        <!-- FAVORITOS -->
+        <div class="box-side">
+
+          <h2>Favoritos</h2>
+
+          <div class="side-card">
+
+            <!-- ITEM -->
+            <div class="park-item favorite-item">
+
+              <div class="park-left">
+                <img src="./assets/images/parque1.png" alt="">
+
+                <div>
+                  <p>Parque Municipal</p>
+                  <p>Belo Horizonte</p>
+                </div>
+              </div>
+
+              <div class="favorite-right">
+
+                <span class="distance">4.3 km</span>
+
+                <div class="favorite-bottom">
+
+                  <div class="stars">
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+
+                  <i class="bi bi-heart-fill heart"></i>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- ITEM -->
+            <div class="park-item favorite-item">
+
+              <div class="park-left">
+                <img src="./assets/images/parque2.png" alt="">
+
+                <div>
+                  <p>Parque Ecológico</p>
+                  <p>Pampulha</p>
+                </div>
+              </div>
+
+              <div class="favorite-right">
+
+                <span class="distance">4.7 km</span>
+
+                <div class="favorite-bottom">
+
+                  <div class="stars">
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill active"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+
+                  <i class="bi bi-heart-fill heart"></i>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
 
   <script src="./assets/js/login.js"></script>
+  <script>
 
+function toggleFilters() {
+
+    const panel = document.getElementById("filter-panel");
+
+    panel.classList.toggle("filter-show");
+
+}
+
+</script>
 </body>
 
 </html>

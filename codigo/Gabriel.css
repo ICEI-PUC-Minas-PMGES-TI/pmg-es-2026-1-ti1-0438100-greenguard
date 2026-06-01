@@ -1,0 +1,207 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ── Fundo da página: verde menta claro ── */
+body {
+    background-color: #a8e6cf;
+    min-height: 100vh;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+/* ── Card principal: verde médio, sem borda/sombra ── */
+.feedback-card {
+    width: 100%;
+    max-width: 780px;
+    background: #5cbf9a;
+    border-radius: 20px;
+    padding: 32px 36px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+/* ── Textarea: branca, cantos 10px ── */
+.comment-box {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.96rem;
+    resize: vertical;
+    background: #ffffff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.comment-box::placeholder {
+    color: #aaa;
+}
+
+.comment-box:focus {
+    border-color: #27ae60;
+}
+
+/* ── Linha inferior: esquerda + direita lado a lado ── */
+.bottom-row {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+/* ── Coluna esquerda (feedback + enviar) ── */
+.left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 0 0 auto;
+    min-width: 210px;
+}
+
+/* ── Coluna direita (classificação) ── */
+.right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+/* ── Títulos das seções: preto negrito ── */
+.col-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111111;
+}
+
+/* ── Botões Positivo / Negativo: pill shape ── */
+.sentiment-group {
+    display: flex;
+    gap: 10px;
+}
+
+.sentiment-btn {
+    border: none;
+    border-radius: 20px;
+    padding: 9px 24px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.12s, box-shadow 0.2s;
+}
+
+.sentiment-btn:active {
+    transform: scale(0.97);
+}
+
+.sentiment-btn.positive {
+    background: #4caf50;
+}
+
+.sentiment-btn.negative {
+    background: #f44336;
+}
+
+.sentiment-btn.selected {
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.sentiment-btn.not-selected {
+    opacity: 0.45;
+}
+
+/* ── Linha de avaliação ── */
+.rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-label {
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: #111111;
+    white-space: nowrap;
+    min-width: 148px;
+}
+
+.stars {
+    display: flex;
+    gap: 3px;
+}
+
+/* Estrela vazia: contorno dourado ── */
+.star {
+    border: none;
+    background: transparent;
+    font-size: 1.55rem;
+    line-height: 1;
+    cursor: pointer;
+    color: transparent;
+    -webkit-text-stroke: 1.8px #c8960c;
+    transition: transform 0.12s, color 0.15s, -webkit-text-stroke 0.15s;
+    padding: 0;
+}
+
+.star:hover {
+    transform: scale(1.15);
+}
+
+/* Estrela preenchida: amarelo sólido ── */
+.star.filled {
+    color: #f5c518;
+    -webkit-text-stroke: 0px transparent;
+}
+
+/* ── Botão Enviar: 200px, alinhado esquerda ── */
+.send-btn {
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 0;
+    background: #27ae60;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    align-self: flex-start;
+    transition: filter 0.18s, transform 0.12s;
+}
+
+.send-btn:hover {
+    filter: brightness(0.92);
+}
+
+.send-btn:active {
+    transform: scale(0.98);
+}
+
+/* ── Responsivo ── */
+@media (max-width: 600px) {
+    .bottom-row {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .send-btn {
+        width: 100%;
+    }
+
+    .rating-label {
+        min-width: unset;
+    }
+}
