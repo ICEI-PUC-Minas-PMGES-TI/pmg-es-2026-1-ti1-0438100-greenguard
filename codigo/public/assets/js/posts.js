@@ -172,3 +172,83 @@ botoesCategoria.forEach(botao => {
     });
 
 });
+
+// posts.js
+
+/**
+ * Envia um novo post/ocorrência de parque
+ * @param {Object} dadosPost - Campos do modal de feedback
+ * @param {string} dadosPost.descricao    - Descrição do fato ocorrido
+ * @param {string} dadosPost.tipo         - Tipo do post: 'assalto' | 'reclamacao' | 'seguranca'
+ * @param {string} dadosPost.parque       - Nome do parque onde ocorreu
+ * @param {File|null} dadosPost.imagem    - Imagem anexada (opcional)
+ * @returns {Promise<{ sucesso: boolean, mensagem: string, id?: string }>}
+ */
+async function enviarPost({ descricao, tipo, parque, imagem = null }) {
+  // Validações básicas
+  if (!descricao || descricao.trim() === '') {
+    return { sucesso: false, mensagem: 'A descrição do fato é obrigatória.' };
+  }
+  if (!tipo) {
+    return { sucesso: false, mensagem: 'Selecione o tipo do post (Assalto, Reclamação ou Segurança).' };
+  }
+  if (!parque || parque.trim() === '') {
+    return { sucesso: false, mensagem: 'Informe o nome do parque.' };
+  }
+
+  try {
+    const formData = new FormData();
+    formData.append('descricao', descricao.trim());
+    formData.append('tipo', tipo);           // 'assalto' | 'reclamacao' | 'seguranca'
+    formData.append('parque', parque.trim());
+    if (imagem) {
+      formData.append('imagem', imagem);
+    }
+
+    const resposta = await fetch('/api/posts', {
+      method: 'POST',
+      body: formData,
+      // NÃO setar Content-Type aqui — o browser define o boundary do multipart
+    });
+
+    if (!resposta.ok) {
+      const erro = await resposta.json().catch(() => ({}));
+      return {
+        sucesso: false,
+        mensagem: erro.mensagem || `Erro ${resposta.status}: falha ao enviar o post.`,
+      };
+    }
+
+    const dados = await resposta.json();
+    return { sucesso: true, mensagem: 'Post enviado com sucesso!', id: dados.id };
+
+  } catch (erro) {
+    console.error('[enviarPost] Erro de rede:', erro);
+    return { sucesso: false, mensagem: 'Erro de conexão. Tente novamente.' };
+  }
+}
+
+
+// ─── Exemplo de uso junto ao botão "Enviar" do modal ────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnEnviar = document.querySelector('#modal-feedback .btn-enviar');
+  if (!btnEnviar) return;
+
+  btnEnviar.addEventListener('click', async () => {
+    const descricao = document.querySelector('#input-descricao')?.value ?? '';
+    const tipo      = document.querySelector('.btn-tipo.ativo')?.dataset.tipo ?? '';
+    const parque    = document.querySelector('#input-parque')?.value ?? '';
+    const arquivoEl = document.querySelector('#input-imagem');
+    const imagem    = arquivoEl?.files[0] ?? null;
+
+    const resultado = await enviarPost({ descricao, tipo, parque, imagem });
+
+    if (resultado.sucesso) {
+      alert(resultado.mensagem);
+      fecharModal(); // sua função de fechar o modal
+    } else {
+      alert(resultado.mensagem);
+    }
+  });
+});

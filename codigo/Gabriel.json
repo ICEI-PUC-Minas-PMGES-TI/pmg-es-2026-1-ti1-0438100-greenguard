@@ -1,0 +1,16 @@
+{
+  "usuario": {
+    "login": "gabriel123",
+    "nivelConta": 7
+  },
+
+  "comentario": "Lugar bem iluminado e seguro",
+
+  "sentimento": "positivo",
+
+  "classificacao": {
+    "seguranca": 5,
+    "iluminacao": 4,
+    "movimentacao": 3
+  }
+}
