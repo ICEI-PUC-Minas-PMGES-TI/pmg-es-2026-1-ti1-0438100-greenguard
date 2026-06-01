@@ -172,8 +172,8 @@ body {
 .like-btn.liked { color: #ff8fa3; }
 
 .heart-icon {
-  width: 16px;
-  height: 16px;
+  width: 25px;
+  height:25px;
   stroke: currentColor;
   transition: fill 0.15s ease;
 }
