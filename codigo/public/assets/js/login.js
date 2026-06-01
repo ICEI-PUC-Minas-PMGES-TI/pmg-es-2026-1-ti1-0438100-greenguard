@@ -69,3 +69,31 @@ if (abrir && modal && fechar) {
     });
 
 }
+
+const abrirModal = document.getElementById("abrirModal");
+
+const modalParque = document.getElementById("modalParque");
+
+const fecharModal = document.getElementById("fecharModal");
+
+abrirModal.addEventListener("click", function(){
+
+    modalParque.style.display = "flex";
+
+});
+
+fecharModal.addEventListener("click", function(){
+
+    modalParque.style.display = "none";
+
+});
+
+window.addEventListener("click", function(event){
+
+    if(event.target === modalParque){
+
+        modalParque.style.display = "none";
+
+    }
+
+});
