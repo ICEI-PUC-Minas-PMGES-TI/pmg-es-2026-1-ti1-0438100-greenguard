@@ -113,7 +113,20 @@
       </div>
 
     </section>
+    <aside class="ranking">
+      <h2>Ranking de Pontuação</h2>
+      <ul id="ranking-list"></ul>
+    </aside>
 
+    <script src="./assets/js/ranking.js"></script>
+    <script>
+      const ul = document.getElementById("ranking-list");
+      rankingData.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${index + 1}º ${item.nome} — ${item.pontos} pts`;
+        ul.appendChild(li);
+      });
+    </script>
   </main>
 
   <button class="botao" id="abrirModal">
@@ -123,11 +136,6 @@
   <div class="forum-wrapper">
 
     <div class="posts"></div>
-
-    <aside class="ranking-sidebar">
-      <h2>Ranking de Pontuação</h2>
-      <ul id="rankingLista"></ul>
-    </aside>
 
   </div>
 
