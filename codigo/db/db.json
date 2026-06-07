@@ -64,28 +64,6 @@
       "data": "2026-05-01 18:40",
       "likes": 87,
       "imagem": "./assets/images/parque_ecologico.jpg"
-    },
-    {
-      "autor_id": null,
-      "autor": "Anônimo",
-      "titulo": "Parque Municipal Américo Renné Giannetti",
-      "categoria": "Assalto",
-      "descricao": "TESTE",
-      "data": "2026-06-07T05:42:03.539Z",
-      "likes": 1,
-      "imagem": "./assets/images/posts_sent/post_1780810923501.jpeg",
-      "id": 4
-    },
-    {
-      "autor_id": null,
-      "autor": "Anônimo",
-      "titulo": "Parque Municipal Américo Renné Giannetti",
-      "categoria": "Assalto",
-      "descricao": "TESTE",
-      "data": "2026-06-07T05:42:13.477Z",
-      "likes": 1,
-      "imagem": "./assets/images/posts_sent/post_1780810933468.jpeg",
-      "id": 5
     }
   ],
   "checkins": [
