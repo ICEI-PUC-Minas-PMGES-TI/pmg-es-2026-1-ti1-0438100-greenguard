@@ -64,6 +64,28 @@
       "data": "2026-05-01 18:40",
       "likes": 87,
       "imagem": "./assets/images/parque_ecologico.jpg"
+    },
+    {
+      "autor_id": null,
+      "autor": "Anônimo",
+      "titulo": "Parque Municipal Américo Renné Giannetti",
+      "categoria": "Assalto",
+      "descricao": "TESTE",
+      "data": "2026-06-07T05:42:03.539Z",
+      "likes": 1,
+      "imagem": "./assets/images/posts_sent/post_1780810923501.jpeg",
+      "id": 4
+    },
+    {
+      "autor_id": null,
+      "autor": "Anônimo",
+      "titulo": "Parque Municipal Américo Renné Giannetti",
+      "categoria": "Assalto",
+      "descricao": "TESTE",
+      "data": "2026-06-07T05:42:13.477Z",
+      "likes": 1,
+      "imagem": "./assets/images/posts_sent/post_1780810933468.jpeg",
+      "id": 5
     }
   ],
   "checkins": [
@@ -106,6 +128,88 @@
       "data": "2026-05-17 14:20",
       "likes": 43,
       "imagem": "./assets/images/checkins/checkin5.jpg"
+    }
+  ],
+  "parques": [
+    {
+      "id": 1,
+      "nome": "Parque Municipal Américo Renné Giannetti"
+    },
+    {
+      "id": 2,
+      "nome": "Parque das Mangabeiras - Maurício Campos"
+    },
+    {
+      "id": 3,
+      "nome": "Parque Ecológico da Pampulha"
+    },
+    {
+      "id": 4,
+      "nome": "Parque Municipal Juscelino Kubitschek (JK)"
+    },
+    {
+      "id": 5,
+      "nome": "Parque da Serra do Curral"
+    },
+    {
+      "id": 6,
+      "nome": "Parque Ecológico Roberto Burle Marx (Parque das Águas)"
+    },
+    {
+      "id": 7,
+      "nome": "Parque Ursulina de Andrade Mello"
+    },
+    {
+      "id": 8,
+      "nome": "Parque Rosinha Cadar"
+    },
+    {
+      "id": 9,
+      "nome": "Parque Jornalista Eduardo Couri (Barragem Santa Lúcia)"
+    },
+    {
+      "id": 10,
+      "nome": "Parque Ecológico Padre Alfredo Sabetta (Teixeira Dias)"
+    },
+    {
+      "id": 11,
+      "nome": "Parque Carlos de Faria Tavares (Vila Pinho)"
+    },
+    {
+      "id": 12,
+      "nome": "Parque Altamira Costa Nogueira (Santo Antônio)"
+    },
+    {
+      "id": 13,
+      "nome": "Parque Fort Lauderdale"
+    },
+    {
+      "id": 14,
+      "nome": "Parque Mata das Borboletas"
+    },
+    {
+      "id": 15,
+      "nome": "Parque Mosteiro Tom Jobim"
+    },
+    {
+      "id": 16,
+      "nome": "Parque das Nações"
+    },
+    {
+      "id": 17,
+      "nome": "Parque do Bicão"
+    },
+    {
+      "id": 18,
+      "nome": "Parque Amilcar Vianna Martins"
+    },
+    {
+      "id": 19,
+      "nome": "Parque Ecológico Marcus Pereira de Mello"
+    },
+    {
+      "id": 20,
+      "nome": "Parque do Bairro Diamante (Colina)"
     }
   ]
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8" />
@@ -51,7 +51,7 @@
 
         <div class="input-group-wrapper">
 
-          <input type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
+          <input id="inputBusca" type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
 
           <div id="filter-panel" class="filter-hidden">
 
@@ -61,7 +61,7 @@
                 <span>Data Início</span>
               </div>
 
-              <input type="date" placeholder="dd/mm/aaaa">
+              <input id="dataInicio" type="date">
 
             </div>
 
@@ -71,7 +71,7 @@
                 <span>Data Fim</span>
               </div>
 
-              <input type="date" placeholder="dd/mm/aaaa">
+              <input id="dataFim" type="date">
 
             </div>
 
@@ -87,6 +87,10 @@
                 <li onclick="selectOption(this)">Assalto</li>
                 <li onclick="selectOption(this)">Reclamação</li>
               </ul>
+
+              <button onclick="limparFiltros()" class="limpar-btn">
+                Limpar
+              </button>
 
             </div>
 
@@ -109,26 +113,23 @@
       </div>
 
     </section>
-    <aside class="ranking">
-      <h2>Ranking de Pontuação</h2>
-      <ul>
-        <li>1º Junior Lopes — 347 pts</li>
-        <li>2º Joanna Alves — 339 pts</li>
-        <li>3º Caio Castro — 331 pts</li>
-        <li>4º Maria Silva — 325 pts</li>
-        <li>5º Pedro Santos — 310 pts</li>
-      </ul>
-    </aside>
 
-
-    
   </main>
 
   <button class="botao" id="abrirModal">
     Criar post
   </button>
 
-  <div class="posts"></div>
+  <div class="forum-wrapper">
+
+    <div class="posts"></div>
+
+    <aside class="ranking-sidebar">
+      <h2>Ranking de Pontuação</h2>
+      <ul id="rankingLista"></ul>
+    </aside>
+
+  </div>
 
   <div class="modal-overlay" id="modalPost">
 
@@ -166,13 +167,16 @@
 
         </div>
 
-        <div>
+        <div style="position: relative;">
 
           <label class="field-label">
             Parque do ocorrido :
           </label>
 
-          <input class="park-input" id="parque" type="text" placeholder="Ex : Parque Ecológico Pampulha">
+          <input class="park-input" id="parqueInput" type="text" placeholder="Digite para buscar..." autocomplete="off">
+          <input type="hidden" id="parqueValor">
+
+          <ul id="parqueLista" class="parque-lista"></ul>
 
         </div>
 
