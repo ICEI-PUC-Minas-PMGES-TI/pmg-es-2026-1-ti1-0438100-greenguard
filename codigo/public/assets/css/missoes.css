@@ -108,7 +108,7 @@ header {
 .pagina-fundo {
   margin-top: var(--altura-topo);
   min-height: calc(100vh - var(--altura-topo));
-  background-image: url(../images/banner.png);
+  background-image: url(../images/fundo.png);
   background-repeat: repeat;
   background-size: 280px auto;
   background-color: var(--cor-fundo);
@@ -216,18 +216,34 @@ header {
 }
 
 .missao-item input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--branco);
+  border-radius: 4px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  accent-color: #69f0ae;  
+  cursor: default;
+  pointer-events: none;
+}
+
+.missao-item input[type="checkbox"]:checked::before {
+  content: "✓";
+  color: var(--branco);
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .missao-item label {
   color: var(--branco);
   font-size: 12px;
   flex: 1;               
-  cursor: pointer;
+  cursor: default;
+  pointer-events: none;
   line-height: 1.4;
   transition: opacity 0.2s, text-decoration 0.2s;
 }
