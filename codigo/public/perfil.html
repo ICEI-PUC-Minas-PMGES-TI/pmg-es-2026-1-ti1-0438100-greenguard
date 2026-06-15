@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenGuard — Perfil</title>
+
+  <link rel="stylesheet" href="./assets/css/main.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+      overflow-x: hidden;
+    }
+
+    p { margin: 0; }
+    figure { margin: 0; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      height: 94px;
+      background-color: rgb(255, 255, 255);
+      position: fixed;
+      width: 100%;
+      z-index: 10000;
+      top:0 !important;
+    }
+
+    #logo { width: 94px; height: 94px; display: block; }
+
+    #btn_voltar {
+      width: 100%;
+      height: 40px;
+      background-color: #00CF53;
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      margin-top: 94px;
+    }
+
+    #btn_voltar a {
+      display: flex;
+      align-items: center;
+    }
+
+    #btn_voltar svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    #perfil-wrapper {
+      display: flex;
+      gap: 24px;
+      padding: 30px 40px 50px;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #card-esquerdo {
+      background-color: #B1FFD0;
+      border-radius: 16px;
+      padding: 24px 20px;
+      width: 280px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+
+    #foto-perfil-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+    }
+
+    #foto-usuario {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00CF53;
+    }
+
+    #btn-editar-foto {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      width: 30px;
+      height: 30px;
+      background: #00CF53;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #nome-usuario {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-align: center;
+    }
+
+    #box-dados {
+      background: #00C04D;
+      border-radius: 10px;
+      padding: 14px 16px;
+      width: 100%;
+      color: white;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    #box-dados p { font-weight: 500; }
+
+    #box-missoes {
+      width: 100%;
+    }
+
+    #box-missoes h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 10px;
+      text-align: center;
+    }
+
+    .missao-item {
+      background: #00C04D;
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      color: white;
+      font-size: 12px;
+    }
+
+    .missao-item input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      accent-color: white;
+      flex-shrink: 0;
+    }
+
+    .missao-pts {
+      margin-left: auto;
+      font-weight: 700;
+      font-size: 11px;
+      color: #d4ffd4;
+      white-space: nowrap;
+    }
+
+    #btn-editar-perfil {
+      width: 100%;
+      height: 44px;
+      background: #00CF53;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #btn-editar-perfil:hover { filter: brightness(1.1); }
+
+    #card-direito {
+      flex: 1;
+      background: #B1FFD0;
+      border-radius: 16px;
+      padding: 20px;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+    }
+
+    #topo-feed {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #btn-checkin {
+      background: #00CF53;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #feed-checkins {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-height: 520px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    #feed-checkins::-webkit-scrollbar { width: 6px; }
+    #feed-checkins::-webkit-scrollbar-thumb {
+      background: #00C04D;
+      border-radius: 10px;
+    }
+
+    .checkin-card {
+      background: white;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .checkin-local {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+    }
+
+    .checkin-local span {
+      font-weight: 700;
+      color: #007a30;
+    }
+
+    .checkin-fotos {
+      display: grid;
+      grid-template-columns: 1fr 1fr 80px;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .checkin-fotos img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .checkin-fotos .foto-mais {
+      position: relative;
+    }
+
+    .foto-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background: rgba(0,0,0,.5);
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 6px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkin-likes {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #555;
+      justify-content: flex-end;
+    }
+
+    .checkin-likes i {
+      color: #e83e5a;
+      font-size: 18px;
+    }
+
+    .folha {
+      position: fixed;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @media (max-width: 768px) {
+      #perfil-wrapper {
+        flex-direction: column;
+        padding: 20px;
+      }
+      #card-esquerdo { width: 100%; }
+      header { padding: 10px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <svg class="folha" style="top:120px;left:-20px;width:80px;" viewBox="0 0 100 120" fill="#00C04D">
+    <path d="M50 10 C20 30 10 70 50 110 C90 70 80 30 50 10Z"/>
+  </svg>
+  <svg class="folha" style="top:200px;right:10px;width:60px;" viewBox="0 0 100 120" fill="#00C04D">
+    <path d="M50 10 C20 30 10 70 50 110 C90 70 80 30 50 10Z"/>
+  </svg>
+  <svg class="folha" style="bottom:100px;left:30px;width:70px;" viewBox="0 0 100 120" fill="#00C04D">
+    <path d="M50 10 C20 30 10 70 50 110 C90 70 80 30 50 10Z"/>
+  </svg>
+  <svg class="folha" style="bottom:200px;right:50px;width:90px;" viewBox="0 0 100 120" fill="#00C04D">
+    <path d="M50 10 C20 30 10 70 50 110 C90 70 80 30 50 10Z"/>
+  </svg>
+
+  <header>
+    <a href="index.html">
+      <figure><img id="logo" src="./assets/images/logo.png" alt="Logo GreenGuard"></figure>
+    </a>
+    <div id="header-usuario"></div>
+  </header>
+
+  <div id="btn_voltar">
+    <a href="index.html">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="white">
+        <path d="M41.4 297.4C28.9 309.9 28.9 330.2 41.4 342.7L169.4 470.7C181.9 483.2 202.2 483.2 214.7 470.7C227.2 458.2 227.2 437.9 214.7 425.4L141.3 352L576 352C593.7 352 608 337.7 608 320C608 302.3 593.7 288 576 288L141.3 288L214.7 214.6C227.2 202.1 227.2 181.8 214.7 169.3C202.2 156.8 181.9 156.8 169.4 169.3L41.4 297.3z"/>
+      </svg>
+    </a>
+  </div>
+
+  <div id="perfil-wrapper">
+
+    <aside id="card-esquerdo">
+
+      <div id="foto-perfil-container">
+        <img id="foto-usuario" src="./assets/images/user-imagem.png" alt="Foto do usuário">
+        <button id="btn-editar-foto" title="Alterar foto">
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+      </div>
+
+      <p id="nome-usuario">Carregando...</p>
+
+      <div id="box-dados">
+        <p>Colocação : 203°</p>
+        <p>Quantidade de posts feitos : 34 posts</p>
+        <p>Total de Check-ins : 9 check-ins</p>
+      </div>
+
+      <div id="box-missoes">
+        <h3>Missões Diárias</h3>
+
+        <div class="missao-item">
+          <input type="checkbox" checked disabled>
+          <span>Curta 3 posts no Fórum</span>
+          <span class="missao-pts">+10pts</span>
+        </div>
+
+        <div class="missao-item">
+          <input type="checkbox" disabled>
+          <span>Faça 1 post no Fórum</span>
+          <span class="missao-pts">+6pts</span>
+        </div>
+
+        <div class="missao-item">
+          <input type="checkbox" disabled>
+          <span>Faça Check-in em um parque</span>
+          <span class="missao-pts">+20pts</span>
+        </div>
+      </div>
+
+      <button id="btn-editar-perfil" onclick="window.location.href='pedro.html'">
+        Editar Perfil
+      </button>
+
+    </aside>
+
+    <div id="card-direito">
+
+      <div id="topo-feed">
+        <button id="btn-checkin">Fazer Check-in</button>
+      </div>
+
+      <div id="feed-checkins">
+
+        <div class="checkin-card">
+          <p class="checkin-local">Estive no <span>Parque dos Mangabeiras</span> em 22/04/2026 !</p>
+          <div class="checkin-fotos">
+            <img src="./assets/images/parque1.png" alt="foto 1">
+            <img src="./assets/images/parque2.png" alt="foto 2">
+            <div class="foto-mais" style="position:relative;">
+              <img src="./assets/images/parque3.png" alt="foto 3">
+              <div class="foto-badge">2+</div>
+            </div>
+          </div>
+          <div class="checkin-likes">
+            <i class="bi bi-heart-fill"></i>
+            <span>123K</span>
+          </div>
+        </div>
+
+        <div class="checkin-card">
+          <p class="checkin-local">Estive no <span>Parque Municipal de BH</span> em 28/04/2026 !</p>
+          <div class="checkin-fotos">
+            <img src="./assets/images/parque2.png" alt="foto 1">
+            <img src="./assets/images/parque3.png" alt="foto 2">
+            <div class="foto-mais" style="position:relative;">
+              <img src="./assets/images/parque1.png" alt="foto 3">
+              <div class="foto-badge">2+</div>
+            </div>
+          </div>
+          <div class="checkin-likes">
+            <i class="bi bi-heart-fill"></i>
+            <span>57K</span>
+          </div>
+        </div>
+
+        <div class="checkin-card">
+          <p class="checkin-local">Estive no <span>Parque Ecológico da Pampulha</span> em 03/05/2026 !</p>
+          <div class="checkin-fotos">
+            <img src="./assets/images/parque3.png" alt="foto 1">
+            <img src="./assets/images/parque1.png" alt="foto 2">
+            <div class="foto-mais" style="position:relative;">
+              <img src="./assets/images/parque2.png" alt="foto 3">
+              <div class="foto-badge">1+</div>
+            </div>
+          </div>
+          <div class="checkin-likes">
+            <i class="bi bi-heart-fill"></i>
+            <span>91K</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./assets/js/login.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const usuario = getUsuario();
+
+      // Redireciona se não logado
+      if (!usuario) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      // Preenche foto e nome
+      const foto = document.getElementById('foto-usuario');
+      foto.src = usuario.foto_perfil || './assets/images/user-imagem.png';
+      foto.onerror = () => { foto.src = './assets/images/user-imagem.png'; };
+
+      document.getElementById('nome-usuario').textContent = usuario.nome;
+    });
+  </script>
+
+</body>
+</html>

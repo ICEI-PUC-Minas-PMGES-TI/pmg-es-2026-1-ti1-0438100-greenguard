@@ -29,6 +29,16 @@
       "foto_perfil": "./assets/images/perfil/amanda.jpg",
       "nivel": 1,
       "xp": 50
+    },
+    {
+      "login": "yandi",
+      "senha": "123456",
+      "nome": "Yandi Orlando Santos Rivero",
+      "email": "yandi.rivero@gmail.com",
+      "foto_perfil": "./assets/images/user-imagem.png",
+      "nivel": 1,
+      "xp": 0,
+      "id": 4
     }
   ],
   "posts": [
