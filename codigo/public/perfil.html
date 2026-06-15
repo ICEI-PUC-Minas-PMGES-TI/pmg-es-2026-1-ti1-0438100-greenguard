@@ -310,6 +310,262 @@
       z-index: 0;
     }
 
+    /* ── Botão Missões ── */
+    #btn-missoes {
+      width: 100%;
+      height: 44px;
+      background: white;
+      color: #00A843;
+      border: 2px solid #00CF53;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    #btn-missoes:hover { background: #e8fff2; }
+
+    /* ── Overlay ── */
+    #modal-missoes-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    #modal-missoes-overlay.aberto { display: flex; }
+
+    /* ── Modal box ── */
+    #modal-missoes {
+      background: #f3f3f3;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 520px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      animation: modalEntrar 0.25s ease;
+    }
+    @keyframes modalEntrar {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ── Cabeçalho modal ── */
+    #modal-header {
+      background: #00CF53;
+      padding: 18px 22px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #modal-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #modal-header-top h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #btn-fechar-modal {
+      background: rgba(255,255,255,0.25);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: background 0.15s;
+    }
+    #btn-fechar-modal:hover { background: rgba(255,255,255,0.4); }
+
+    /* ── Abas ── */
+    #modal-abas {
+      display: flex;
+      gap: 4px;
+    }
+    .modal-aba {
+      flex: 1;
+      padding: 10px 0 12px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 10px 10px 0 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .modal-aba.ativa {
+      background: #f3f3f3;
+      color: #00A843;
+    }
+
+    /* ── Conteúdo ── */
+    #modal-corpo {
+      padding: 20px 22px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    #modal-corpo::-webkit-scrollbar { width: 5px; }
+    #modal-corpo::-webkit-scrollbar-thumb { background: #00C04D; border-radius: 10px; }
+
+    .painel-aba { display: none; flex-direction: column; gap: 12px; }
+    .painel-aba.ativo { display: flex; }
+
+    /* ── Card de missão semanal ── */
+    .missao-semanal-card {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-left: 4px solid #00CF53;
+    }
+    .missao-semanal-card.concluida {
+      border-left-color: #aaa;
+      opacity: 0.6;
+    }
+    .missao-icone {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #e6fff0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .missao-semanal-card.concluida .missao-icone {
+      background: #f0f0f0;
+    }
+    .missao-info { flex: 1; }
+    .missao-titulo {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    .missao-barra-fundo {
+      background: #e0e0e0;
+      border-radius: 20px;
+      height: 7px;
+      overflow: hidden;
+    }
+    .missao-barra-progresso {
+      height: 100%;
+      background: #00CF53;
+      border-radius: 20px;
+      transition: width 0.4s ease;
+    }
+    .missao-progresso-texto {
+      font-size: 11px;
+      color: #777;
+      margin-top: 4px;
+    }
+    .missao-pts-badge {
+      background: #e6fff0;
+      color: #00A843;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .missao-semanal-card.concluida .missao-pts-badge {
+      background: #f0f0f0;
+      color: #888;
+    }
+
+    /* ── Histórico ── */
+    .historico-grupo-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #00A843;
+      margin: 4px 0 6px;
+    }
+    .historico-item {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .historico-check {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #e6fff0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00CF53;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .historico-desc {
+      flex: 1;
+      font-size: 12.5px;
+      color: #333;
+      font-weight: 500;
+    }
+    .historico-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .historico-pts {
+      font-size: 12px;
+      font-weight: 700;
+      color: #00A843;
+    }
+    .historico-data {
+      font-size: 10.5px;
+      color: #aaa;
+    }
+
+    /* ── Resumo de pontos ── */
+    #resumo-pontos {
+      background: linear-gradient(135deg, #00CF53, #00A843);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      margin-bottom: 4px;
+    }
+    #resumo-pontos .label { font-size: 12px; opacity: 0.85; }
+    #resumo-pontos .valor { font-size: 26px; font-weight: 700; }
+
     @media (max-width: 768px) {
       #perfil-wrapper {
         flex-direction: column;
@@ -317,6 +573,7 @@
       }
       #card-esquerdo { width: 100%; }
       header { padding: 10px 20px; }
+      #modal-missoes { max-height: 90vh; }
     }
   </style>
 </head>
@@ -396,6 +653,10 @@
         Editar Perfil
       </button>
 
+      <button id="btn-missoes" onclick="abrirModalMissoes()">
+        <i class="bi bi-trophy-fill"></i> Ver Missões
+      </button>
+
     </aside>
 
     <div id="card-direito">
@@ -459,6 +720,179 @@
 
   </div>
 
+  <!-- ═══════════════ MODAL MISSÕES ═══════════════ -->
+  <div id="modal-missoes-overlay" onclick="fecharModalOverlay(event)">
+    <div id="modal-missoes">
+
+      <div id="modal-header">
+        <div id="modal-header-top">
+          <h2><i class="bi bi-trophy-fill"></i> Missões</h2>
+          <button id="btn-fechar-modal" onclick="fecharModal()" title="Fechar">✕</button>
+        </div>
+        <div id="modal-abas">
+          <button class="modal-aba ativa" onclick="trocarAba('semanal', this)">📅 Semanais</button>
+          <button class="modal-aba" onclick="trocarAba('historico', this)">✅ Histórico</button>
+        </div>
+      </div>
+
+      <div id="modal-corpo">
+
+        <!-- ABA: MISSÕES SEMANAIS -->
+        <div id="painel-semanal" class="painel-aba ativo">
+
+          <!-- Missão 1 -->
+          <div class="missao-semanal-card">
+            <div class="missao-icone">🌿</div>
+            <div class="missao-info">
+              <div class="missao-titulo">Faça 5 check-ins em parques esta semana</div>
+              <div class="missao-barra-fundo">
+                <div class="missao-barra-progresso" style="width: 60%"></div>
+              </div>
+              <div class="missao-progresso-texto">3 de 5 concluídos</div>
+            </div>
+            <div class="missao-pts-badge">+50 pts</div>
+          </div>
+
+          <!-- Missão 2 -->
+          <div class="missao-semanal-card">
+            <div class="missao-icone">💬</div>
+            <div class="missao-info">
+              <div class="missao-titulo">Comente em 10 posts do fórum</div>
+              <div class="missao-barra-fundo">
+                <div class="missao-barra-progresso" style="width: 30%"></div>
+              </div>
+              <div class="missao-progresso-texto">3 de 10 comentários</div>
+            </div>
+            <div class="missao-pts-badge">+40 pts</div>
+          </div>
+
+          <!-- Missão 3 -->
+          <div class="missao-semanal-card">
+            <div class="missao-icone">📸</div>
+            <div class="missao-info">
+              <div class="missao-titulo">Publique 3 fotos em áreas verdes</div>
+              <div class="missao-barra-fundo">
+                <div class="missao-barra-progresso" style="width: 100%"></div>
+              </div>
+              <div class="missao-progresso-texto">3 de 3 — Concluída!</div>
+            </div>
+            <div class="missao-pts-badge">+30 pts</div>
+          </div>
+
+          <!-- Missão 4 -->
+          <div class="missao-semanal-card concluida">
+            <div class="missao-icone">❤️</div>
+            <div class="missao-info">
+              <div class="missao-titulo">Curta 20 posts da comunidade</div>
+              <div class="missao-barra-fundo">
+                <div class="missao-barra-progresso" style="width: 100%; background:#aaa;"></div>
+              </div>
+              <div class="missao-progresso-texto">20 de 20 — Concluída!</div>
+            </div>
+            <div class="missao-pts-badge">+20 pts</div>
+          </div>
+
+          <!-- Missão 5 -->
+          <div class="missao-semanal-card">
+            <div class="missao-icone">🗺️</div>
+            <div class="missao-info">
+              <div class="missao-titulo">Visite 2 parques diferentes</div>
+              <div class="missao-barra-fundo">
+                <div class="missao-barra-progresso" style="width: 50%"></div>
+              </div>
+              <div class="missao-progresso-texto">1 de 2 parques</div>
+            </div>
+            <div class="missao-pts-badge">+35 pts</div>
+          </div>
+
+        </div>
+
+        <!-- ABA: HISTÓRICO -->
+        <div id="painel-historico" class="painel-aba">
+
+          <div id="resumo-pontos">
+            <div>
+              <div class="label">Total de pontos ganhos</div>
+              <div class="valor">1.240 pts</div>
+            </div>
+            <i class="bi bi-star-fill" style="font-size:32px; opacity:0.6;"></i>
+          </div>
+
+          <div class="historico-grupo-label">Esta semana</div>
+
+          <div class="historico-item">
+            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
+            <div class="historico-desc">Publicou 3 fotos em áreas verdes</div>
+            <div class="historico-meta">
+              <div class="historico-pts">+30 pts</div>
+              <div class="historico-data">hoje</div>
+            </div>
+          </div>
+
+          <div class="historico-item">
+            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
+            <div class="historico-desc">Curtiu 20 posts da comunidade</div>
+            <div class="historico-meta">
+              <div class="historico-pts">+20 pts</div>
+              <div class="historico-data">ontem</div>
+            </div>
+          </div>
+
+          <div class="historico-grupo-label">Semana passada</div>
+
+          <div class="historico-item">
+            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
+            <div class="historico-desc">Fez 5 check-ins em parques</div>
+            <div class="historico-meta">
+              <div class="historico-pts">+50 pts</div>
+              <div class="historico-data">08/06</div>
+            </div>
+          </div>
+
+          <div class="historico-item">
+            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
+            <div class="historico-desc">Comentou em 10 posts do fórum</div>
+            <div class="historico-meta">
+              <div class="historico-pts">+40 pts</div>
+              <div class="historico-data">06/06</div>
+            </div>
+          </div>
+
+          <div class="historico-item">
+            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
+            <div class="historico-desc">Visitou 2 parques diferentes</div>
+            <div class="historico-meta">
+              <div class="historico-pts">+35 pts</div>
+              <div class="historico-data">05/06</div>
+            </div>
+          </div>
+
+          <div class="historico-grupo-label">Há duas semanas</div>
+
+          <div class="historico-item">
+            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
+            <div class="historico-desc">Curta 3 posts no Fórum (diária)</div>
+            <div class="historico-meta">
+              <div class="historico-pts">+10 pts</div>
+              <div class="historico-data">01/06</div>
+            </div>
+          </div>
+
+          <div class="historico-item">
+            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
+            <div class="historico-desc">Fez Check-in em um parque (diária)</div>
+            <div class="historico-meta">
+              <div class="historico-pts">+20 pts</div>
+              <div class="historico-data">30/05</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ════════════════════════════════════════════ -->
+
   <script src="./assets/js/login.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -476,6 +910,31 @@
       foto.onerror = () => { foto.src = './assets/images/user-imagem.png'; };
 
       document.getElementById('nome-usuario').textContent = usuario.nome;
+    });
+
+    function abrirModalMissoes() {
+      document.getElementById('modal-missoes-overlay').classList.add('aberto');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fecharModal() {
+      document.getElementById('modal-missoes-overlay').classList.remove('aberto');
+      document.body.style.overflow = '';
+    }
+
+    function fecharModalOverlay(e) {
+      if (e.target === document.getElementById('modal-missoes-overlay')) fecharModal();
+    }
+
+    function trocarAba(aba, btn) {
+      document.querySelectorAll('.painel-aba').forEach(p => p.classList.remove('ativo'));
+      document.querySelectorAll('.modal-aba').forEach(b => b.classList.remove('ativa'));
+      document.getElementById('painel-' + aba).classList.add('ativo');
+      btn.classList.add('ativa');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') fecharModal();
     });
   </script>
 

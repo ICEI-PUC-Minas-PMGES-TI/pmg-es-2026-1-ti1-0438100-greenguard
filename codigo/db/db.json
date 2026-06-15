@@ -39,6 +39,16 @@
       "nivel": 1,
       "xp": 0,
       "id": 4
+    },
+    {
+      "login": "guilherme",
+      "senha": "guilherme",
+      "nome": "guilherme",
+      "email": "guilherme@gmail.com",
+      "foto_perfil": "./assets/images/user-imagem.png",
+      "nivel": 1,
+      "xp": 0,
+      "id": 5
     }
   ],
   "posts": [
