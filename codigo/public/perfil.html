@@ -566,6 +566,87 @@
     #resumo-pontos .label { font-size: 12px; opacity: 0.85; }
     #resumo-pontos .valor { font-size: 26px; font-weight: 700; }
 
+    /* ── Ranking ── */
+    #resumo-ranking {
+      background: linear-gradient(135deg, #00CF53, #00A843);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      margin-bottom: 4px;
+    }
+    #resumo-ranking .label { font-size: 12px; opacity: 0.85; }
+    #resumo-ranking .valor { font-size: 26px; font-weight: 700; }
+
+    #ranking-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 360px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    #ranking-lista::-webkit-scrollbar { width: 5px; }
+    #ranking-lista::-webkit-scrollbar-thumb { background: #00C04D; border-radius: 10px; }
+
+    .ranking-item {
+      background: white;
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ranking-item.voce {
+      background: #e6fff0;
+      border: 2px solid #00CF53;
+    }
+    .ranking-pos {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #e6fff0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00A843;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .ranking-pos.top1 { background: #FFD700; color: #7a5d00; }
+    .ranking-pos.top2 { background: #C9D6E3; color: #4a5a68; }
+    .ranking-pos.top3 { background: #E8B98A; color: #6b3f12; }
+
+    .ranking-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid #00CF53;
+    }
+    .ranking-nome {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .ranking-nome .voce-tag {
+      font-size: 10px;
+      font-weight: 700;
+      color: #00A843;
+      margin-left: 6px;
+    }
+    .ranking-pts {
+      font-size: 13px;
+      font-weight: 700;
+      color: #00A843;
+      white-space: nowrap;
+    }
+
     @media (max-width: 768px) {
       #perfil-wrapper {
         flex-direction: column;
@@ -732,6 +813,7 @@
         <div id="modal-abas">
           <button class="modal-aba ativa" onclick="trocarAba('semanal', this)">📅 Semanais</button>
           <button class="modal-aba" onclick="trocarAba('historico', this)">✅ Histórico</button>
+          <button class="modal-aba" onclick="trocarAba('ranking', this)">🏆 Ranking</button>
         </div>
       </div>
 
@@ -888,6 +970,115 @@
           </div>
 
         </div>
+
+        <!-- ABA: RANKING -->
+        <div id="painel-ranking" class="painel-aba">
+
+          <div id="resumo-ranking">
+            <div>
+              <div class="label">Sua colocação atual</div>
+              <div class="valor">203°</div>
+            </div>
+            <i class="bi bi-bar-chart-fill" style="font-size:32px; opacity:0.6;"></i>
+          </div>
+
+          <div id="ranking-lista">
+
+            <div class="ranking-item">
+              <div class="ranking-pos top1">1°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Mariana Souza</div>
+              <div class="ranking-pts">9.840 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos top2">2°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Lucas Andrade</div>
+              <div class="ranking-pts">9.512 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos top3">3°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Beatriz Lima</div>
+              <div class="ranking-pts">9.105 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">4°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Rafael Costa</div>
+              <div class="ranking-pts">8.870 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">5°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Juliana Pereira</div>
+              <div class="ranking-pts">8.640 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">6°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Thiago Martins</div>
+              <div class="ranking-pts">8.310 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">7°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Camila Rocha</div>
+              <div class="ranking-pts">7.998 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">8°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Eduardo Nunes</div>
+              <div class="ranking-pts">7.654 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">9°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Fernanda Dias</div>
+              <div class="ranking-pts">7.320 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">10°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Gustavo Pinto</div>
+              <div class="ranking-pts">6.980 pts</div>
+            </div>
+
+            <div class="ranking-item voce">
+              <div class="ranking-pos">203°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Você <span class="voce-tag">VOCÊ</span></div>
+              <div class="ranking-pts">1.240 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">204°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Patrícia Gomes</div>
+              <div class="ranking-pts">1.225 pts</div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-pos">205°</div>
+              <img class="ranking-avatar" src="./assets/images/user-imagem.png" alt="avatar">
+              <div class="ranking-nome">Vinícius Teixeira</div>
+              <div class="ranking-pts">1.198 pts</div>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
