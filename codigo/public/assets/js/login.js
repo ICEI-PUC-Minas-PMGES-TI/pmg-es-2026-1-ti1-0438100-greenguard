@@ -1,34 +1,31 @@
-function toggleFilters() {
-    const panel = document.getElementById('filter-panel');
-    panel.classList.toggle('filter-show');
+
+
+const API = 'http://localhost:3000/api';
+
+// SESSÃO 
+
+function getUsuario() {
+    const u = localStorage.getItem('gg_usuario');
+    return u ? JSON.parse(u) : null;
 }
 
-function selectOption(li) {
-    // Pega o texto da opção clicada
-    const valor = li.innerText;
-    // Pega o cabeçalho desse grupo para atualizar o texto (opcional)
-    const headerSpan = li.closest('.filter-group').querySelector('.filter-header span');
-    
-    headerSpan.innerText = valor;
-    
-    // Fecha o painel verde após selecionar
-    toggleFilters();
+function salvarSessao(usuario) {
+    localStorage.setItem('gg_usuario', JSON.stringify(usuario));
 }
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => e.target.classList.toggle('visivel', e.isIntersecting));
-});
+function encerrarSessao() {
+    localStorage.removeItem('gg_usuario');
+}
 
-document.querySelectorAll('.park-card').forEach(card => observer.observe(card));
+// HEADER DINÂMICO
 
 s
 // Inicializa o mapa
 const map = L.map('map').setView([-19.865, -43.971], 14);
 
-// Camada do mapa
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
-}).addTo(map);
+    // Suporta tanto o div simples quanto o div com link (index)
+    const areaUsuario = document.getElementById('header-usuario');
+    if (!areaUsuario) return;
 
 // Marcador
 L.marker([-19.865, -43.971])

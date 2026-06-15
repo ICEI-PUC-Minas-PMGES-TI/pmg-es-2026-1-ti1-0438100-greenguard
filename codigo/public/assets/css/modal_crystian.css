@@ -1,5 +1,3 @@
-/* ===== ESTILOS CRYSTIAN - modal criar post ===== */
-
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -10,7 +8,7 @@
     background-color: rgba(154, 216, 154, 0.45);
     backdrop-filter: blur(3px);
 
-    display: none; /* escondido */
+    display: none; 
 
     align-items: center;
     justify-content: center;
