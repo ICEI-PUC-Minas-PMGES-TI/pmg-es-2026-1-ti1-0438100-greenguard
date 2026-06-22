@@ -1,8 +1,4 @@
-// ═══════════════════════════════════════════
-//  GreenGuard — Missões Semanais Dinâmicas
-// ═══════════════════════════════════════════
 
-// ── Banco de missões disponíveis ─────────────
 const BANCO_MISSOES = [
   { id: 'm1',  icone: '🌿', titulo: 'Faça 5 check-ins em parques',         total: 5,  pts: 50 },
   { id: 'm2',  icone: '💬', titulo: 'Comente em 10 posts do fórum',         total: 10, pts: 40 },
@@ -16,12 +12,7 @@ const BANCO_MISSOES = [
   { id: 'm10', icone: '⭐', titulo: 'Avalie 4 parques visitados',            total: 4,  pts: 35 },
 ];
 
-// Quantas missões exibir por semana
 const MISSOES_POR_SEMANA = 5;
-
-// ── Utilitários de semana ─────────────────────
-
-// Retorna um identificador único para a semana atual: "2026-W25"
 function getSemanaAtual() {
   const now = new Date();
   const ano = now.getFullYear();
@@ -30,9 +21,7 @@ function getSemanaAtual() {
   return `${ano}-W${semana}`;
 }
 
-// Embaralha um array de forma determinística com base em uma semente (string)
 function shuffleComSemente(arr, semente) {
-  // Transforma a string em número
   let seed = [...semente].reduce((acc, c) => acc + c.charCodeAt(0), 0);
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -42,9 +31,6 @@ function shuffleComSemente(arr, semente) {
   }
   return a;
 }
-
-// ── Estado salvo no localStorage ─────────────
-
 function getChaveStorage() {
   return `gg_missoes_${getSemanaAtual()}`;
 }
@@ -59,17 +45,11 @@ function carregarProgresso() {
 function salvarProgresso(progresso) {
   localStorage.setItem(getChaveStorage(), JSON.stringify(progresso));
 }
-
-// ── Missões da semana atual ───────────────────
-
 function getMissoesDaSemana() {
   const semana = getSemanaAtual();
   const embaralhadas = shuffleComSemente(BANCO_MISSOES, semana);
   return embaralhadas.slice(0, MISSOES_POR_SEMANA);
 }
-
-// ── Histórico ────────────────────────────────
-
 function getHistorico() {
   try {
     const raw = localStorage.getItem('gg_historico_missoes');
@@ -82,12 +62,8 @@ function adicionarAoHistorico(missao) {
   const agora = new Date();
   const data = agora.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
   historico.unshift({ desc: missao.titulo, pts: missao.pts, data, semana: getSemanaAtual() });
-  // Guarda no máximo 30 entradas
   localStorage.setItem('gg_historico_missoes', JSON.stringify(historico.slice(0, 30)));
 }
-
-// ── Renderização: Missões Semanais ────────────
-
 function renderizarMissoesSemana() {
   const container = document.getElementById('painel-semanal');
   const missoes = getMissoesDaSemana();
@@ -103,7 +79,6 @@ function renderizarMissoesSemana() {
       ? `${m.total} de ${m.total} — Concluída!`
       : `${atual} de ${m.total}`;
 
-    // Botão de simular progresso (só aparece se não concluída)
     const btnSimular = !concluida
       ? `<button class="btn-simular-progresso" onclick="simularProgresso('${m.id}')" title="Simular progresso">+1</button>`
       : '';
@@ -126,7 +101,6 @@ function renderizarMissoesSemana() {
   }).join('');
 }
 
-// Simula progresso (para teste — em produção isso viria do backend)
 function simularProgresso(id) {
   const missoes = getMissoesDaSemana();
   const missao = missoes.find(m => m.id === id);
@@ -139,7 +113,6 @@ function simularProgresso(id) {
     progresso[id] = atual + 1;
     salvarProgresso(progresso);
 
-    // Se concluiu agora, adiciona ao histórico
     if (progresso[id] >= missao.total) {
       adicionarAoHistorico(missao);
       renderizarHistorico(); // atualiza histórico também
@@ -148,9 +121,6 @@ function simularProgresso(id) {
     renderizarMissoesSemana();
   }
 }
-
-// ── Renderização: Histórico ───────────────────
-
 function renderizarHistorico() {
   const container = document.getElementById('painel-historico');
   const historico = getHistorico();
@@ -174,7 +144,6 @@ function renderizarHistorico() {
     return;
   }
 
-  // Agrupa por semana
   const grupos = {};
   historico.forEach(item => {
     const chave = item.semana || 'Semanas anteriores';
@@ -182,7 +151,6 @@ function renderizarHistorico() {
     grupos[chave].push(item);
   });
 
-  // Rótulos legíveis para a semana
   const semanaAtual = getSemanaAtual();
   function rotuloSemana(chave) {
     if (chave === semanaAtual) return 'Esta semana';
@@ -204,9 +172,6 @@ function renderizarHistorico() {
 
   container.innerHTML = resumo + gruposHTML;
 }
-
-// ── Controle do modal ─────────────────────────
-
 function abrirModalMissoes() {
   document.getElementById('modal-missoes-overlay').classList.add('aberto');
   document.body.style.overflow = 'hidden';
@@ -227,9 +192,6 @@ function trocarAba(aba, btn) {
   document.getElementById('painel-' + aba).classList.add('ativo');
   btn.classList.add('ativa');
 }
-
-// ── Init ──────────────────────────────────────
-
 document.addEventListener('DOMContentLoaded', () => {
   renderizarMissoesSemana();
   renderizarHistorico();
