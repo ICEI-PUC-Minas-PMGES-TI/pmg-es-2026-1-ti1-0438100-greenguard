@@ -566,6 +566,20 @@
     #resumo-pontos .label { font-size: 12px; opacity: 0.85; }
     #resumo-pontos .valor { font-size: 26px; font-weight: 700; }
 
+    .btn-simular-progresso {
+      background: #e6fff0;
+      color: #00A843;
+      border: 1px solid #00CF53;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.15s;
+    }
+    .btn-simular-progresso:hover { background: #ccffe0; }
+
     @media (max-width: 768px) {
       #perfil-wrapper {
         flex-direction: column;
@@ -737,204 +751,27 @@
 
       <div id="modal-corpo">
 
-        <!-- ABA: MISSÕES SEMANAIS -->
-        <div id="painel-semanal" class="painel-aba ativo">
+        <!-- ABA: MISSÕES SEMANAIS — preenchido por missoes.js -->
+        <div id="painel-semanal" class="painel-aba ativo"></div>
 
-          <!-- Missão 1 -->
-          <div class="missao-semanal-card">
-            <div class="missao-icone">🌿</div>
-            <div class="missao-info">
-              <div class="missao-titulo">Faça 5 check-ins em parques esta semana</div>
-              <div class="missao-barra-fundo">
-                <div class="missao-barra-progresso" style="width: 60%"></div>
-              </div>
-              <div class="missao-progresso-texto">3 de 5 concluídos</div>
-            </div>
-            <div class="missao-pts-badge">+50 pts</div>
-          </div>
-
-          <!-- Missão 2 -->
-          <div class="missao-semanal-card">
-            <div class="missao-icone">💬</div>
-            <div class="missao-info">
-              <div class="missao-titulo">Comente em 10 posts do fórum</div>
-              <div class="missao-barra-fundo">
-                <div class="missao-barra-progresso" style="width: 30%"></div>
-              </div>
-              <div class="missao-progresso-texto">3 de 10 comentários</div>
-            </div>
-            <div class="missao-pts-badge">+40 pts</div>
-          </div>
-
-          <!-- Missão 3 -->
-          <div class="missao-semanal-card">
-            <div class="missao-icone">📸</div>
-            <div class="missao-info">
-              <div class="missao-titulo">Publique 3 fotos em áreas verdes</div>
-              <div class="missao-barra-fundo">
-                <div class="missao-barra-progresso" style="width: 100%"></div>
-              </div>
-              <div class="missao-progresso-texto">3 de 3 — Concluída!</div>
-            </div>
-            <div class="missao-pts-badge">+30 pts</div>
-          </div>
-
-          <!-- Missão 4 -->
-          <div class="missao-semanal-card concluida">
-            <div class="missao-icone">❤️</div>
-            <div class="missao-info">
-              <div class="missao-titulo">Curta 20 posts da comunidade</div>
-              <div class="missao-barra-fundo">
-                <div class="missao-barra-progresso" style="width: 100%; background:#aaa;"></div>
-              </div>
-              <div class="missao-progresso-texto">20 de 20 — Concluída!</div>
-            </div>
-            <div class="missao-pts-badge">+20 pts</div>
-          </div>
-
-          <!-- Missão 5 -->
-          <div class="missao-semanal-card">
-            <div class="missao-icone">🗺️</div>
-            <div class="missao-info">
-              <div class="missao-titulo">Visite 2 parques diferentes</div>
-              <div class="missao-barra-fundo">
-                <div class="missao-barra-progresso" style="width: 50%"></div>
-              </div>
-              <div class="missao-progresso-texto">1 de 2 parques</div>
-            </div>
-            <div class="missao-pts-badge">+35 pts</div>
-          </div>
-
-        </div>
-
-        <!-- ABA: HISTÓRICO -->
-        <div id="painel-historico" class="painel-aba">
-
-          <div id="resumo-pontos">
-            <div>
-              <div class="label">Total de pontos ganhos</div>
-              <div class="valor">1.240 pts</div>
-            </div>
-            <i class="bi bi-star-fill" style="font-size:32px; opacity:0.6;"></i>
-          </div>
-
-          <div class="historico-grupo-label">Esta semana</div>
-
-          <div class="historico-item">
-            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
-            <div class="historico-desc">Publicou 3 fotos em áreas verdes</div>
-            <div class="historico-meta">
-              <div class="historico-pts">+30 pts</div>
-              <div class="historico-data">hoje</div>
-            </div>
-          </div>
-
-          <div class="historico-item">
-            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
-            <div class="historico-desc">Curtiu 20 posts da comunidade</div>
-            <div class="historico-meta">
-              <div class="historico-pts">+20 pts</div>
-              <div class="historico-data">ontem</div>
-            </div>
-          </div>
-
-          <div class="historico-grupo-label">Semana passada</div>
-
-          <div class="historico-item">
-            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
-            <div class="historico-desc">Fez 5 check-ins em parques</div>
-            <div class="historico-meta">
-              <div class="historico-pts">+50 pts</div>
-              <div class="historico-data">08/06</div>
-            </div>
-          </div>
-
-          <div class="historico-item">
-            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
-            <div class="historico-desc">Comentou em 10 posts do fórum</div>
-            <div class="historico-meta">
-              <div class="historico-pts">+40 pts</div>
-              <div class="historico-data">06/06</div>
-            </div>
-          </div>
-
-          <div class="historico-item">
-            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
-            <div class="historico-desc">Visitou 2 parques diferentes</div>
-            <div class="historico-meta">
-              <div class="historico-pts">+35 pts</div>
-              <div class="historico-data">05/06</div>
-            </div>
-          </div>
-
-          <div class="historico-grupo-label">Há duas semanas</div>
-
-          <div class="historico-item">
-            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
-            <div class="historico-desc">Curta 3 posts no Fórum (diária)</div>
-            <div class="historico-meta">
-              <div class="historico-pts">+10 pts</div>
-              <div class="historico-data">01/06</div>
-            </div>
-          </div>
-
-          <div class="historico-item">
-            <div class="historico-check"><i class="bi bi-check-lg"></i></div>
-            <div class="historico-desc">Fez Check-in em um parque (diária)</div>
-            <div class="historico-meta">
-              <div class="historico-pts">+20 pts</div>
-              <div class="historico-data">30/05</div>
-            </div>
-          </div>
-
-        </div>
+        <!-- ABA: HISTÓRICO — preenchido por missoes.js -->
+        <div id="painel-historico" class="painel-aba"></div>
       </div>
     </div>
   </div>
   <!-- ════════════════════════════════════════════ -->
 
   <script src="./assets/js/login.js"></script>
+  <script src="./assets/js/missoes.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const usuario = getUsuario();
+      if (!usuario) { window.location.href = 'index.html'; return; }
 
-      // Redireciona se não logado
-      if (!usuario) {
-        window.location.href = 'index.html';
-        return;
-      }
-
-      // Preenche foto e nome
       const foto = document.getElementById('foto-usuario');
       foto.src = usuario.foto_perfil || './assets/images/user-imagem.png';
       foto.onerror = () => { foto.src = './assets/images/user-imagem.png'; };
-
       document.getElementById('nome-usuario').textContent = usuario.nome;
-    });
-
-    function abrirModalMissoes() {
-      document.getElementById('modal-missoes-overlay').classList.add('aberto');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function fecharModal() {
-      document.getElementById('modal-missoes-overlay').classList.remove('aberto');
-      document.body.style.overflow = '';
-    }
-
-    function fecharModalOverlay(e) {
-      if (e.target === document.getElementById('modal-missoes-overlay')) fecharModal();
-    }
-
-    function trocarAba(aba, btn) {
-      document.querySelectorAll('.painel-aba').forEach(p => p.classList.remove('ativo'));
-      document.querySelectorAll('.modal-aba').forEach(b => b.classList.remove('ativa'));
-      document.getElementById('painel-' + aba).classList.add('ativo');
-      btn.classList.add('ativa');
-    }
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') fecharModal();
     });
   </script>
 
