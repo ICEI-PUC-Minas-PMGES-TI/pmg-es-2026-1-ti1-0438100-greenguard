@@ -1,206 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Tela Genérica</title>
-
-  <link rel="stylesheet" href="./assets/css/styles.css" />
-  <link rel="stylesheet" href="./assets/css/modal_crystian.css">
-
+  <title>GreenGuard - Forum de Denuncia</title>
+  <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="stylesheet" href="./assets/css/forum.css" />
+  <link rel="stylesheet" href="./assets/css/modal.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
   <header>
     <a href="index.html">
-      <figure><img id="logo" src="./assets/images/logo.png" alt="Logo"></figure>
+      <figure><img id="logo" src="./assets/images/logo.png" alt="Logo GreenGuard"></figure>
     </a>
-
-    <div>
-
-      <figure>
-        <img id="foto_perfil" src="./assets/images/foto_perfil.jpeg" alt="Ícone do usuário">
-      </figure>
-
-      <p>
-        Olá ,
-        <strong>
-          Caio <br> Martins !
-        </strong>
-      </p>
-
-    </div>
-
+    <div id="header-usuario"></div>
   </header>
 
   <main>
-
     <section class="hero-section">
-
       <div class="search-container">
-
         <div class="input-group-wrapper">
-
-          <input type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
-
+          <input id="inputBusca" type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
           <div id="filter-panel" class="filter-hidden">
-
             <div class="filter-group">
-
               <div class="filter-header">
-                <span>Data Início</span>
+                <span>Data Inicio</span>
               </div>
-
-              <input type="date" placeholder="dd/mm/aaaa">
-
+              <input id="dataInicio" type="date">
             </div>
-
             <div class="filter-group">
-
               <div class="filter-header">
                 <span>Data Fim</span>
               </div>
-
-              <input type="date" placeholder="dd/mm/aaaa">
-
+              <input id="dataFim" type="date">
             </div>
-
             <div class="filter-group">
-
               <div class="filter-header" onclick="toggleDropdown(this)">
                 <span>Assunto</span>
                 <i class="bi bi-caret-down-fill"></i>
               </div>
-
               <ul class="filter-options dropdown-closed">
                 <li onclick="selectOption(this)">Elogio</li>
                 <li onclick="selectOption(this)">Assalto</li>
-                <li onclick="selectOption(this)">Reclamação</li>
+                <li onclick="selectOption(this)">Reclamacao</li>
               </ul>
-
+              <button onclick="limparFiltros()" class="limpar-btn">Limpar</button>
             </div>
-
           </div>
-
         </div>
-
         <div id="double_btn">
-
-          <button>
-            <img src="./assets/images/lupa.png" alt="">
-          </button>
-
-          <button onclick="toggleFilters()">
-            <img src="./assets/images/filtro.png" alt="">
-          </button>
-
+          <button><img src="./assets/images/lupa.png" alt="Buscar"></button>
+          <button onclick="toggleFilters()"><img src="./assets/images/filtro.png" alt="Filtros"></button>
         </div>
-
       </div>
-
     </section>
-    <aside class="ranking">
-      <h2>Ranking de Pontuação</h2>
-      <ul>
-        <li>1º Junior Lopes — 347 pts</li>
-        <li>2º Joanna Alves — 339 pts</li>
-        <li>3º Caio Castro — 331 pts</li>
-        <li>4º Maria Silva — 325 pts</li>
-        <li>5º Pedro Santos — 310 pts</li>
-      </ul>
-    </aside>
-
-
-    
   </main>
 
-  <button class="botao" id="abrirModal">
-    Criar post
-  </button>
+  <button class="botao" id="abrirModal">Criar post</button>
 
-  <div class="posts"></div>
-
-  <div class="modal-overlay" id="modalPost">
-
-    <div class="post-card-modal">
-
-      <label class="field-label">
-        Descrição do fato ocorrido :
-      </label>
-
-      <textarea class="desc-textarea" id="descricao" placeholder="Descreva o que aconteceu..."></textarea>
-
-      <div class="section-row">
-
-        <div>
-
-          <label class="field-label">
-            Este post é ?
-          </label>
-
-          <div class="category-group" id="catGroup">
-
-            <button type="button" class="cat-btn assalto active" data-cat="Assalto">
-              Assalto
-            </button>
-
-            <button type="button" class="cat-btn reclamacao" data-cat="Reclamação">
-              Reclamação
-            </button>
-
-            <button type="button" class="cat-btn seguranca" data-cat="Segurança">
-              Segurança
-            </button>
-
-          </div>
-
-        </div>
-
-        <div>
-
-          <label class="field-label">
-            Parque do ocorrido :
-          </label>
-
-          <input class="park-input" id="parque" type="text" placeholder="Ex : Parque Ecológico Pampulha">
-
-        </div>
-
-        <div style="align-self:flex-end;">
-
-          <div class="photo-box">
-
-            <span class="plus-icon">+</span>
-
-            <input type="file" accept="image/*" id="photoInput">
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <button class="send-btn">
-        Enviar
-      </button>
-
-    </div>
-
+  <div class="forum-wrapper">
+    <div class="posts"></div>
+    <aside class="ranking">
+      <h2>Ranking de Pontuacao</h2>
+      <ul id="ranking-list"></ul>
+    </aside>
   </div>
 
+  <div class="modal-overlay" id="modalPost">
+    <div class="post-card-modal">
+      <label class="field-label">Descricao do fato ocorrido :</label>
+      <textarea class="desc-textarea" id="descricao" placeholder="Descreva o que aconteceu..." maxlength="300"></textarea>
+      <p id="desc-contador" style="font-size:11px;color:#888;text-align:right;margin:2px 0 0;">0 / 300</p>
+      <div class="section-row">
+        <div>
+          <label class="field-label">Este post e ?</label>
+          <div class="category-group" id="catGroup">
+            <button type="button" class="cat-btn assalto active" data-cat="Assalto">Assalto</button>
+            <button type="button" class="cat-btn reclamacao" data-cat="Reclamacao">Reclamacao</button>
+            <button type="button" class="cat-btn seguranca" data-cat="Seguranca">Seguranca</button>
+          </div>
+        </div>
+        <div style="position: relative;">
+          <label class="field-label">Parque do ocorrido :</label>
+          <input class="park-input" id="parqueInput" type="text" placeholder="Digite para buscar..." autocomplete="off">
+          <input type="hidden" id="parqueValor">
+          <ul id="parqueLista" class="parque-lista"></ul>
+        </div>
+        <div style="align-self:flex-end;">
+          <div class="photo-box">
+            <span class="plus-icon">+</span>
+            <input type="file" accept="image/*" id="photoInput">
+          </div>
+        </div>
+      </div>
+      <button class="send-btn">Enviar</button>
+    </div>
+  </div>
+
+  <script src="./assets/js/ranking.js"></script>
   <script src="./assets/js/login.js"></script>
   <script src="./assets/js/posts.js"></script>
+  <script>
+    const ul = document.getElementById("ranking-list");
+    rankingData.forEach((item, index) => {
+      const li = document.createElement("li");
+      li.textContent = (index + 1) + "o " + item.nome + " - " + item.pontos + " pts";
+      ul.appendChild(li);
+    });
+  </script>
 
 </body>
-
 </html>

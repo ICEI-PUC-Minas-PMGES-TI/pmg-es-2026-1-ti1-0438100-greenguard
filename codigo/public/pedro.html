@@ -1,57 +1,484 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perfil</title>
-    <link rel="stylesheet" href="./assets/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="./assets/js/login.js"></script>
-  </head>
-  <body>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenGuard — Editar Perfil</title>
+  <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #f3f3f3; }
 
-    <header>
-      <a href="index.html"><figure><img id="logo" src="./assets/images/logo.png" alt="Logo"></figure></a>
-      <div>
-        <figure><img id="foto_perfil" src="./assets/images/foto_perfil.jpeg" alt="Ícone do usuário"></figure>
-        <p>Olá , <strong>Caio <br> Martins !</strong></p>
-      </div>
-    </header>
+    #perfil-edit-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
 
-    <main id="main_flex">
+    /* ── Foto ── */
+    #foto-upload-label {
+      display: block;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 6px;
+      cursor: pointer;
+      position: relative;
+    }
 
-      <div id="btn_voltar">
-        <a href="./index.html">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-            <path fill="rgb(255, 255, 255)" d="M41.4 297.4C28.9 309.9 28.9 330.2 41.4 342.7L169.4 470.7C181.9 483.2 202.2 483.2 214.7 470.7C227.2 458.2 227.2 437.9 214.7 425.4L141.3 352L576 352C593.7 352 608 337.7 608 320C608 302.3 593.7 288 576 288L141.3 288L214.7 214.6C227.2 202.1 227.2 181.8 214.7 169.3C202.2 156.8 181.9 156.8 169.4 169.3L41.4 297.3z"/>
-          </svg>
-        </a>
-      </div>
+    #foto-upload-label img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00CF53;
+      display: block;
+    }
 
-      <div id="card">
+    #foto-upload-label .overlay-foto {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      color: white;
+      font-size: 24px;
+    }
 
-        <div id="div_perfil">
-          <img id="imgperfil_card" src="./assets/images/foto_perfil.jpeg" alt="">
+    #foto-upload-label:hover .overlay-foto { opacity: 1; }
+    #foto-file-input { display: none; }
+
+    #foto-hint {
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 24px;
+    }
+
+    /* ── Card de seção ── */
+    .edit-card {
+      background: white;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .edit-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #00A843;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin: 0 0 18px;
+    }
+
+    /* ── Grid de inputs ── */
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .input-grid.full { grid-template-columns: 1fr; }
+
+    .input-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .input-field.span2 { grid-column: span 2; }
+
+    .input-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .input-field input {
+      height: 42px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      padding: 0 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      background: white;
+    }
+
+    .input-field input:focus { border-color: #00CF53; }
+    .input-field input.erro  { border-color: #e53935; }
+
+    .campo-erro {
+      font-size: 11px;
+      color: #e53935;
+      min-height: 14px;
+    }
+
+    /* ── Senha wrapper com olho ── */
+    .senha-wrapper { position: relative; }
+
+    .senha-wrapper input { width: 100%; padding-right: 40px; }
+
+    .btn-eye {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #999;
+      font-size: 16px;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .senha-hint {
+      font-size: 12px;
+      color: #888;
+      margin: -8px 0 10px;
+    }
+
+    /* ── Botão salvar ── */
+    #btn-salvar {
+      width: 100%;
+      height: 50px;
+      background: #00CF53;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: filter 0.2s;
+      margin-top: 8px;
+    }
+
+    #btn-salvar:hover    { filter: brightness(1.08); }
+    #btn-salvar:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* ── Mensagem global ── */
+    #msg-global {
+      text-align: center;
+      font-size: 13px;
+      font-family: 'Poppins', sans-serif;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    #msg-global.ok    { background: #e6fff0; color: #00A843; display: block; }
+    #msg-global.erro  { background: #ffeaea; color: #e53935; display: block; }
+
+    @media (max-width: 600px) {
+      .input-grid { grid-template-columns: 1fr; }
+      .input-field.span2 { grid-column: span 1; }
+      .edit-card { padding: 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html">
+      <figure><img id="logo" src="./assets/images/logo.png" alt="Logo GreenGuard"></figure>
+    </a>
+    <div id="header-usuario"></div>
+  </header>
+
+  <div id="btn_voltar">
+    <a href="./perfil.html">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+        <path fill="white" d="M41.4 297.4C28.9 309.9 28.9 330.2 41.4 342.7L169.4 470.7C181.9 483.2 202.2 483.2 214.7 470.7C227.2 458.2 227.2 437.9 214.7 425.4L141.3 352L576 352C593.7 352 608 337.7 608 320C608 302.3 593.7 288 576 288L141.3 288L214.7 214.6C227.2 202.1 227.2 181.8 214.7 169.3C202.2 156.8 181.9 156.8 169.4 169.3L41.4 297.3z"/>
+      </svg>
+    </a>
+  </div>
+
+  <div id="perfil-edit-wrapper">
+
+    <!-- Foto de perfil -->
+    <label id="foto-upload-label" title="Clique para trocar a foto">
+      <img id="foto-preview" src="./assets/images/user-imagem.png" alt="Foto de perfil">
+      <div class="overlay-foto">✏️</div>
+      <input id="foto-file-input" type="file" accept="image/*">
+    </label>
+    <p id="foto-hint">Clique na foto para alterar</p>
+
+    <!-- Mensagem global -->
+    <div id="msg-global"></div>
+
+    <!-- Seção: Dados pessoais -->
+    <div class="edit-card">
+      <h3>Dados pessoais</h3>
+      <div class="input-grid">
+
+        <div class="input-field">
+          <label for="edit-nome">Nome completo *</label>
+          <input type="text" id="edit-nome" placeholder="Seu nome completo">
+          <span class="campo-erro" id="erro-edit-nome"></span>
         </div>
 
-        <div id="div_inputs">
-          <input class="input_c" type="text" placeholder="Caio Martins Caldeira">
-          <input class="input_c" type="text" placeholder="@caiomartins8"> <br>
-          <input class="input_b" type="text" placeholder="Rua Um 505, Bairro Dois, Cidade Três - Minas Gerais - Brasil"> <br>
-          <input class="input_c" type="text" placeholder="caiomartinscaldeira@gmail.com">
-          <input class="input_c" type="text" placeholder="123.456.789-00"> <br>
-          <a id="red_senha" href="">Redefinir senha</a> <br>
+        <div class="input-field">
+          <label for="edit-login">Login *</label>
+          <input type="text" id="edit-login" placeholder="Seu login">
+          <span class="campo-erro" id="erro-edit-login"></span>
         </div>
 
-        <div id="div_salvarbtn">
-          <button id="salvar_alt">Salvar Alterações</button>
+        <div class="input-field">
+          <label for="edit-email">E-mail *</label>
+          <input type="email" id="edit-email" placeholder="seu@email.com">
+          <span class="campo-erro" id="erro-edit-email"></span>
+        </div>
+
+        <div class="input-field">
+          <label for="edit-cpf">CPF</label>
+          <input type="text" id="edit-cpf" placeholder="000.000.000-00" maxlength="14">
+          <span class="campo-erro" id="erro-edit-cpf"></span>
+        </div>
+
+        <div class="input-field span2">
+          <label for="edit-endereco">Endereço</label>
+          <input type="text" id="edit-endereco" placeholder="Rua, número, bairro, cidade">
+          <span class="campo-erro"></span>
         </div>
 
       </div>
+    </div>
 
-    </main>
+    <!-- Seção: Alterar senha (opcional) -->
+    <div class="edit-card">
+      <h3>Alterar senha</h3>
+      <p class="senha-hint">Deixe em branco para não alterar a senha.</p>
+      <div class="input-grid">
 
-  </body>
+        <div class="input-field">
+          <label for="inp-senha-atual">Senha atual</label>
+          <div class="senha-wrapper">
+            <input type="password" id="inp-senha-atual" placeholder="Digite sua senha atual">
+            <button class="btn-eye" type="button" onclick="toggleSenha('inp-senha-atual', this)">👁</button>
+          </div>
+          <span class="campo-erro" id="erro-senha-atual"></span>
+        </div>
+
+        <div class="input-field">
+          <label for="inp-senha-nova">Nova senha</label>
+          <div class="senha-wrapper">
+            <input type="password" id="inp-senha-nova" placeholder="Mínimo 4 caracteres">
+            <button class="btn-eye" type="button" onclick="toggleSenha('inp-senha-nova', this)">👁</button>
+          </div>
+          <span class="campo-erro" id="erro-senha-nova"></span>
+        </div>
+
+        <div class="input-field">
+          <label for="inp-senha-conf">Confirmar nova senha</label>
+          <div class="senha-wrapper">
+            <input type="password" id="inp-senha-conf" placeholder="Repita a nova senha">
+            <button class="btn-eye" type="button" onclick="toggleSenha('inp-senha-conf', this)">👁</button>
+          </div>
+          <span class="campo-erro" id="erro-senha-conf"></span>
+        </div>
+
+      </div>
+    </div>
+
+    <button id="btn-salvar" onclick="salvarPerfil()">Salvar Alterações</button>
+
+  </div>
+
+  <script src="./assets/js/login.js"></script>
+  <script>
+    // API já está definida em login.js — não redeclara
+    let usuarioAtual = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      usuarioAtual = getUsuario();
+      if (!usuarioAtual) { window.location.href = 'index.html'; return; }
+
+      // Preenche todos os campos com os dados atuais
+      document.getElementById('edit-nome').value     = usuarioAtual.nome     || '';
+      document.getElementById('edit-login').value    = usuarioAtual.login    || '';
+      document.getElementById('edit-email').value    = usuarioAtual.email    || '';
+      document.getElementById('edit-cpf').value      = usuarioAtual.cpf      || '';
+      document.getElementById('edit-endereco').value = usuarioAtual.endereco || '';
+
+      const foto = document.getElementById('foto-preview');
+      foto.src = usuarioAtual.foto_perfil || './assets/images/user-imagem.png';
+      foto.onerror = () => { foto.src = './assets/images/user-imagem.png'; };
+
+      // Preview ao trocar foto
+      document.getElementById('foto-file-input').addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => { document.getElementById('foto-preview').src = e.target.result; };
+        reader.readAsDataURL(file);
+      });
+
+      // Máscara de CPF
+      document.getElementById('edit-cpf').addEventListener('input', function () {
+        let v = this.value.replace(/\D/g, '').slice(0, 11);
+        if (v.length > 9) v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        else if (v.length > 6) v = v.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+        else if (v.length > 3) v = v.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+        this.value = v;
+      });
+    });
+
+    function toggleSenha(id, btn) {
+      const inp = document.getElementById(id);
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+      btn.textContent = inp.type === 'password' ? '👁' : '🙈';
+    }
+
+    function limparErros() {
+      document.querySelectorAll('.campo-erro').forEach(el => el.textContent = '');
+      document.querySelectorAll('.input-field input').forEach(el => el.classList.remove('erro'));
+      const msg = document.getElementById('msg-global');
+      msg.textContent = '';
+      msg.className = '';
+    }
+
+    function mostrarErro(id, texto) {
+      const campo = document.getElementById(id);
+      if (campo) { campo.classList.add('erro'); }
+      const errEl = document.getElementById('erro-' + id);
+      if (errEl) errEl.textContent = texto;
+    }
+
+    function mostrarMsgGlobal(texto, tipo) {
+      const el = document.getElementById('msg-global');
+      el.textContent = texto;
+      el.className = tipo; // 'ok' ou 'erro'
+      if (tipo === 'ok') setTimeout(() => { el.className = ''; el.textContent = ''; }, 4000);
+    }
+
+    async function salvarPerfil() {
+      limparErros();
+      let valido = true;
+
+      const nome     = document.getElementById('edit-nome').value.trim();
+      const login    = document.getElementById('edit-login').value.trim();
+      const email    = document.getElementById('edit-email').value.trim();
+      const cpf      = document.getElementById('edit-cpf').value.trim();
+      const endereco = document.getElementById('edit-endereco').value.trim();
+
+      // Validações obrigatórias
+      if (!nome)  { mostrarErro('edit-nome',  'Nome é obrigatório.'); valido = false; }
+      if (!login) { mostrarErro('edit-login', 'Login é obrigatório.'); valido = false; }
+      if (!email) {
+        mostrarErro('edit-email', 'E-mail é obrigatório.'); valido = false;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        mostrarErro('edit-email', 'E-mail inválido.'); valido = false;
+      }
+
+      // Validação de senha (só se algum campo foi preenchido)
+      const senhaAtual = document.getElementById('inp-senha-atual').value;
+      const senhaNova  = document.getElementById('inp-senha-nova').value;
+      const senhaConf  = document.getElementById('inp-senha-conf').value;
+      const querTrocarSenha = senhaAtual || senhaNova || senhaConf;
+
+      if (querTrocarSenha) {
+        if (!senhaAtual) {
+          mostrarErro('inp-senha-atual', 'Informe sua senha atual.'); valido = false;
+        } else if (senhaAtual !== usuarioAtual.senha) {
+          mostrarErro('inp-senha-atual', 'Senha atual incorreta.'); valido = false;
+        }
+        if (!senhaNova) {
+          mostrarErro('inp-senha-nova', 'Informe a nova senha.'); valido = false;
+        } else if (senhaNova.length < 4) {
+          mostrarErro('inp-senha-nova', 'Mínimo de 4 caracteres.'); valido = false;
+        }
+        if (!senhaConf) {
+          mostrarErro('inp-senha-conf', 'Confirme a nova senha.'); valido = false;
+        } else if (senhaNova && senhaNova !== senhaConf) {
+          mostrarErro('inp-senha-conf', 'As senhas não coincidem.'); valido = false;
+        }
+      }
+
+      if (!valido) {
+        mostrarMsgGlobal('Corrija os erros acima antes de salvar.', 'erro');
+        return;
+      }
+
+      const btn = document.getElementById('btn-salvar');
+      btn.disabled = true;
+      btn.textContent = 'Verificando...';
+
+      try {
+        // Checa duplicatas de login e email (ignorando o próprio usuário)
+        const todosRes = await fetch(`${API}/usuarios`);
+        const todos = await todosRes.json();
+        const outros = todos.filter(u => u.id !== usuarioAtual.id);
+
+        if (outros.find(u => u.login === login)) {
+          mostrarErro('edit-login', 'Este login já está em uso por outro usuário.');
+          mostrarMsgGlobal('Corrija os erros acima antes de salvar.', 'erro');
+          btn.disabled = false; btn.textContent = 'Salvar Alterações';
+          return;
+        }
+        if (outros.find(u => u.email === email)) {
+          mostrarErro('edit-email', 'Este e-mail já está cadastrado por outro usuário.');
+          mostrarMsgGlobal('Corrija os erros acima antes de salvar.', 'erro');
+          btn.disabled = false; btn.textContent = 'Salvar Alterações';
+          return;
+        }
+
+        btn.textContent = 'Salvando...';
+        const atualizacao = { nome, login, email, cpf, endereco };
+        if (querTrocarSenha) atualizacao.senha = senhaNova;
+
+        // Upload de foto, se selecionada
+        const fotoFile = document.getElementById('foto-file-input').files[0];
+        if (fotoFile) {
+          const formData = new FormData();
+          formData.append('foto', fotoFile);
+          const uploadRes = await fetch('http://localhost:3000/upload-perfil', {
+            method: 'POST',
+            body: formData
+          });
+          if (!uploadRes.ok) throw new Error('Erro no upload da foto.');
+          const uploadData = await uploadRes.json();
+          atualizacao.foto_perfil = uploadData.caminho;
+        }
+
+        const res = await fetch(`${API}/usuarios/${usuarioAtual.id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(atualizacao)
+        });
+
+        if (!res.ok) throw new Error('Erro ao salvar no servidor.');
+
+        const atualizado = await res.json();
+        salvarSessao(atualizado);
+        usuarioAtual = atualizado;
+
+        // Limpa campos de senha
+        ['inp-senha-atual', 'inp-senha-nova', 'inp-senha-conf']
+          .forEach(id => { document.getElementById(id).value = ''; });
+
+        renderizarHeader();
+        mostrarMsgGlobal('Perfil salvo com sucesso!', 'ok');
+
+      } catch (err) {
+        mostrarMsgGlobal('Erro ao salvar. Verifique se o servidor está rodando.', 'erro');
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Salvar Alterações';
+      }
+    }
+  </script>
+
+</body>
 </html>

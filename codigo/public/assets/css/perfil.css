@@ -1,0 +1,475 @@
+/* Estilos específicos do perfil do usuário (perfil.html) */
+
+/* ── Layout da página ── */
+#perfil-wrapper {
+  display: flex;
+  gap: 24px;
+  padding: 30px 40px 50px;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Card esquerdo (dados do usuário) ── */
+#card-esquerdo {
+  background-color: var(--verde-claro);
+  border-radius: 16px;
+  padding: 24px 20px;
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+#foto-perfil-container { position: relative; width: 140px; height: 140px; }
+
+#foto-usuario {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--verde);
+}
+
+#btn-editar-foto {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 30px;
+  height: 30px;
+  background: var(--verde);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#nome-usuario {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+#box-dados {
+  background: var(--verde-escuro);
+  border-radius: 10px;
+  padding: 14px 16px;
+  width: 100%;
+  color: white;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#box-dados p { font-weight: 500; }
+
+/* ── Missões diárias (resumo) ── */
+#box-missoes { width: 100%; }
+
+#box-missoes h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.missao-item {
+  background: var(--verde-escuro);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: white;
+  font-size: 12px;
+}
+
+.missao-item input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: white;
+  flex-shrink: 0;
+}
+
+.missao-pts {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 11px;
+  color: #d4ffd4;
+  white-space: nowrap;
+}
+
+/* ── Botões de ação ── */
+#btn-editar-perfil {
+  width: 100%;
+  height: 44px;
+  background: var(--verde);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#btn-editar-perfil:hover { filter: brightness(1.1); }
+
+#btn-missoes {
+  width: 100%;
+  height: 44px;
+  background: white;
+  color: #00A843;
+  border: 2px solid var(--verde);
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#btn-missoes:hover { background: #e8fff2; }
+
+/* ── Card direito (feed de check-ins) ── */
+#card-direito {
+  flex: 1;
+  background: var(--verde-claro);
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+#topo-feed { display: flex; justify-content: flex-end; }
+
+#btn-checkin {
+  background: var(--verde);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ── Feed de check-ins ── */
+#feed-checkins {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+#feed-checkins::-webkit-scrollbar       { width: 6px; }
+#feed-checkins::-webkit-scrollbar-thumb { background: var(--verde-escuro); border-radius: 10px; }
+
+.checkin-card { background: white; border-radius: 10px; padding: 14px; }
+
+.checkin-local { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 10px; }
+.checkin-local span { font-weight: 700; color: #007a30; }
+
+.checkin-fotos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 80px;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.checkin-fotos img { width: 100%; height: 100px; object-fit: cover; border-radius: 6px; }
+.checkin-fotos .foto-mais { position: relative; }
+
+.foto-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkin-likes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #555;
+  justify-content: flex-end;
+}
+
+.checkin-likes i { color: #e83e5a; font-size: 18px; }
+
+/* ── Decoração de folhas ── */
+.folha {
+  position: fixed;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Modal de missões semanais ── */
+#modal-missoes-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#modal-missoes-overlay.aberto { display: flex; }
+
+#modal-missoes {
+  background: var(--fundo);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: modalEntrar 0.25s ease;
+}
+
+@keyframes modalEntrar {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#modal-header {
+  background: var(--verde);
+  padding: 18px 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#modal-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#modal-header-top h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#btn-fechar-modal {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.15s;
+}
+
+#btn-fechar-modal:hover { background: rgba(255, 255, 255, 0.4); }
+
+#modal-abas { display: flex; gap: 4px; }
+
+.modal-aba {
+  flex: 1;
+  padding: 10px 0 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 10px 10px 0 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.modal-aba.ativa { background: var(--fundo); color: #00A843; }
+
+#modal-corpo {
+  padding: 20px 22px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+#modal-corpo::-webkit-scrollbar       { width: 5px; }
+#modal-corpo::-webkit-scrollbar-thumb { background: var(--verde-escuro); border-radius: 10px; }
+
+.painel-aba       { display: none; flex-direction: column; gap: 12px; }
+.painel-aba.ativo { display: flex; }
+
+/* ── Cards de missão semanal ── */
+.missao-semanal-card {
+  background: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-left: 4px solid var(--verde);
+}
+
+.missao-semanal-card.concluida { border-left-color: #aaa; opacity: 0.6; }
+
+.missao-icone {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #e6fff0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.missao-semanal-card.concluida .missao-icone { background: #f0f0f0; }
+.missao-info { flex: 1; }
+.missao-titulo { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+
+.missao-barra-fundo {
+  background: #e0e0e0;
+  border-radius: 20px;
+  height: 7px;
+  overflow: hidden;
+}
+
+.missao-barra-progresso {
+  height: 100%;
+  background: var(--verde);
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+.missao-progresso-texto { font-size: 11px; color: #777; margin-top: 4px; }
+
+.missao-pts-badge {
+  background: #e6fff0;
+  color: #00A843;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.missao-semanal-card.concluida .missao-pts-badge { background: #f0f0f0; color: #888; }
+
+.btn-simular-progresso {
+  background: #e6fff0;
+  color: #00A843;
+  border: 1px solid var(--verde);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.15s;
+}
+
+.btn-simular-progresso:hover { background: #ccffe0; }
+
+/* ── Histórico de missões ── */
+.historico-grupo-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #00A843;
+  margin: 4px 0 6px;
+}
+
+.historico-item {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.historico-check {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e6fff0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--verde);
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.historico-desc { flex: 1; font-size: 12.5px; color: #333; font-weight: 500; }
+.historico-meta { text-align: right; flex-shrink: 0; }
+.historico-pts  { font-size: 12px; font-weight: 700; color: #00A843; }
+.historico-data { font-size: 10.5px; color: #aaa; }
+
+/* ── Resumo de pontos ── */
+#resumo-pontos {
+  background: linear-gradient(135deg, var(--verde), #00A843);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 4px;
+}
+
+#resumo-pontos .label { font-size: 12px; opacity: 0.85; }
+#resumo-pontos .valor { font-size: 26px; font-weight: 700; }
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+  #perfil-wrapper   { flex-direction: column; padding: 20px; }
+  #card-esquerdo    { width: 100%; }
+  #modal-missoes    { max-height: 90vh; }
+}
