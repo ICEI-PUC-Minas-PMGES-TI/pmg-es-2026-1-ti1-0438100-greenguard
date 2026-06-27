@@ -612,3 +612,9 @@ a{
     text-decoration: none;
     color: black;
 }
+
+#map {
+  height: 450px;
+  width: 100%;
+  border-radius: 12px;
+}

@@ -339,18 +339,60 @@
     </div>
   </main>
 
-  <script src="./assets/js/login.js"></script>
   <script>
+  const map = L.map('map').setView([-19.9167, -43.9345], 12);
 
-function toggleFilters() {
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
 
+  const greenIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+  });
+
+  
+  const query = `
+    [out:json][timeout:25];
+    area["name"="Belo Horizonte"]["boundary"="administrative"]->.bh;
+    (
+      node["leisure"="park"](area.bh);
+      way["leisure"="park"](area.bh);
+      relation["leisure"="park"](area.bh);
+    );
+    out center;
+  `;
+
+  fetch('https://overpass-api.de/api/interpreter', {
+    method: 'POST',
+    body: query,
+  })
+    .then(res => res.json())
+    .then(data => {
+      data.elements.forEach(el => {
+        const lat = el.lat ?? el.center?.lat;
+        const lon = el.lon ?? el.center?.lon;
+        const nome = el.tags?.name || 'Parque sem nome';
+
+        if (lat && lon) {
+          L.marker([lat, lon], { icon: greenIcon })
+            .addTo(map)
+            .bindPopup(`<strong>${nome}</strong>`);
+        }
+      });
+    })
+    .catch(err => console.error('Erro ao buscar parques:', err));
+
+  function toggleFilters() {
     const panel = document.getElementById("filter-panel");
-
     panel.classList.toggle("filter-show");
-
-}
-
+  }
 </script>
+
 </body>
 
 </html>
