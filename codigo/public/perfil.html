@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src=".assets/js/checkin.js" defer></script>
 </head>
 
 <body>
@@ -96,7 +97,92 @@
         <button id="btn-checkin">Fazer Check-in</button>
       </div>
       <div id="feed-checkins">
-        <!-- Preenchido dinamicamente -->
+        <div id="modalParque" class="modal">
+
+    <div class="modal-content">
+
+        <span id="fecharModal" class="fechar-modal">&times;</span>
+
+        <form class="form-parque">
+
+            <label class="titulo-campo">
+                Nome do Parque :
+            </label>
+
+            <input
+                type="text"
+                class="campo-nome"
+                placeholder="Ex : Parque Municipal Belo Horizonte..."
+            >
+
+            <div class="conteudo-formulario">
+
+                <div class="area-upload">
+
+                    <label class="caixa-foto">
+
+                        <input type="file" multiple hidden>
+
+                        <div class="icone-foto">
+                            📷
+                        </div>
+
+                        <span class="texto-upload">
+                            Anexe uma ou mais fotos
+                        </span>
+
+                    </label>
+
+                </div>
+
+                <div class="area-localizacao">
+
+                    <label class="linha-check">
+
+                        <input id="check-localizacao" type="checkbox">
+
+                        <span>Verificar localização</span>
+
+                    </label>
+
+                    <label class="rotulo">
+                        Coordenada Encontrada
+                    </label>
+
+                    <input id="coordEncontrada" type="text" class="campo-coordenada" readonly>
+
+                    <label class="rotulo">
+                        Coordenada do Parque
+                    </label>
+
+                    <input
+                        id="coordParque"
+                        type="text"
+                        class="campo-coordenada"
+                        value="-19.9320,-43.9386"
+                    >
+
+                    <div id="erroLocalizacao" class="mensagem-erro" style="display:none;">
+                        Localização inválida, muito longe!
+                    </div>
+
+                </div>
+
+            </div>
+
+          <button
+              type="submit"
+              class="botao-enviar"
+              id="btnEnviar"
+              disabled>
+              Enviar
+          </button>
+
+        </form>
+
+    </div>
+
+</div>
       </div>
     </div>
 
