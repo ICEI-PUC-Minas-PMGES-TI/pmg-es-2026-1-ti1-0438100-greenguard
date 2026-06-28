@@ -77,6 +77,34 @@ header div {
     max-width: 665px;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(157, 255, 168, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.post-card-modal {
+  background-color: #89f48b7f;
+  border-radius: 18px;
+  padding-top: 28px;
+  padding-bottom: 24px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.18);
+  animation: fadeUp 0.35s ease;
+  margin: 0 auto;
+}
+
 main section input {
     width: 100%;
     height: 47px;
@@ -568,6 +596,14 @@ main section button img {
     text-decoration: underline;
 }
 
+.cat-btn.assalto {
+  background-color: #970909;
+}
+
+.cat-btn.reclamacao {
+  background-color: #f37b13;
+}
+
 .card-actions {
     display: flex;
     gap: 10px;
@@ -588,6 +624,11 @@ main section button img {
 
 .btn-card:hover {
     filter: brightness(1.1);
+}
+
+.park-input:focus {
+  border-color: #94ffb0;
+  background-color: #ffffff;
 }
 
 /* ===== ESTILOS PEDRO - página de perfil ===== */
