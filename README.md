@@ -228,29 +228,29 @@ Eu como atleta recreativo que corre e pedala frequentemente, quero visualizar in
 ## Requisitos do projeto:
 **Requisitos funcionais**
 
-O sistema deve exibir uma listagem de parques com foto, nome, nível de segurança, endereço e horário de funcionamento.	
-O sistema deve permitir busca de parques por nome através de campo de texto.	
-O sistema deve permitir filtrar parques por turno (dia/noite), tipo de atividade e distância.
-O sistema deve exibir um mapa interativo com marcadores de todos os parques de Belo Horizonte, buscados dinamicamente via Overpass API.	
-O sistema deve permitir que usuários criem posts de denúncia no fórum, informando descrição, categoria (Assalto, Reclamação, Segurança), parque e imagem.	
-O sistema deve listar os posts do fórum com suporte a filtros por texto, categoria e intervalo de datas.	
-O sistema deve permitir que usuários curtam posts do fórum, atualizando o contador de likes via API REST.	
-O sistema deve permitir que usuários avaliem parques com comentário, classificação positiva/negativa e notas de 1 a 5 estrelas para segurança, iluminação e movimentação.	
-O sistema deve exibir um feed de check-ins recentes de usuários nos parques, com fotos e botão de curtida.	
-O sistema deve atribuir pontos (+10 pts) a cada check-in realizado pelo usuário, integrando o sistema de gamificação.	
-O sistema deve exibir um ranking de usuários ordenado por pontuação (XP) acumulada.	
-O sistema deve permitir que o usuário visualize e edite seus dados de perfil (nome, endereço, e-mail, foto).	
+### O sistema deve exibir uma listagem de parques com foto, nome, nível de segurança, endereço e horário de funcionamento.	
+### O sistema deve permitir busca de parques por nome através de campo de texto.	
+### O sistema deve permitir filtrar parques por turno (dia/noite), tipo de atividade e distância.
+### O sistema deve exibir um mapa interativo com marcadores de todos os parques de Belo Horizonte, buscados dinamicamente via Overpass API.	
+### O sistema deve permitir que usuários criem posts de denúncia no fórum, informando descrição, categoria (Assalto, Reclamação, Segurança), parque e imagem.	
+### O sistema deve listar os posts do fórum com suporte a filtros por texto, categoria e intervalo de datas.	
+### O sistema deve permitir que usuários curtam posts do fórum, atualizando o contador de likes via API REST.	
+### O sistema deve permitir que usuários avaliem parques com comentário, classificação positiva/negativa e notas de 1 a 5 estrelas para segurança, iluminação e movimentação.	
+### O sistema deve exibir um feed de check-ins recentes de usuários nos parques, com fotos e botão de curtida.	
+### O sistema deve atribuir pontos (+10 pts) a cada check-in realizado pelo usuário, integrando o sistema de gamificação.	
+### O sistema deve exibir um ranking de usuários ordenado por pontuação (XP) acumulada.	
+### O sistema deve permitir que o usuário visualize e edite seus dados de perfil (nome, endereço, e-mail, foto).	
 
 **Requisitos não funcionais**
 
-A aplicação deve ser desenvolvida com HTML, CSS e JavaScript puros no frontend, sem uso de frameworks JavaScript.	
-O backend deve ser baseado em Node.js com JSON Server, expondo uma API REST a partir do arquivo db.json.	
-A aplicação deve ser responsiva, adaptando-se a telas de dispositivos móveis e desktops.	
-O mapa deve carregar os parques de Belo Horizonte em tempo real via requisição à Overpass API, sem dados fixos no código.
-As imagens enviadas no fórum devem ser armazenadas no servidor local e referenciadas por caminho relativo no banco de dados.	
-O estado de curtidas do usuário deve ser persistido no localStorage do navegador para evitar curtidas duplicadas entre sessões.	
-A interface deve utilizar as fontes Poppins e Montserrat e seguir a identidade visual do GreenGuard (paleta verde).	
-A aplicação deve ser executada localmente via comando npm start, ficando acessível em http://localhost:3000.	
+### A aplicação deve ser desenvolvida com HTML, CSS e JavaScript puros no frontend, sem uso de frameworks JavaScript.	
+### O backend deve ser baseado em Node.js com JSON Server, expondo uma API REST a partir do arquivo db.json.	
+### A aplicação deve ser responsiva, adaptando-se a telas de dispositivos móveis e desktops.	
+### O mapa deve carregar os parques de Belo Horizonte em tempo real via requisição à Overpass API, sem dados fixos no código.
+### As imagens enviadas no fórum devem ser armazenadas no servidor local e referenciadas por caminho relativo no banco de dados.	
+### O estado de curtidas do usuário deve ser persistido no localStorage do navegador para evitar curtidas duplicadas entre sessões.	
+### A interface deve utilizar as fontes Poppins e Montserrat e seguir a identidade visual do GreenGuard (paleta verde).	
+### A aplicação deve ser executada localmente via comando npm start, ficando acessível em http://localhost:3000.	
 
 
 ## Projeto de Interface:
