@@ -16,7 +16,6 @@ https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2026-1-ti1-0438100-greenguard.
 
 ## Alunos integrantes da equipe:
 
-* Caio Martins Caldeira - Líder 
 * Kaique Rodrigues do Vale
 * Gabriel Rodrigues Lima
 * Crystian Marcondes Oliveira Nascimento
@@ -307,17 +306,15 @@ Mesmo assim, cada integrante também assumiu alguma responsabilidade principal, 
 
 ## Quadro de controle de tarefas (Kanban)
 
-- Backlog: Código do projeto.
-- A Fazer: 
-- Em Andamento: Documentação.
-- Concluído: Matriz CSD, Mapa de Stake Holders, Personas, Proposta de Valor, Wireframe, Fluxo de telas, Canva, Apresentação.
+<img width="965" height="1139" alt="image" src="https://github.com/user-attachments/assets/24d66f18-10bd-4f81-9b1d-8015d08dcd57" />
 
 # Solução Implementada:
 ## Funcionalidades e Estrutura de Dados:
 
-(index.html / Cards.html) Listagem e busca de parques
+### (index.html / Cards.html) Listagem e busca de parques
 Exibe cards de parques com foto, nome, nível de segurança em estrelas, endereço e horário de funcionamento. Conta com campo de busca textual e painel de filtros expansível por turno, atividade e distância.
 Estrutura de dados associada
+```
 {
   "id": 1,
   "nome": "Parque Municipal de BH",
@@ -326,10 +323,11 @@ Estrutura de dados associada
   "seguranca": 4,
   "foto": "./assets/images/parque1.png"
 }
-Acesso
-http://localhost:3000 → página inicial com cards de parques
+```
 
-(Cards.html / kaique.html) Mapa interativo de parques
+Acesso: http://localhost:3000 → página inicial com cards de parques
+
+### (Cards.html / kaique.html) Mapa interativo de parques
 Mapa interativo centralizado em Belo Horizonte que busca dinamicamente todos os parques da cidade via Overpass API (OpenStreetMap) e exibe marcadores verdes para cada parque encontrado. Ao clicar no marcador, o nome do parque é exibido em popup.
 API utilizada
 POST https://overpass-api.de/api/interpreter
@@ -337,9 +335,10 @@ Query: node/way/relation["leisure"="park"] dentro de Belo Horizonte
 Acesso
 http://localhost:3000/Cards.html → seção central do mapa
 
-(forum.html + posts.js) Fórum de denúncias e ocorrências
+### (forum.html + posts.js) Fórum de denúncias e ocorrências
 Permite que usuários criem posts de denúncia categorizados (Assalto, Reclamação, Segurança), com descrição textual, seleção de parque e upload de imagem. Posts são carregados da API REST e exibidos com suporte a curtidas (likes), filtros por texto, data e categoria.
 Estrutura de dados associada
+```
 {
   "id": 1,
   "autor_id": 2,
@@ -351,12 +350,13 @@ Estrutura de dados associada
   "likes": 12,
   "imagem": "./assets/images/posts_sent/post_1714000000.jpg"
 }
-Acesso
-http://localhost:3000/forum.html
+```
+Acesso: http://localhost:3000/forum.html
 
-(Gabriel.html + gabriel.js) Sistema de avaliação e feedback
+### (Gabriel.html + gabriel.js) Sistema de avaliação e feedback
 Formulário de feedback que permite ao usuário deixar um comentário sobre o parque, classificar o feedback como positivo ou negativo, e atribuir notas de 1 a 5 estrelas para segurança, iluminação e movimentação.
 Estrutura de dados associada
+```
 {
   "comentario": "Parque bem iluminado e movimentado.",
   "feedback": "positivo",
@@ -366,12 +366,13 @@ Estrutura de dados associada
     "movimentacao": 3
   }
 }
-Acesso
-http://localhost:3000/Gabriel.html
+```
+Acesso: http://localhost:3000/Gabriel.html
 
-(rolagem_check-in.html + .js) Feed de check-ins com gamificação
+### (rolagem_check-in.html + .js) Feed de check-ins com gamificação
 Feed com scroll vertical exibindo check-ins recentes de usuários nos parques. Cada card mostra nome do parque, data, fotos e botão de curtida. Cada check-in exibe a pontuação de +10 pts conquistada, integrando o sistema de gamificação da plataforma.
 Estrutura de dados associada
+```
 {
   "usuario": "CM",
   "parque": "Parque dos Mangabeiras",
@@ -381,50 +382,50 @@ Estrutura de dados associada
   "likes": 123000,
   "pontos": 10
 }
-Acesso
-http://localhost:3000/rolagem_check-in.html
+```
+Acesso: http://localhost:3000/rolagem_check-in.html
 
-(forum.html + posts.js) Ranking de usuários
+### (forum.html + posts.js) Ranking de usuários
 Sidebar lateral no fórum exibindo ranking de usuários ordenado por XP acumulado. Os dados são carregados da API REST e exibidos com posição, avatar, nome e pontuação de cada usuário.
 Estrutura de dados associada
+```
 {
   "id": 1,
   "nome": "Junior Lopes",
   "foto_perfil": "./assets/images/user-imagem.png",
   "xp": 347
 }
-Acesso
-http://localhost:3000/forum.html → sidebar direita
+```
+Acesso: http://localhost:3000/forum.html → sidebar direita
 
-(pedro.html) Página de perfil do usuário
+### (pedro.html) Página de perfil do usuário
 Tela de perfil onde o usuário pode visualizar e editar seus dados pessoais (nome, usuário, endereço, e-mail, CPF) e redefinir senha. A foto de perfil é exibida em destaque no topo do card.
-Acesso
-http://localhost:3000/pedro.html
+Acesso: http://localhost:3000/pedro.html
 
 ## Módulos e APIs:
 
-JSON Server 0.17.4
+### JSON Server 0.17.4
 Backend REST simulado a partir do arquivo db.json. Serve as rotas /api/posts, /api/usuarios e /api/parques utilizadas pelo frontend.
 
-Express 4.17.1
+### Express 4.17.1
 Servidor Node.js que complementa o JSON Server, adicionando suporte a upload de imagens via rota POST /upload.
 
-Multer 1.4.5
+### Multer 1.4.5
 Middleware para upload de arquivos. Salva imagens dos posts do fórum em public/assets/images/posts_sent/ com nome baseado em timestamp.
 
-Leaflet.js (unpkg CDN)
+### Leaflet.js (unpkg CDN)
 Biblioteca de mapas interativos. Usada para renderizar o mapa de BH com marcadores verdes para cada parque encontrado.
 
-Overpass API (OpenStreetMap)
+### Overpass API (OpenStreetMap)
 API pública que retorna dados geográficos do OpenStreetMap. Usada para buscar dinamicamente todos os parques dentro dos limites de Belo Horizonte.
 
-Bootstrap 5.3.3 + Bootstrap Icons 1.11.3
+### Bootstrap 5.3.3 + Bootstrap Icons 1.11.3
 Framework CSS e biblioteca de ícones. Usados para estilização de componentes do fórum e das páginas de listagem.
 
-Google Fonts (Poppins + Montserrat)
+### Google Fonts (Poppins + Montserrat)
 Fontes tipográficas utilizadas em toda a aplicação para padronização visual.
 
-localStorage (Web API)
+### localStorage (Web API)
 Armazenamento local do navegador. Usado para persistir sessão do usuário logado e estado de curtidas nos posts do fórum.
 
 ## Referências Bibliográficas
