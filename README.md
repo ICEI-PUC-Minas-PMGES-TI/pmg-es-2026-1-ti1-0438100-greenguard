@@ -81,13 +81,52 @@ A falta de acesso prático a mapeamento e informações claras sobre os parques 
   <img src="./docs/images/STAKEHOLDERS.png" width="1500">
 </p>
 
-## Pesquisa e entendimento do problema:
-Em Belo Horizonte, o índice de criminalidade é considerado relativamente alto (59,42), enquanto o nível de segurança é mais baixo (40,58). Além disso, a sensação de segurança ao andar sozinho à noite é de apenas 26 em uma escala de 0 a 100, indicando maior insegurança nesse período (Numbeo, 2026).
+## Entrevistas qualitativas:
+Lúcia Santos Idosa ativa
+67 anos · Aposentada · Caminhante frequente
 
-Estudos sobre espaços urbanos mostram que fatores como iluminação, presença de pessoas e infraestrutura influenciam diretamente na percepção de segurança. Locais com pouca iluminação ou baixa movimentação tendem a aumentar a sensação de insegurança, mesmo quando não há informações claras sobre ocorrências recentes.
+Você costuma pesquisar informações sobre parques antes de visitá-los?
+"Às vezes peço pra minha filha me ajudar no Google Maps, mas é complicado. Queria algo mais simples que me dissesse logo: esse parque é seguro, tem banheiro, tem banco pra sentar."
+Já deixou de ir a algum parque por não se sentir segura?
+"Sim, várias vezes. Ouvi comentários de amigas no WhatsApp que tinha acontecido algo num parque e aí a gente desiste. Seria bom ter um lugar oficial pra ver isso."
+O que te faria se sentir mais confiante para visitar um parque sozinha?
+"Saber que tem iluminação boa e que outras pessoas estão indo também. Se eu pudesse ver no celular que outras idosas foram lá semana passada e se sentiram bem, já me animava."
+Você teria dificuldade em usar um site ou aplicativo com mapa interativo?
+"Depende. Se for simples como o WhatsApp, dá pra aprender. Mas se tiver muita coisa pra clicar, desisto logo."
 
-Dessa forma, o problema não está apenas na existência de crimes, mas na falta de informações acessíveis que ajudem o usuário a entender melhor as condições de segurança dos parques antes de utilizá-los.
 
+Ana Moreira Mãe de criança
+34 anos · Professora · Mãe do Lucas, 8 anos
+
+Como você decide qual parque levar seu filho nos fins de semana?
+"Geralmente vou onde já fui antes ou onde amigos indicaram. Não tenho como saber de antemão se o parque vai estar bem cuidado ou se vai ter gente estranha por lá."
+Quais informações são mais importantes para você ao escolher um parque?
+"Se tem brinquedos em bom estado, se o local é aberto e bem iluminado, se tem algum posto de segurança por perto. Também gosto de saber se tem banheiro limpo, que criança sempre precisa."
+Você se preocupa com a segurança da criança dentro do parque?
+"Sempre. Meu filho é agitado, sai correndo. Já me perdi dele por uns minutos e foi assustador. Um mapa do parque com pontos de apoio me ajudaria muito."
+Você usaria um site que mostrasse avaliações de outros pais sobre o parque?
+"Com certeza. Assim como olho avaliações de restaurante antes de ir, faria o mesmo pro parque. Principalmente se filtrasse por 'adequado para crianças'."
+
+
+Rafael Carvalho Atleta recreativo
+28 anos · Analista de TI · Corredor e ciclista
+
+Com que frequência você pratica atividades físicas em parques de BH?
+"Umas 4 vezes por semana. Corro no Parque das Mangabeiras e às vezes vou de bike pro Parque Ecológico da Pampulha. Mas dependo muito de dica de amigos pra saber onde ir."
+Você já teve alguma experiência ruim de segurança em parque?
+"Já. Fui correr de manhã cedo num parque que não conhecia bem e percebi que estava muito isolado. Fiquei desconfortável e voltei. Depois fiquei sabendo que tinha tido furto por lá."
+O que você buscaria num site de parques como atleta?
+"Informação sobre os percursos: extensão, nível de dificuldade, se é trilha ou asfalto. E também o movimento do parque por horário. Não adianta saber que o parque é bonito se está deserto às 6h da manhã."
+Você contribuiria com avaliações ou relatos sobre os parques que frequenta?
+"Sim, se fosse rápido. Tipo dar uma nota e escrever duas linhas. Igual ao Strava quando você termina uma atividade. Se demorar muito, a pessoa não faz."
+
+## Highlights de pesquisa:
+- Todos os entrevistados relataram dificuldade em encontrar informações organizadas e confiáveis sobre parques antes da visita.
+- A percepção de segurança é o principal fator de decisão, especialmente para usuários que frequentam parques sozinhos ou com crianças.
+- Avaliações de outros usuários são vistas como altamente relevantes — os entrevistados as comparam a avaliações de restaurantes e apps de corrida.
+- Mapas simples com pontos de apoio (banheiros, postos de segurança, bancos) foram citados por dois dos três entrevistados como funcionalidade desejada.
+- Usuários atletas demandam informações específicas como extensão de percurso, tipo de piso e nível de movimento por horário.
+- A usabilidade é crítica: interfaces complexas afastam especialmente usuários mais velhos. Simplicidade é requisito, não diferencial.
 ## Personas:
 
 **Persona 1: Dona Lúcia**  
