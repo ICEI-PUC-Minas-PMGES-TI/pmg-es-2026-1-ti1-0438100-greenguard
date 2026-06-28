@@ -1,140 +1,271 @@
-// Trabalho Interdisciplinar 1 - Aplicações Web
-//
-// Esse módulo realiza o registro de novos usuários e login para aplicações com 
-// backend baseado em API REST provida pelo JSONServer
-// Os dados de usuário estão localizados no arquivo db.json que acompanha este projeto.
-//
-// Autor: Rommel Vieira Carneiro (rommelcarneiro@gmail.com)
-// Data: 09/09/2024
-//
-// Código LoginApp  
 
+const API = 'http://localhost:3000/api';
 
-// Página inicial de Login
-const LOGIN_URL = "./modulos/login/login.html";
-let RETURN_URL = "./modulos/login/index.html";
-const API_URL = './usuarios';
+// ── Sessão (sessionStorage: limpa ao fechar o navegador) ──
 
-// Objeto para o banco de dados de usuários baseado em JSON
-var db_usuarios = {};
+function getUsuario() {
+    const u = sessionStorage.getItem('gg_usuario');
+    return u ? JSON.parse(u) : null;
+}
 
-// Objeto para o usuário corrente
-var usuarioCorrente = {};
+function salvarSessao(usuario) {
+    sessionStorage.setItem('gg_usuario', JSON.stringify(usuario));
+}
 
-// Inicializa a aplicação de Login
-function initLoginApp () {
-    let pagina = window.location.pathname;
-    if (pagina != LOGIN_URL) {
-        // CONFIGURA A URLS DE RETORNO COMO A PÁGINA ATUAL
-        sessionStorage.setItem('returnURL', pagina);
-        RETURN_URL = pagina;
+function encerrarSessao() {
+    sessionStorage.removeItem('gg_usuario');
+}
 
-        // INICIALIZA USUARIOCORRENTE A PARTIR DE DADOS NO LOCAL STORAGE, CASO EXISTA
-        usuarioCorrenteJSON = sessionStorage.getItem('usuarioCorrente');
-        if (usuarioCorrenteJSON) {
-            usuarioCorrente = JSON.parse (usuarioCorrenteJSON);
-        } else {
-            window.location.href = LOGIN_URL;
-        }
+// ── Header dinâmico ──
 
-        // REGISTRA LISTENER PARA O EVENTO DE CARREGAMENTO DA PÁGINA PARA ATUALIZAR INFORMAÇÕES DO USUÁRIO
-        document.addEventListener('DOMContentLoaded', function () {
-            showUserInfo ('userInfo');
-        });
+function renderizarHeader() {
+    const usuario = getUsuario();
+    const areaUsuario = document.getElementById('header-usuario');
+    if (!areaUsuario) return;
+
+    if (usuario) {
+        areaUsuario.innerHTML = `
+            <a href="perfil.html" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none;color:inherit;">
+                <figure style="margin:0;">
+                    <img id="foto_perfil"
+                         src="${usuario.foto_perfil || './assets/images/user-imagem.png'}"
+                         alt="Perfil"
+                         onerror="this.src='./assets/images/user-imagem.png'"
+                         style="width:55px;height:55px;border-radius:50%;object-fit:cover;">
+                </figure>
+                <p style="margin:0;">Olá, <strong>${usuario.nome.split(' ')[0]}<br>${usuario.nome.split(' ')[1] || ''} !</strong></p>
+            </a>
+            <button onclick="logout()" id="btn-logout"
+                style="background:#00CF53;color:white;border:none;border-radius:6px;
+                       padding:6px 14px;font-family:'Poppins',sans-serif;font-size:13px;
+                       cursor:pointer;margin-left:8px;">
+                Sair
+            </button>
+        `;
+    } else {
+        areaUsuario.innerHTML = `
+            <button onclick="abrirModalLogin()"
+                style="background:#00CF53;color:white;border:none;border-radius:6px;
+                       padding:10px 22px;font-family:'Poppins',sans-serif;font-size:15px;
+                       font-weight:600;cursor:pointer;">
+                Entrar
+            </button>
+        `;
     }
-    else {
-        // VERIFICA SE A URL DE RETORNO ESTÁ DEFINIDA NO SESSION STORAGE, CASO CONTRARIO USA A PÁGINA INICIAL
-        let returnURL = sessionStorage.getItem('returnURL');
-        RETURN_URL = returnURL || RETURN_URL
-        
-        // INICIALIZA BANCO DE DADOS DE USUÁRIOS
-        carregarUsuarios(() => {
-            console.log('Usuários carregados...');
-        });
+}
+
+function logout() {
+    encerrarSessao();
+    renderizarHeader();
+    const protegidas = ['perfil.html', 'pedro.html'];
+    const paginaAtual = window.location.pathname.split('/').pop();
+    if (protegidas.includes(paginaAtual)) {
+        window.location.href = 'index.html';
     }
-};
+}
 
+// ── Modal de login/cadastro ──
 
-function carregarUsuarios(callback) {
-    fetch(API_URL)
-    .then(response => response.json())
-    .then(data => {
-        db_usuarios = data;
-        callback ()
-    })
-    .catch(error => {
-        console.error('Erro ao ler usuários via API JSONServer:', error);
-        displayMessage("Erro ao ler usuários");
+function criarModal() {
+    if (document.getElementById('gg-modal-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'gg-modal-overlay';
+    overlay.style.cssText = `
+        position:fixed;inset:0;background:rgba(0,0,0,.45);
+        z-index:99999;display:none;align-items:center;justify-content:center;
+    `;
+
+    overlay.innerHTML = `
+        <div id="gg-modal-box" style="
+            background:white;border-radius:16px;padding:36px 32px;
+            width:100%;max-width:420px;font-family:'Poppins',sans-serif;
+            position:relative;box-shadow:0 8px 32px rgba(0,0,0,.2);">
+
+            <button onclick="fecharLoginModal()" style="
+                position:absolute;top:14px;right:18px;background:none;border:none;
+                font-size:22px;cursor:pointer;color:#888;">×</button>
+
+            <div style="display:flex;margin-bottom:24px;border-bottom:2px solid #e0e0e0;">
+                <button id="aba-login" onclick="trocarAbaLogin('login')" style="
+                    flex:1;background:none;border:none;padding:10px;font-family:'Poppins',sans-serif;
+                    font-size:15px;font-weight:600;cursor:pointer;color:#00CF53;
+                    border-bottom:3px solid #00CF53;margin-bottom:-2px;">
+                    Entrar
+                </button>
+                <button id="aba-cadastro" onclick="trocarAbaLogin('cadastro')" style="
+                    flex:1;background:none;border:none;padding:10px;font-family:'Poppins',sans-serif;
+                    font-size:15px;font-weight:600;cursor:pointer;color:#aaa;
+                    border-bottom:3px solid transparent;margin-bottom:-2px;">
+                    Cadastrar
+                </button>
+            </div>
+
+            <div id="form-login">
+                <h2 style="margin:0 0 20px;font-size:20px;color:#222;">Bem-vindo de volta!</h2>
+
+                <label style="font-size:13px;font-weight:600;color:#555;">Login</label>
+                <input id="inp-login" type="text" placeholder="Seu login"
+                    style="${estiloInput()}">
+
+                <label style="font-size:13px;font-weight:600;color:#555;margin-top:12px;display:block;">Senha</label>
+                <input id="inp-senha" type="password" placeholder="Sua senha"
+                    style="${estiloInput()}">
+
+                <p id="msg-login" style="color:red;font-size:12px;margin:6px 0 0;min-height:16px;"></p>
+
+                <button onclick="fazerLogin()" style="${estiloBtnPrimario()}">
+                    Entrar
+                </button>
+            </div>
+
+            <div id="form-cadastro" style="display:none;">
+                <h2 style="margin:0 0 20px;font-size:20px;color:#222;">Criar conta</h2>
+
+                <label style="font-size:13px;font-weight:600;color:#555;">Nome completo</label>
+                <input id="cad-nome" type="text" placeholder="Seu nome"
+                    style="${estiloInput()}">
+
+                <label style="font-size:13px;font-weight:600;color:#555;margin-top:12px;display:block;">Login</label>
+                <input id="cad-login" type="text" placeholder="Escolha um login"
+                    style="${estiloInput()}">
+
+                <label style="font-size:13px;font-weight:600;color:#555;margin-top:12px;display:block;">E-mail</label>
+                <input id="cad-email" type="email" placeholder="seu@email.com"
+                    style="${estiloInput()}">
+
+                <label style="font-size:13px;font-weight:600;color:#555;margin-top:12px;display:block;">Senha</label>
+                <input id="cad-senha" type="password" placeholder="Crie uma senha"
+                    style="${estiloInput()}">
+
+                <p id="msg-cadastro" style="color:red;font-size:12px;margin:6px 0 0;min-height:16px;"></p>
+
+                <button onclick="fazerCadastro()" style="${estiloBtnPrimario()}">
+                    Criar conta
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) fecharLoginModal();
     });
 }
 
-// Verifica se o login do usuário está ok e, se positivo, direciona para a página inicial
-function loginUser (login, senha) {
+function estiloInput() {
+    return `width:100%;height:44px;border:1.5px solid #ddd;border-radius:8px;
+            padding:0 12px;font-family:'Poppins',sans-serif;font-size:14px;
+            outline:none;box-sizing:border-box;margin-top:4px;display:block;`;
+}
 
-    // Verifica todos os itens do banco de dados de usuarios 
-    // para localizar o usuário informado no formulario de login
-    for (var i = 0; i < db_usuarios.length; i++) {
-        var usuario = db_usuarios[i];
+function estiloBtnPrimario() {
+    return `width:100%;height:48px;background:#00CF53;color:white;border:none;
+            border-radius:10px;font-family:'Poppins',sans-serif;font-size:15px;
+            font-weight:600;cursor:pointer;margin-top:18px;`;
+}
 
-        // Se encontrou login, carrega usuário corrente e salva no Session Storage
-        if (login == usuario.login && senha == usuario.senha) {
-            usuarioCorrente.id = usuario.id;
-            usuarioCorrente.login = usuario.login;
-            usuarioCorrente.email = usuario.email;
-            usuarioCorrente.nome = usuario.nome;
+function abrirModalLogin() {
+    criarModal();
+    document.getElementById('gg-modal-overlay').style.display = 'flex';
+    trocarAbaLogin('login');
+}
 
-            // Salva os dados do usuário corrente no Session Storage, mas antes converte para string
-            sessionStorage.setItem ('usuarioCorrente', JSON.stringify (usuarioCorrente));
+function fecharLoginModal() {
+    const overlay = document.getElementById('gg-modal-overlay');
+    if (overlay) overlay.style.display = 'none';
+}
 
-            // Retorna true para usuário encontrado
-            return true;
-        }
+function trocarAbaLogin(aba) {
+    const formLogin = document.getElementById('form-login');
+    const formCad = document.getElementById('form-cadastro');
+    const abaLogin = document.getElementById('aba-login');
+    const abaCad = document.getElementById('aba-cadastro');
+
+    if (aba === 'login') {
+        formLogin.style.display = 'block';
+        formCad.style.display = 'none';
+        abaLogin.style.color = '#00CF53';
+        abaLogin.style.borderBottom = '3px solid #00CF53';
+        abaCad.style.color = '#aaa';
+        abaCad.style.borderBottom = '3px solid transparent';
+    } else {
+        formLogin.style.display = 'none';
+        formCad.style.display = 'block';
+        abaLogin.style.color = '#aaa';
+        abaLogin.style.borderBottom = '3px solid transparent';
+        abaCad.style.color = '#00CF53';
+        abaCad.style.borderBottom = '3px solid #00CF53';
     }
-
-    // Se chegou até aqui é por que não encontrou o usuário e retorna falso
-    return false;
 }
 
-// Apaga os dados do usuário corrente no sessionStorage
-function logoutUser () {
-    sessionStorage.removeItem ('usuarioCorrente');
-    window.location = LOGIN_URL;
+// ── Login ──
+
+async function fazerLogin() {
+    const login = document.getElementById('inp-login').value.trim();
+    const senha = document.getElementById('inp-senha').value.trim();
+    const msg = document.getElementById('msg-login');
+
+    if (!login || !senha) { msg.textContent = 'Preencha login e senha.'; return; }
+
+    try {
+        const res = await fetch(`${API}/usuarios`);
+        const usuarios = await res.json();
+        const encontrado = usuarios.find(u => u.login === login && u.senha === senha);
+
+        if (!encontrado) { msg.textContent = 'Login ou senha incorretos.'; return; }
+
+        salvarSessao(encontrado);
+        fecharLoginModal();
+        renderizarHeader();
+    } catch {
+        msg.textContent = 'Erro ao conectar com o servidor.';
+    }
 }
 
-function addUser (nome, login, senha, email) {
+// ── Cadastro ──
 
-    // Cria um objeto de usuario para o novo usuario 
-    let usuario = { "login": login, "senha": senha, "nome": nome, "email": email };
+async function fazerCadastro() {
+    const nome = document.getElementById('cad-nome').value.trim();
+    const login = document.getElementById('cad-login').value.trim();
+    const email = document.getElementById('cad-email').value.trim();
+    const senha = document.getElementById('cad-senha').value.trim();
+    const msg = document.getElementById('msg-cadastro');
 
-    // Envia dados do novo usuário para ser inserido no JSON Server
-    fetch(API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(usuario),
-    })
-        .then(response => response.json())
-        .then(data => {
-            // Adiciona o novo usuário na variável db_usuarios em memória
-            db_usuarios.push (usuario);
-            displayMessage("Usuário inserido com sucesso");
-        })
-        .catch(error => {
-            console.error('Erro ao inserir usuário via API JSONServer:', error);
-            displayMessage("Erro ao inserir usuário");
+    if (!nome || !login || !email || !senha) { msg.textContent = 'Preencha todos os campos.'; return; }
+
+    try {
+        const res = await fetch(`${API}/usuarios`);
+        const usuarios = await res.json();
+
+        if (usuarios.find(u => u.login === login)) { msg.textContent = 'Este login já está em uso.'; return; }
+        if (usuarios.find(u => u.email === email)) { msg.textContent = 'Este e-mail já está cadastrado.'; return; }
+
+        const novoUsuario = {
+            login, senha, nome, email,
+            foto_perfil: './assets/images/user-imagem.png',
+            nivel: 1,
+            xp: 0
+        };
+
+        const postRes = await fetch(`${API}/usuarios`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(novoUsuario)
         });
-}
 
-function showUserInfo (element) {
-    var elemUser = document.getElementById(element);
-    if (elemUser) {
-        elemUser.innerHTML = `${usuarioCorrente.nome} (${usuarioCorrente.login}) 
-                    <a onclick="logoutUser()">❌</a>`;
+        const criado = await postRes.json();
+        salvarSessao(criado);
+        fecharLoginModal();
+        renderizarHeader();
+
+    } catch {
+        msg.textContent = 'Erro ao conectar com o servidor.';
     }
 }
 
-// Inicializa as estruturas utilizadas pelo LoginApp
+// ── Init ──
 
-// tenho q descomentar essa parte depois
-// initLoginApp ();
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarHeader();
+});

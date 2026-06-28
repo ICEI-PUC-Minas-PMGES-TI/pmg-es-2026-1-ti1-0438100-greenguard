@@ -1,0 +1,94 @@
+/* Estilos específicos da página de edição de perfil (pedro.html) */
+
+#main_flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 110px;
+}
+
+#card {
+  background-color: var(--verde-claro);
+  width: 80%;
+  min-height: 550px;
+  border-top-right-radius: 30px;
+  border-end-start-radius: 30px;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#div_perfil {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#imgperfil_card {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  margin-top: 20px;
+  border: solid 5px #00ca45;
+  object-fit: cover;
+}
+
+#div_inputs { width: 100%; padding: 16px 0; }
+
+.input_c {
+  width: 45%;
+  margin-left: 3%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+  height: 40px;
+  border: none;
+  padding-left: 1%;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 4px;
+}
+
+.input_c:focus { outline: none; box-shadow: none; }
+
+.input_b {
+  width: 93.3%;
+  margin-left: 3%;
+  height: 40px;
+  border: none;
+  padding-left: 1%;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 4px;
+}
+
+.input_b:focus { outline: none; box-shadow: none; }
+
+#red_senha {
+  margin-left: 3%;
+  font-family: 'Poppins', sans-serif;
+  color: #00ca45;
+  font-size: 14px;
+}
+
+#div_salvarbtn { width: 100%; display: flex; justify-content: center; padding: 20px 0; }
+
+#salvar_alt {
+  background-color: var(--verde);
+  color: #FFFFFF;
+  border: none;
+  width: 20%;
+  height: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+#salvar_alt:hover { filter: brightness(1.1); }
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+  #card        { width: 95%; }
+  .input_c     { width: 93.3%; }
+  #salvar_alt  { width: 60%; }
+}

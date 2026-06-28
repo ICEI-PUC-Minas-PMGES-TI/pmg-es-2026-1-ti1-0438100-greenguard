@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.fundo {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.fundo svg {
+    position: absolute;
+}
+
+.folha-1 { top: 4%; left: 5%; width: 48px; transform: rotate(-15deg); }
+.folha-2 { top: 3%; left: 88%; width: 56px; transform: rotate(20deg); }
+.folha-3 { top: 32%; left: 9%; width: 42px; transform: rotate(35deg); }
+.folha-4 { top: 30%; left: 90%; width: 50px; transform: rotate(-25deg); }
+.folha-5 { top: 65%; left: 4%; width: 60px; transform: rotate(10deg); }
+.folha-6 { top: 68%; left: 87%; width: 44px; transform: rotate(-10deg); }
+.folha-7 { top: 90%; left: 12%; width: 50px; transform: rotate(-30deg); }
+.folha-8 { top: 88%; left: 90%; width: 46px; transform: rotate(18deg); }
+
+.card {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 50px 55px;
+    width: calc(100% - 40px);
+    max-width: 460px;
+    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.09);
+    text-align: center;
+}
+
+.bloco-logo {
+    margin-bottom: 35px;
+}
+
+.bloco-logo img {
+    width: 62px;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bloco-logo .titulo {
+    font-size: 30px;
+    letter-spacing: 0.3px;
+}
+
+.bloco-logo .titulo .verde {
+    color: #2a6f2d;
+    font-weight: 800;
+}
+
+.bloco-logo .titulo .normal {
+    color: #2a2a2a;
+    font-weight: 400;
+}
+
+.campo {
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.campo label {
+    display: block;
+    font-size: 13px;
+    color: #444444;
+    margin-bottom: 6px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 7px;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    color: #333333;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.campo input:focus {
+    border-color: #4CAF50;
+    background-color: #ffffff;
+}
+
+.link-esqueceu {
+    display: block;
+    font-size: 12px;
+    color: #1a73e8;
+    text-decoration: none;
+    margin-top: 7px;
+}
+
+.link-esqueceu:hover {
+    text-decoration: underline;
+}
+
+.msg-erro {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 8px;
+    min-height: 16px;
+    text-align: left;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #43a047;
+}
+
+.rodape {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #666666;
+}
+
+.rodape a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.rodape a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .card {
+        padding: 40px 28px;
+        border-radius: 18px;
+    }
+
+    .bloco-logo img {
+        width: 52px;
+    }
+
+    .bloco-logo .titulo {
+        font-size: 25px;
+    }
+
+    .folha-1, .folha-3, .folha-5, .folha-7 { width: 30px; }
+    .folha-2, .folha-4, .folha-6, .folha-8 { width: 34px; }
+}

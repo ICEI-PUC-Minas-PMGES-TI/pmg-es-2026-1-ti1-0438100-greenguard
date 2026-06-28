@@ -8,6 +8,17 @@
 </head>
 <body>
 
+    <div class="fundo">
+        <svg class="folha-1" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-2" viewBox="0 0 24 24" fill="#2a6f2d"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-3" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-4" viewBox="0 0 24 24" fill="#2a6f2d"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-5" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-6" viewBox="0 0 24 24" fill="#2a6f2d"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-7" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-8" viewBox="0 0 24 24" fill="#2a6f2d"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+    </div>
+
     <div class="card">
         <div class="bloco-logo">
             <img src="assets/images/logo.png" alt="GreenGuard">
@@ -18,19 +29,23 @@
 
         <div class="campo">
             <label>e-mail ou nome de usuário :</label>
-            <input type="text" name="usuario">
+            <input type="text" id="campo-usuario" name="usuario">
         </div>
 
         <div class="campo">
             <label>senha :</label>
-            <input type="password" name="senha">
+            <input type="password" id="campo-senha" name="senha">
             <a class="link-esqueceu" href="#">Esqueceu sua senha ?</a>
         </div>
 
-        <button class="btn-login">Login</button>
+        <p id="msg-login" class="msg-erro"></p>
+
+        <button class="btn-login" onclick="fazerLoginPagina()">Login</button>
 
         <p class="rodape">Não possui conta ainda ? <a href="cadastro.html">Crie sua conta</a></p>
     </div>
+
+    <script src="assets/js/login-page.js"></script>
 
 </body>
 </html>

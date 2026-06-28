@@ -1,0 +1,263 @@
+/* Estilos específicos do fórum (forum.html) */
+
+/* ── Botão "Criar post" ── */
+.botao {
+  background: #4CAF50;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  margin: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
+
+/* ── Layout forum + ranking ── */
+.forum-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: min(1200px, 95vw);
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* ── Lista de posts ── */
+.posts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  color: white;
+  flex: 1;
+  min-width: 0;
+  padding: 22px;
+  background: var(--verde-claro);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.post-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 26px;
+  background: var(--verde-escuro);
+  gap: 25px;
+}
+
+.post-content    { width: 34%; }
+
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar { width: 50px; height: 50px; border-radius: 50%; }
+
+.post-image {
+  width: 30%;
+  min-width: 220px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+.post-footer {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.likes { display: flex; align-items: center; gap: 15px; }
+
+.post-title       { font-size: 20px; font-weight: bold; }
+.author-name      { font-size: 20px; }
+.post-description { font-size: 15px; }
+.post-category    { font-size: 22px; text-decoration: none; white-space: nowrap; }
+
+.bolinha {
+  height: 8px;
+  width: 8px;
+  background-color: blue;
+  flex-shrink: 0;
+}
+
+.title-category {
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.category-likes { margin-right: 7%; width: 140px; min-width: 140px; }
+
+/* ── Ranking sidebar ── */
+.ranking-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--verde-escuro);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  position: sticky;
+  top: 110px;
+}
+
+.ranking-sidebar h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+#rankingLista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+#rankingLista::-webkit-scrollbar       { width: 6px; }
+#rankingLista::-webkit-scrollbar-thumb { background: #014b1c; border-radius: 10px; }
+
+.ranking-item {
+  background: #014b1c;
+  padding: 8px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.ranking-pos  { font-weight: 700; min-width: 22px; }
+.ranking-avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.ranking-nome { flex: 1; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ranking-xp   { font-weight: 700; white-space: nowrap; }
+.ranking-pts  { font-size: 10px; font-weight: 400; margin-left: 1px; }
+
+/* ── Ranking legado (lista simples) ── */
+.ranking {
+  background: #f5fff5;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  padding: 16px;
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 110px;
+  align-self: flex-start;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ranking h2   { color: #2e7d32; font-size: 1.4rem; margin-bottom: 12px; text-align: center; }
+.ranking ul   { list-style: none; padding: 0; margin: 0; }
+
+.ranking li {
+  background: #e8f5e9;
+  margin: 6px 0;
+  padding: 10px 12px 10px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #1b5e20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-left: 3px solid transparent;
+  transition: border-left 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.ranking li:hover { background: #c8e6c9; border-left: 3px solid #00ca45; transform: translateX(4px); }
+.ranking li:first-child { background: #fff9c4; border: 2px solid #4CAF50; }
+.ranking li:first-child:hover { background: #fff59d; transform: translateX(4px); }
+
+.pos  { font-weight: 700; color: #2e7d32; min-width: 24px; font-size: 14px; }
+.ranking li:first-child .pos { color: #f9a825; }
+.nome { flex: 1; font-size: 14px; }
+.pts  { font-size: 12px; color: #558b2f; font-weight: 400; white-space: nowrap; }
+
+/* ── Dropdown de parques (modal criar post) ── */
+.parque-lista {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 0 0 6px 6px;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.parque-opcao {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.parque-opcao:hover { background-color: var(--verde-escuro); color: white; }
+
+.limpar-btn {
+  background: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.limpar-btn:hover { background: var(--verde-escuro); color: white; }
+
+/* ── Responsivo ── */
+@media (max-width: 900px) {
+  .forum-wrapper { flex-direction: column; padding: 20px 0; }
+
+  .posts {
+    width: 100%;
+    max-height: fit-content;
+    overflow: unset;
+    padding: 15px;
+  }
+
+  .ranking-sidebar { width: 100%; position: static; }
+  #rankingLista    { max-height: 250px; }
+
+  .post-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+  }
+
+  .post-content,
+  .post-image,
+  .post-footer { width: 100%; }
+
+  .post-image   { min-width: unset; height: 240px; }
+  .post-footer  { flex-direction: row; justify-content: space-between; align-items: center; }
+  .category-likes { width: 100%; min-width: unset; margin-right: 0; }
+
+  .ranking { width: 100% !important; position: static; box-sizing: border-box; }
+}

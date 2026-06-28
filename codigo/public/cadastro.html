@@ -8,34 +8,45 @@
 </head>
 <body>
 
+    <div class="fundo">
+        <svg class="folha-1" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-2" viewBox="0 0 24 24" fill="#2a6f2d"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-3" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-4" viewBox="0 0 24 24" fill="#2a6f2d"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-5" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-6" viewBox="0 0 24 24" fill="#2a6f2d"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-7" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+        <svg class="folha-8" viewBox="0 0 24 24" fill="#2a6f2d"><path d="M6.05,8.05c-2.73,2.73 -2.73,7.15 -0.02,9.88c1.47,-3.4 4.09,-6.24 7.36,-7.93c-2.77,2.34 -4.71,5.61 -5.39,9.32c2.6,1.23 5.8,0.78 7.95,-1.37C19.43,14.47 20,4 20,4S9.53,4.57 6.05,8.05z"/></svg>
+    </div>
+
     <div class="card">
 
         <div class="coluna-form">
 
             <div class="campo">
                 <label>Nome Completo</label>
-                <input type="text" name="nome">
+                <input type="text" id="campo-nome" name="nome">
             </div>
 
             <div class="campo">
                 <label>User :</label>
-                <input type="text" name="user">
+                <input type="text" id="campo-user" name="user">
             </div>
 
             <div class="campo">
                 <label>E-mail :</label>
-                <input type="email" name="email">
+                <input type="email" id="campo-email" name="email">
             </div>
 
             <div class="campo">
                 <label>CPF :</label>
-                <input type="text" name="cpf">
+                <input type="text" id="campo-cpf" name="cpf">
             </div>
 
             <div class="campo">
                 <label>CEP ou Logradouro :</label>
                 <div class="campo-wrapper">
-                    <input type="text" name="endereco" class="tem-icone">
+                    <input type="text" id="campo-endereco" name="endereco" class="tem-icone">
                     <span class="icone-campo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -58,7 +69,9 @@
                 </div>
             </div>
 
-            <button class="btn-cadastrar">Cadastrar</button>
+            <p id="msg-cadastro" class="msg-erro"></p>
+
+            <button class="btn-cadastrar" type="button" onclick="fazerCadastro()">Cadastrar</button>
 
             <p class="rodape">Já tenho uma conta ? <a href="login.html">Fazer Login</a></p>
 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Cadastro de Parque</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="./assets/js/login.js" defer></script>
+</head>
+<body>
+
+    <button id="abrirModal" class="btn-abrir">
+        Modal Check-In
+    </button>
+
+    <div id="modalParque" class="modal">
+
+        <div class="modal-content">
+
+            <span id="fecharModal" class="fechar-modal">&times;</span>
+
+            <form class="form-parque">
+
+                <label class="titulo-campo">
+                    Nome do Parque :
+                </label>
+
+                <input
+                    type="text"
+                    class="campo-nome"
+                    placeholder="Ex : Parque Municipal Belo Horizonte tem ótima estrutura e segurança ..."
+                >
+
+                <div class="conteudo-formulario">
+
+                    <div class="area-upload">
+
+                        <label class="caixa-foto">
+
+                            <input type="file" multiple hidden>
+
+                            <div class="icone-foto">
+                                📷
+                            </div>
+
+                            <span class="texto-upload">
+                                Anexe uma ou mais fotos
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                    <div class="area-localizacao">
+
+                        <label class="linha-check">
+
+                            <input type="checkbox">
+
+                            <span>Verificar localização</span>
+
+                        </label>
+
+                        <label class="rotulo">
+                            Coordenada Encontrada
+                        </label>
+
+                        <input type="text" class="campo-coordenada">
+
+                        <label class="rotulo">
+                            Coordenada do Parque
+                        </label>
+
+                        <input type="text" class="campo-coordenada">
+
+                        <div class="mensagem-erro">
+                            Localização inválida, muito longe !
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="botao-enviar">
+                    Enviar
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

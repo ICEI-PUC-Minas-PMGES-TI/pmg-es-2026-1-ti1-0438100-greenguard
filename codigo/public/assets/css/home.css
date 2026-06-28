@@ -1,0 +1,219 @@
+/* Estilos específicos da página inicial (index.html) */
+
+/* ── Layout de conteúdo ── */
+#content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 40px;
+}
+
+/* ── Seção do Fórum (preview) ── */
+#sec-forum { flex: 1; max-width: 420px; }
+
+#sec-forum h2 {
+  color: var(--verde-escuro);
+  font-size: 22px;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.forum_denuncia {
+  width: 100%;
+  background-color: var(--verde-claro);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post_forum_previa {
+  width: 100%;
+  background-color: var(--verde-escuro);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.post_forum_previa p {
+  font-size: 11px;
+  color: white;
+  margin-top: 10px;
+  line-height: 18px;
+}
+
+.post_forum_previa h3 {
+  font-size: 18px;
+  color: white;
+  margin-top: 5px;
+}
+
+.row_foto_nome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row_foto_nome h4 { color: white; font-size: 15px; margin: 0; }
+
+.row_foto_nome img {
+  width: 42px;
+  height: 42px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.row_txt_img {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.img_post {
+  width: 150px;
+  height: 150px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.tempo_post {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+
+.forum_denuncia button {
+  width: 100%;
+  height: 55px;
+  background-color: var(--verde);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.forum_denuncia button:hover { transform: scale(1.02); }
+
+/* ── Mapa ── */
+#map-section {
+  flex: 1.3;
+  display: flex;
+  justify-content: center;
+}
+
+#map {
+  width: 100%;
+  max-width: 700px;
+  height: 620px;
+  border: 10px solid var(--verde-claro);
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Coluna direita (recomendações + favoritos) ── */
+#right-side {
+  flex: 1;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.box-side h2 {
+  color: var(--verde-escuro);
+  font-size: 22px;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.side-card {
+  width: 100%;
+  background-color: var(--verde-claro);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.scroll-card            { max-height: 315px; overflow-y: auto; }
+.scroll-card::-webkit-scrollbar       { width: 8px; }
+.scroll-card::-webkit-scrollbar-thumb { background-color: var(--verde-escuro); border-radius: 10px; }
+
+.park-item {
+  background-color: var(--verde-escuro);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.park-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.park-left img {
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.park-left p { color: white; font-size: 14px; line-height: 20px; }
+
+.park-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.distance { color: white; font-size: 14px; }
+
+.stars     { display: flex; gap: 3px; }
+.stars i   { color: white; font-size: 18px; }
+.stars i.active { color: #FFD700; }
+
+/* ── Favoritos ── */
+.favorite-item  { align-items: flex-start; }
+
+.favorite-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.favorite-bottom {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.heart { color: #ff3f5e; font-size: 24px; }
+
+/* ── Responsivo ── */
+@media (max-width: 1400px) {
+  #content      { flex-wrap: wrap; justify-content: center; }
+  #map-section  { order: -1; width: 100%; }
+  #map          { max-width: 100%; height: 500px; }
+}
+
+@media (max-width: 768px) {
+  #content      { padding: 20px; }
+  #map          { height: 400px; }
+  .row_txt_img  { flex-direction: column; }
+  .img_post     { width: 100%; height: 200px; }
+
+  #sec-forum,
+  #right-side   { max-width: 100%; }
+}

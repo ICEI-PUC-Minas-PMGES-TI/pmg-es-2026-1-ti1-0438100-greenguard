@@ -1,3 +1,11 @@
+# COMO RODAR O PROJETO: 
+
+Abra o terminal command prompt na pasta codigo ( cd codigo )
+npm install
+npm start
+Abra o link http://localhost:3000 no navegador
+
+
 # INTRODUÇÃO
 Nosso objetivo é desenvolver uma aplicação web que permita aos usuários pesquisar parques, realizar avaliações, verificar informações e rotas mais seguras dentro desses espaços.
 
