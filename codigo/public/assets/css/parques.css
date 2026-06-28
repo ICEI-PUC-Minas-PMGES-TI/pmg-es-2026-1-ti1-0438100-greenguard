@@ -16,16 +16,13 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.2s ease;
 }
 
-.park-card.visivel { opacity: 1; transform: translateY(0); }
+.park-card.visivel { opacity: 1; }
 
 .park-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 202, 69, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 202, 69, 0.16);
 }
 
 .card-img { width: 100%; height: 200px; overflow: hidden; }
@@ -72,12 +69,87 @@
 
 .ver-mais:hover { text-decoration: underline; }
 
-.card-actions { display: flex; gap: 10px; }
+/* ── Linha de avaliação (estrelas + contador) ── */
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.stars-display {
+  display: inline-flex;
+  gap: 2px;
+  color: #f5b301;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.rating-count {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.76rem;
+  color: var(--verde-escuro);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.rating-count:hover { color: #007a30; }
+
+/* ── Botões de ação do card ── */
+.card-botoes {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.btn-avaliar {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: none;
+  border: 1.5px solid var(--verde);
+  color: var(--verde-escuro);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-avaliar:hover { background: #e6fff0; }
+
+.btn-favorito {
+  width: 40px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1.5px solid var(--verde);
+  color: var(--verde);
+  border-radius: 8px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-favorito:hover { background: #e6fff0; }
+.btn-favorito.ativo { background: var(--verde); color: #fff; }
 
 .btn-card {
-  flex: 1;
+  width: 100%;
   padding: 10px 4px;
-  background: #00ca45;
+  background: var(--verde);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -89,6 +161,76 @@
 }
 
 .btn-card:hover { filter: brightness(1.1); }
+
+/* ── Extras dos modais de avaliação ── */
+.modal-x {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: #1a6e2e;
+  cursor: pointer;
+}
+
+.modal-titulo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0c4a1c;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-subtitulo {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+
+.estrelas-modal {
+  display: flex;
+  gap: 6px;
+  font-size: 1.8rem;
+  color: #f5b301;
+}
+
+.estrelas-modal i { cursor: pointer; transition: transform 0.1s; }
+.estrelas-modal i:hover { transform: scale(1.15); }
+
+/* Lista de avaliações */
+.lista-avaliacoes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 55vh;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+
+.avaliacao-item {
+  background: #f7fdf9;
+  border: 1px solid var(--verde-claro);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.avaliacao-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.avaliacao-autor { font-size: 0.85rem; font-weight: 700; color: #1a1a1a; }
+.avaliacao-estrelas { color: #f5b301; font-size: 0.9rem; white-space: nowrap; }
+.avaliacao-comentario { font-size: 0.83rem; color: #444; margin: 6px 0 4px; }
+.avaliacao-data { font-size: 0.7rem; color: #999; }
+.sem-avaliacoes { font-size: 0.85rem; color: #777; text-align: center; padding: 20px 0; }
 
 /* ── Responsivo ── */
 @media (max-width: 768px) {

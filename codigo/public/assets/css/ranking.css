@@ -1,0 +1,128 @@
+/* Página de ranking (ranking.html) */
+
+#ranking-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+#ranking-titulo {
+  text-align: center;
+  color: var(--verde-escuro);
+  font-size: 28px;
+  margin: 10px 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#ranking-titulo i { color: #f5b301; }
+
+#ranking-sub {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 32px;
+}
+
+/* ── Pódio ── */
+#podio {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.podio-lugar {
+  width: 30%;
+  max-width: 200px;
+  background: var(--verde-claro);
+  border-radius: 16px 16px 0 0;
+  padding: 18px 12px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+#podio-1 { padding-top: 26px; }
+#podio-1 .podio-base { background: var(--verde); height: 90px; }
+#podio-2 .podio-base { background: var(--verde-escuro); height: 64px; }
+#podio-3 .podio-base { background: var(--verde-escuro); height: 44px; }
+
+.podio-medalha { font-size: 30px; }
+
+.podio-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+#podio-1 .podio-avatar { width: 86px; height: 86px; border-color: var(--verde); }
+
+.podio-nome { font-weight: 700; font-size: 14px; color: #1a1a1a; }
+.podio-nivel { font-size: 11px; color: var(--verde-escuro); font-weight: 600; }
+.podio-xp { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+
+.podio-base {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 8px 8px 0 0;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.podio-lugar:not(.preenchido) { display: none; }
+
+/* ── Lista completa ── */
+#ranking-lista-completa {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rank-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: white;
+  border-radius: 12px;
+  padding: 10px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.rank-eu { border: 2px solid var(--verde); background: #f0fff6; }
+
+.rank-pos { font-weight: 700; color: var(--verde-escuro); min-width: 34px; font-size: 15px; }
+
+.rank-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rank-info { flex: 1; display: flex; flex-direction: column; }
+.rank-nome { font-weight: 600; font-size: 14px; color: #1a1a1a; }
+.rank-nivel { font-size: 12px; color: #777; }
+
+.rank-xp { font-weight: 700; font-size: 16px; color: var(--verde-escuro); }
+.rank-xp span { font-size: 10px; font-weight: 400; color: #999; margin-left: 2px; }
+
+@media (max-width: 600px) {
+  #podio { gap: 8px; }
+  .podio-avatar { width: 54px; height: 54px; }
+  #podio-1 .podio-avatar { width: 66px; height: 66px; }
+}

@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GreenGuard - Perfil</title>
   <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="stylesheet" href="./assets/css/modal.css" />
   <link rel="stylesheet" href="./assets/css/perfil.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src=".assets/js/checkin.js" defer></script>
+  <script src="./assets/js/checkin.js" defer></script>
 </head>
 
 <body>
@@ -57,29 +58,21 @@
 
       <p id="nome-usuario">Carregando...</p>
 
-      <div id="box-dados">
-        <p>Colocacao : --</p>
-        <p>Posts feitos : --</p>
-        <p>Total de Check-ins : --</p>
+      <div id="xp-container">
+        <div id="xp-topo">
+          <span id="xp-nivel">Nível 1</span>
+          <span id="xp-valor">0 XP</span>
+        </div>
+        <div id="xp-barra-fundo">
+          <div id="xp-barra-progresso" style="width:0%"></div>
+        </div>
+        <div id="xp-legenda">0 / 100 XP para o próximo nível</div>
       </div>
 
-      <div id="box-missoes">
-        <h3>Missoes Diarias</h3>
-        <div class="missao-item">
-          <input type="checkbox" checked disabled>
-          <span>Curta 3 posts no Forum</span>
-          <span class="missao-pts">+10pts</span>
-        </div>
-        <div class="missao-item">
-          <input type="checkbox" disabled>
-          <span>Faca 1 post no Forum</span>
-          <span class="missao-pts">+6pts</span>
-        </div>
-        <div class="missao-item">
-          <input type="checkbox" disabled>
-          <span>Faca Check-in em um parque</span>
-          <span class="missao-pts">+20pts</span>
-        </div>
+      <div id="box-dados">
+        <p>Colocacao : <span id="dado-colocacao">--</span></p>
+        <p>Posts feitos : <span id="dado-posts">--</span></p>
+        <p>Total de Check-ins : <span id="dado-checkins">--</span></p>
       </div>
 
       <button id="btn-editar-perfil" onclick="window.location.href='pedro.html'">
@@ -97,95 +90,55 @@
         <button id="btn-checkin">Fazer Check-in</button>
       </div>
       <div id="feed-checkins">
-        <div id="modalParque" class="modal">
-
-    <div class="modal-content">
-
-        <span id="fecharModal" class="fechar-modal">&times;</span>
-
-        <form class="form-parque">
-
-            <label class="titulo-campo">
-                Nome do Parque :
-            </label>
-
-            <input
-                type="text"
-                class="campo-nome"
-                placeholder="Ex : Parque Municipal Belo Horizonte..."
-            >
-
-            <div class="conteudo-formulario">
-
-                <div class="area-upload">
-
-                    <label class="caixa-foto">
-
-                        <input type="file" multiple hidden>
-
-                        <div class="icone-foto">
-                            📷
-                        </div>
-
-                        <span class="texto-upload">
-                            Anexe uma ou mais fotos
-                        </span>
-
-                    </label>
-
-                </div>
-
-                <div class="area-localizacao">
-
-                    <label class="linha-check">
-
-                        <input id="check-localizacao" type="checkbox">
-
-                        <span>Verificar localização</span>
-
-                    </label>
-
-                    <label class="rotulo">
-                        Coordenada Encontrada
-                    </label>
-
-                    <input id="coordEncontrada" type="text" class="campo-coordenada" readonly>
-
-                    <label class="rotulo">
-                        Coordenada do Parque
-                    </label>
-
-                    <input
-                        id="coordParque"
-                        type="text"
-                        class="campo-coordenada"
-                        value="-19.9320,-43.9386"
-                    >
-
-                    <div id="erroLocalizacao" class="mensagem-erro" style="display:none;">
-                        Localização inválida, muito longe!
-                    </div>
-
-                </div>
-
-            </div>
-
-          <button
-              type="submit"
-              class="botao-enviar"
-              id="btnEnviar"
-              disabled>
-              Enviar
-          </button>
-
-        </form>
-
-    </div>
-
-</div>
+        <!-- Preenchido dinamicamente por carregarCheckins() -->
       </div>
     </div>
 
+  </div>
+
+  <!-- Modal de Check-in -->
+  <div id="modalParque" class="modal-overlay">
+    <div class="post-card-modal" style="max-width:460px; position:relative;">
+
+      <button type="button" id="fecharModal" class="checkin-fechar">&times;</button>
+
+      <h2 class="checkin-titulo"><i class="bi bi-geo-alt-fill"></i> Fazer Check-in</h2>
+
+      <form class="form-parque">
+
+        <label class="field-label">Em qual parque você está?</label>
+        <div style="position:relative;">
+          <input
+              type="text"
+              id="campoNomeParque"
+              class="park-input"
+              placeholder="Digite para buscar um parque..."
+              autocomplete="off">
+          <ul id="parqueListaCheckin" class="parque-lista-checkin"></ul>
+        </div>
+
+        <label class="field-label" style="margin-top:16px;">Fotos do parque (opcional)</label>
+        <div class="checkin-fotos-area">
+          <label class="photo-box">
+            <span class="plus-icon">+</span>
+            <input type="file" id="checkinFotos" accept="image/*" multiple>
+          </label>
+          <div id="checkinPreview" class="checkin-preview"></div>
+        </div>
+
+        <div id="checkinLocBox" class="checkin-loc-box checkin-loc-idle">
+          <div id="checkinLocStatus" class="checkin-loc-status">
+            <i class="bi bi-geo-alt"></i>
+            <span>Selecione um parque para verificar sua localização.</span>
+          </div>
+          <button type="button" id="btnVerificarLoc" class="checkin-loc-btn">Verificar localização</button>
+        </div>
+
+        <button type="submit" class="send-btn" id="btnEnviar" disabled>Fazer Check-in</button>
+
+      </form>
+
+    </div>
   </div>
 
   <!-- Modal de missoes semanais -->
@@ -209,16 +162,98 @@
   </div>
 
   <script src="./assets/js/login.js"></script>
+  <script src="./assets/js/missoes-core.js"></script>
   <script src="./assets/js/missoes.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const usuario = getUsuario();
-      if (!usuario) { window.location.href = 'index.html'; return; }
+    const usuario = getUsuario();
+    if (!usuario) { window.location.href = 'index.html'; }
 
+    // ── Barra de XP (fonte: banco + tabela de níveis de /niveis) ──
+    async function atualizarBarraXP() {
+      try {
+        const [rUser, niveis] = await Promise.all([
+          fetch('http://localhost:3000/api/usuarios/' + usuario.id).then(r => r.json()),
+          getNiveis()
+        ]);
+        const xp = rUser.xp || 0;
+        const info = calcNivel(xp, niveis);
+
+        document.getElementById('xp-nivel').textContent = `Nível ${info.nivel}`;
+        document.getElementById('xp-valor').textContent = `${xp} XP`;
+        document.getElementById('xp-barra-progresso').style.width = `${info.pct}%`;
+        document.getElementById('xp-legenda').textContent = info.max
+          ? 'Nível máximo atingido!'
+          : `${info.xpNoNivel} / ${info.xpNecessario} XP para o próximo nível`;
+
+        // Mantém a sessão espelhando o banco
+        usuario.xp = xp; usuario.nivel = info.nivel; salvarSessao(usuario);
+      } catch (e) { console.error('Erro na barra de XP:', e); }
+    }
+
+    // ── Feed de check-ins do usuário (global p/ ser chamado após novo check-in) ──
+    function carregarCheckins() {
+      fetch('http://localhost:3000/api/checkins?usuario_id=' + usuario.id)
+        .then(r => r.json())
+        .then(checkins => {
+          const feed = document.getElementById('feed-checkins');
+          document.getElementById('dado-checkins').textContent = checkins.length;
+          if (!checkins.length) {
+            feed.innerHTML = '<p style="color:#555;text-align:center;padding:20px">Nenhum check-in ainda. Explore um parque!</p>';
+            return;
+          }
+          feed.innerHTML = '';
+          checkins.slice().reverse().forEach(c => {
+            const card = document.createElement('div');
+            card.className = 'checkin-card';
+            const data = new Date(c.data).toLocaleDateString('pt-BR');
+
+            const fotos = (c.imagens && c.imagens.length)
+              ? c.imagens
+              : (c.imagem ? [c.imagem] : []);
+            const fotosHTML = fotos.length
+              ? '<div class="checkin-card-fotos">' +
+                  fotos.map(src => '<img src="' + src + '" alt="Foto do check-in">').join('') +
+                '</div>'
+              : '';
+
+            card.innerHTML =
+              '<p class="checkin-local">Estive no <span>' + c.parque + '</span> em ' + data + '!</p>' +
+              fotosHTML;
+            feed.appendChild(card);
+          });
+        })
+        .catch(() => {});
+    }
+
+    // ── Estatísticas (posts, colocação no ranking) ──
+    function carregarDados() {
+      fetch('http://localhost:3000/api/posts?autor_id=' + usuario.id)
+        .then(r => r.json())
+        .then(posts => { document.getElementById('dado-posts').textContent = posts.length; })
+        .catch(() => {});
+
+      fetch('http://localhost:3000/api/usuarios')
+        .then(r => r.json())
+        .then(usuarios => {
+          const ordenados = [...usuarios].sort((a, b) => (b.xp || 0) - (a.xp || 0));
+          const pos = ordenados.findIndex(u => u.id === usuario.id) + 1;
+          document.getElementById('dado-colocacao').textContent = pos ? `${pos}º` : '--';
+        })
+        .catch(() => {});
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
       const foto = document.getElementById('foto-usuario');
       foto.src = usuario.foto_perfil || './assets/images/user-imagem.png';
       foto.onerror = () => { foto.src = './assets/images/user-imagem.png'; };
       document.getElementById('nome-usuario').textContent = usuario.nome;
+
+      atualizarBarraXP();
+      carregarCheckins();
+      carregarDados();
+
+      // Atualiza a barra e a colocação quando uma missão credita XP
+      window.addEventListener('xp-atualizado', () => { atualizarBarraXP(); carregarDados(); });
 
       document.getElementById('foto-file-input').addEventListener('change', async function () {
         const file = this.files[0];
@@ -246,27 +281,6 @@
           alert('Erro ao atualizar foto. Verifique se o servidor está rodando.');
         }
       });
-
-      // Carrega checkins do usuario
-      fetch('http://localhost:3000/api/checkins?usuario_id=' + usuario.id)
-        .then(r => r.json())
-        .then(checkins => {
-          const feed = document.getElementById('feed-checkins');
-          if (!checkins.length) {
-            feed.innerHTML = '<p style="color:#555;text-align:center;padding:20px">Nenhum check-in ainda. Explore um parque!</p>';
-            return;
-          }
-          checkins.reverse().forEach(c => {
-            const card = document.createElement('div');
-            card.className = 'checkin-card';
-            const data = new Date(c.data).toLocaleDateString('pt-BR');
-            card.innerHTML =
-              '<p class="checkin-local">Estive no <span>' + c.parque + '</span> em ' + data + '!</p>' +
-              '<div class="checkin-likes"><i class="bi bi-heart-fill"></i><span>' + c.likes + '</span></div>';
-            feed.appendChild(card);
-          });
-        })
-        .catch(() => {});
     });
   </script>
 

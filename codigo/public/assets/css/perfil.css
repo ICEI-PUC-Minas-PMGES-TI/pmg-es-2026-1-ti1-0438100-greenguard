@@ -191,6 +191,22 @@
 .checkin-local { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 10px; }
 .checkin-local span { font-weight: 700; color: #007a30; }
 
+/* Fotos do check-in no feed (lado a lado, responsivo) */
+.checkin-card-fotos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.checkin-card-fotos img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
 .checkin-fotos {
   display: grid;
   grid-template-columns: 1fr 1fr 80px;
@@ -399,20 +415,42 @@
 
 .missao-semanal-card.concluida .missao-pts-badge { background: #f0f0f0; color: #888; }
 
-.btn-simular-progresso {
-  background: #e6fff0;
-  color: #00A843;
-  border: 1px solid var(--verde);
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  transition: background 0.15s;
+/* ── Barra de XP ── */
+#xp-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.btn-simular-progresso:hover { background: #ccffe0; }
+#xp-topo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  color: #444;
+}
+
+#xp-barra-fundo {
+  width: 100%;
+  height: 10px;
+  background: #d0f0dc;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#xp-barra-progresso {
+  height: 100%;
+  background: var(--verde);
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+#xp-legenda {
+  font-size: 10px;
+  color: #666;
+  text-align: right;
+}
 
 /* ── Histórico de missões ── */
 .historico-grupo-label {
@@ -467,178 +505,133 @@
 #resumo-pontos .label { font-size: 12px; opacity: 0.85; }
 #resumo-pontos .valor { font-size: 26px; font-weight: 700; }
 
-/* ===== Modal Check-in ===== */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.5);
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
+/* ===== Autocomplete de parque no check-in ===== */
+.parque-lista-checkin {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 50;
+  display: none;
 }
 
-.modal-content{
-    width:90%;
-    max-width:1000px;
-    background:#b9f3ca;
-    border-radius:20px;
-    padding:30px;
-    position:relative;
+.parque-lista-checkin li {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: #333;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.fechar-modal{
-    position:absolute;
-    top:15px;
-    right:25px;
-    font-size:35px;
-    cursor:pointer;
+.parque-lista-checkin li:last-child { border-bottom: none; }
+.parque-lista-checkin li:hover { background: #e6fff0; color: #00A843; }
+
+/* ===== Modal de Check-in (estilo fórum) ===== */
+.checkin-fechar {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: #1a6e2e;
+  cursor: pointer;
 }
 
-.form-parque{
-    display:flex;
-    flex-direction:column;
+.checkin-titulo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0c4a1c;
+  margin: 0 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.titulo-campo{
-    font-size:28px;
-    font-weight:700;
-    margin-bottom:10px;
+.form-parque { display: flex; flex-direction: column; }
+
+/* Área de fotos */
+.checkin-fotos-area {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.campo-nome{
-    width:100%;
-    height:50px;
-    border:none;
-    border-radius:10px;
-    padding:0 15px;
-    margin-bottom:25px;
-    font-family:'Poppins',sans-serif;
+.checkin-preview {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.conteudo-formulario{
-    display:flex;
-    gap:25px;
+.checkin-preview img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
 }
 
-.area-upload{
-    width:340px;
+/* Caixa de verificação de localização */
+.checkin-loc-box {
+  margin-top: 18px;
+  background: #f9fdf9;
+  border: 1.5px solid #c8e6c9;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.caixa-foto{
-    width:100%;
-    height:320px;
-    background:#f5f5f5;
-    border:2px dashed #9fdab1;
-    border-radius:15px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    transition:.2s;
+.checkin-loc-status {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #444;
 }
 
-.caixa-foto:hover{
-    background:#ececec;
+.checkin-loc-status i { font-size: 1.05rem; }
+
+.checkin-loc-ok     { border-color: #6cc070; background: #eafff0; }
+.checkin-loc-ok     .checkin-loc-status { color: #1a6e2e; font-weight: 600; }
+.checkin-loc-far    { border-color: #ef9a9a; background: #fff5f5; }
+.checkin-loc-far    .checkin-loc-status,
+.checkin-loc-denied .checkin-loc-status { color: #c62828; font-weight: 600; }
+.checkin-loc-checking .checkin-loc-status { color: #777; }
+
+.checkin-loc-btn {
+  align-self: flex-start;
+  background: #2d5a27;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.icone-foto{
-    font-size:80px;
-}
+.checkin-loc-btn:hover { background: #1f4a1c; }
 
-.texto-upload{
-    margin-top:10px;
-    color:#777;
-}
-
-.area-localizacao{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-}
-
-.linha-check{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:20px;
-    font-size:20px;
-}
-
-.rotulo{
-    margin-bottom:5px;
-    font-weight:600;
-}
-
-.campo-coordenada{
-    height:45px;
-    border:none;
-    border-radius:10px;
-    padding:0 12px;
-    margin-bottom:15px;
-    font-family:'Poppins',sans-serif;
-}
-
-.mensagem-erro{
-    display:none;
-    background:#ff4b4b;
-    color:white;
-    text-align:center;
-    padding:10px;
-    border-radius:8px;
-    font-weight:bold;
-}
-
-.botao-enviar{
-    width:180px;
-    height:50px;
-    margin-top:25px;
-    align-self:center;
-    border:none;
-    border-radius:8px;
-    background:#00d94f;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.botao-enviar:hover{
-    background:#00bf44;
-}
-
-.botao-enviar:disabled{
-
-    background:#9c9c9c;
-
-    cursor:not-allowed;
-
-    opacity:.7;
-
-}
-
-
-@media (max-width:900px){
-
-    .conteudo-formulario{
-        flex-direction:column;
-    }
-
-    .area-upload{
-        width:100%;
-    }
-
-    .caixa-foto{
-        height:220px;
-    }
-
-    .modal-content{
-        padding:20px;
-    }
-
+.send-btn:disabled {
+  background: #9c9c9c;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
 }
 
 /* ── Responsivo ── */

@@ -28,7 +28,8 @@
     <section class="hero-section">
       <div class="search-container">
         <div class="input-group-wrapper">
-          <input type="text" placeholder="Ex : Parque Municipal Belo Horizonte">
+          <input id="buscaIndex" type="text" placeholder="Ex : Parque Municipal Belo Horizonte"
+                 onkeydown="if(event.key==='Enter') buscarParques()">
           <div id="filter-panel" class="filter-hidden">
             <div class="filter-group">
               <div class="filter-header" onclick="toggleDropdown(this)">
@@ -60,7 +61,7 @@
           </div>
         </div>
         <div id="double_btn">
-          <button><img src="./assets/images/lupa.png" alt="Buscar"></button>
+          <button onclick="buscarParques()"><img src="./assets/images/lupa.png" alt="Buscar"></button>
           <button onclick="toggleFilters()"><img src="./assets/images/filtro.png" alt="Filtros"></button>
         </div>
       </div>
@@ -82,88 +83,20 @@
       </section>
 
       <section id="right-side">
-        <a href="parques.html">
-          <div class="box-side">
+        <div class="box-side">
+          <div class="box-side-head">
             <h2>Recomendacoes</h2>
-            <div class="side-card scroll-card">
-              <div class="park-item">
-                <div class="park-left">
-                  <img src="./assets/images/parque1.png" alt="">
-                  <div><p>Parque Municipal</p><p>Belo Horizonte</p></div>
-                </div>
-                <div class="park-right">
-                  <span class="distance">4.3 km</span>
-                  <div class="stars">
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill active"></i>
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="park-item">
-                <div class="park-left">
-                  <img src="./assets/images/parque2.png" alt="">
-                  <div><p>Parque Ecologico</p><p>Pampulha</p></div>
-                </div>
-                <div class="park-right">
-                  <span class="distance">4.7 km</span>
-                  <div class="stars">
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill active"></i>
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill active"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="park-item">
-                <div class="park-left">
-                  <img src="./assets/images/parque3.png" alt="">
-                  <div><p>Parque das</p><p>Mangabeiras</p></div>
-                </div>
-                <div class="park-right">
-                  <span class="distance">5.2 km</span>
-                  <div class="stars">
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill active"></i>
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <a class="ver-todos" href="parques.html">Ver todos</a>
           </div>
-        </a>
+          <div class="side-card scroll-card" id="recomendacoes-card">
+            <!-- Preenchido dinamicamente por home.js -->
+          </div>
+        </div>
 
         <div class="box-side">
           <h2>Favoritos</h2>
-          <div class="side-card">
-            <div class="park-item favorite-item">
-              <div class="park-left">
-                <img src="./assets/images/parque1.png" alt="">
-                <div><p>Parque Municipal</p><p>Belo Horizonte</p></div>
-              </div>
-              <div class="favorite-right">
-                <span class="distance">4.3 km</span>
-                <div class="favorite-bottom">
-                  <div class="stars">
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill active"></i>
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <i class="bi bi-heart-fill heart"></i>
-                </div>
-              </div>
-            </div>
-            <div class="park-item favorite-item">
-              <div class="park-left">
-                <img src="./assets/images/parque2.png" alt="">
-                <div><p>Parque Ecologico</p><p>Pampulha</p></div>
-              </div>
-              <div class="favorite-right">
-                <span class="distance">4.7 km</span>
-                <div class="favorite-bottom">
-                  <div class="stars">
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill active"></i>
-                    <i class="bi bi-star-fill active"></i><i class="bi bi-star-fill active"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <i class="bi bi-heart-fill heart"></i>
-                </div>
-              </div>
-            </div>
+          <div class="side-card scroll-card" id="favoritos-card">
+            <!-- Preenchido dinamicamente por home.js -->
           </div>
         </div>
       </section>

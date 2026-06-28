@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenGuard - Ranking</title>
+  <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="stylesheet" href="./assets/css/ranking.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html">
+      <figure><img id="logo" src="./assets/images/logo.png" alt="Logo GreenGuard"></figure>
+    </a>
+    <div id="header-usuario"></div>
+  </header>
+
+  <div id="btn_voltar">
+    <a href="index.html">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="white">
+        <path d="M41.4 297.4C28.9 309.9 28.9 330.2 41.4 342.7L169.4 470.7C181.9 483.2 202.2 483.2 214.7 470.7C227.2 458.2 227.2 437.9 214.7 425.4L141.3 352L576 352C593.7 352 608 337.7 608 320C608 302.3 593.7 288 576 288L141.3 288L214.7 214.6C227.2 202.1 227.2 181.8 214.7 169.3C202.2 156.8 181.9 156.8 169.4 169.3L41.4 297.3z"/>
+      </svg>
+    </a>
+  </div>
+
+  <main id="ranking-main">
+    <h1 id="ranking-titulo"><i class="bi bi-trophy-fill"></i> Ranking GreenGuard</h1>
+    <p id="ranking-sub">Os guardiões mais ativos na proteção dos parques</p>
+
+    <section id="podio">
+      <div class="podio-lugar" id="podio-2"></div>
+      <div class="podio-lugar" id="podio-1"></div>
+      <div class="podio-lugar" id="podio-3"></div>
+    </section>
+
+    <ol id="ranking-lista-completa"></ol>
+  </main>
+
+  <script src="./assets/js/login.js"></script>
+  <script src="./assets/js/missoes-core.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const [usuarios, niveis] = await Promise.all([
+          fetch('http://localhost:3000/api/usuarios').then(r => r.json()),
+          getNiveis()
+        ]);
+
+        const ordenados = [...usuarios].sort((a, b) => (b.xp || 0) - (a.xp || 0));
+        const eu = getUsuario();
+
+        const top3 = ordenados.slice(0, 3);
+        const medalhas = ['🥇', '🥈', '🥉'];
+        top3.forEach((u, i) => {
+          const info = calcNivel(u.xp || 0, niveis);
+          const el = document.getElementById('podio-' + (i + 1));
+          el.classList.add('preenchido');
+          el.innerHTML = `
+            <div class="podio-medalha">${medalhas[i]}</div>
+            <img class="podio-avatar" src="${u.foto_perfil || './assets/images/user-imagem.png'}"
+                 onerror="this.src='./assets/images/user-imagem.png'" alt="${u.nome}">
+            <div class="podio-nome">${u.nome.split(' ')[0]}</div>
+            <div class="podio-nivel">Nível ${info.nivel}</div>
+            <div class="podio-xp">${u.xp || 0} XP</div>
+            <div class="podio-base">${i + 1}º</div>`;
+        });
+
+        const lista = document.getElementById('ranking-lista-completa');
+        lista.innerHTML = ordenados.map((u, i) => {
+          const info = calcNivel(u.xp || 0, niveis);
+          const ehEu = eu && u.id === eu.id;
+          return `
+            <li class="rank-row ${ehEu ? 'rank-eu' : ''}">
+              <span class="rank-pos">${i + 1}º</span>
+              <img class="rank-avatar" src="${u.foto_perfil || './assets/images/user-imagem.png'}"
+                   onerror="this.src='./assets/images/user-imagem.png'" alt="${u.nome}">
+              <div class="rank-info">
+                <span class="rank-nome">${u.nome}${ehEu ? ' <strong>(você)</strong>' : ''}</span>
+                <span class="rank-nivel">Nível ${info.nivel}</span>
+              </div>
+              <span class="rank-xp">${u.xp || 0}<span>XP</span></span>
+            </li>`;
+        }).join('');
+      } catch (e) {
+        console.error('Erro ao carregar ranking:', e);
+      }
+    });
+  </script>
+
+</body>
+</html>

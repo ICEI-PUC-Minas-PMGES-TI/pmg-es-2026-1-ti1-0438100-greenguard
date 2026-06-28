@@ -165,6 +165,7 @@ function ativarLikes() {
             } else {
                 post.likes++;
                 localStorage.setItem(`like-${postId}`, 'true');
+                if (typeof registrarAcao === 'function') registrarAcao('curtida');
             }
 
             fetch(`http://localhost:3000/api/posts/${postId}`, {
@@ -405,6 +406,11 @@ if (sendBtn) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(novoPost)
             });
+
+            if (typeof registrarAcao === 'function') {
+                registrarAcao('post');
+                if (photoInput.files[0]) registrarAcao('foto');
+            }
 
             document.getElementById('descricao').value = '';
             document.getElementById('parqueInput').value = '';

@@ -1,146 +1,254 @@
-//Seção de Rolagem Check-in
+// ============================================================
+// Check-in de parque (perfil.html)
+// - Modal no estilo do fórum, com preview das fotos inseridas
+// - Verificação de localização automática ao abrir (GPS)
+// - Botão para tentar novamente caso falhe / esteja longe
+// - Só libera o check-in dentro de RAIO_CHECKIN_METROS do parque
+// ============================================================
 
-function toggleLike(btn) {
-  btn.classList.toggle('liked');
-  const icon = btn.querySelector('.heart-icon');
-  if (btn.classList.contains('liked')) {
-    icon.setAttribute('fill', 'currentColor');
-  } else {
-    icon.setAttribute('fill', 'none');
+// Raio máximo (em metros) para considerar o usuário "no parque".
+const RAIO_CHECKIN_METROS = 200;
+
+const abrirModal       = document.getElementById('btn-checkin');
+const modalParque      = document.getElementById('modalParque');
+const btnFecharCheckin = document.getElementById('fecharModal');
+
+const campoNomeParque  = document.getElementById('campoNomeParque');
+const listaParques     = document.getElementById('parqueListaCheckin');
+const inputFotos       = document.getElementById('checkinFotos');
+const preview          = document.getElementById('checkinPreview');
+const locBox           = document.getElementById('checkinLocBox');
+const locStatusSpan    = document.querySelector('#checkinLocStatus span');
+const btnVerificarLoc  = document.getElementById('btnVerificarLoc');
+const formulario       = document.querySelector('.form-parque');
+const btnEnviar        = document.getElementById('btnEnviar');
+
+let parquesCheckin = [];
+let parqueSelecionado = null;
+let userPos = null;            // { lat, lng }
+let localizacaoValida = false;
+let arquivosFoto = [];
+
+// ── Carrega parques do banco ──
+async function carregarParquesCheckin() {
+  try {
+    const res = await fetch('http://localhost:3000/api/parques');
+    parquesCheckin = await res.json();
+  } catch {
+    parquesCheckin = [];
   }
 }
 
-// =========================
-// Modal Check-in
-// =========================
-
-const abrirModal = document.getElementById("btn-checkin");
-const modalParque = document.getElementById("modalParque");
-const fecharModal = document.getElementById("fecharModal");
-
-const checkLocalizacao = document.getElementById("check-localizacao");
-const campoEncontrada = document.getElementById("coordEncontrada");
-const campoParque = document.getElementById("coordParque");
-const erro = document.getElementById("erroLocalizacao");
-const formulario = document.querySelector(".form-parque");
-const btnEnviar = document.getElementById("btnEnviar");
-
-let localizacaoValida = false;
-
-abrirModal.addEventListener("click", () => {
-
-    modalParque.style.display = "flex";
-
-});
-
-fecharModal.addEventListener("click", () => {
-
-    modalParque.style.display = "none";
-
-});
-
-window.addEventListener("click", (event) => {
-
-    if(event.target === modalParque){
-
-        modalParque.style.display = "none";
-
-    }
-
-});
-
-function calcularDistancia(lat1, lon1, lat2, lon2){
-
-    const R = 6371000;
-
-    const dLat = (lat2-lat1) * Math.PI/180;
-    const dLon = (lon2-lon1) * Math.PI/180;
-
-    const a =
-        Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(lat1*Math.PI/180) *
-        Math.cos(lat2*Math.PI/180) *
-        Math.sin(dLon/2) *
-        Math.sin(dLon/2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-
-    return R*c;
-
+// ── Status da verificação ──
+function setStatus(estado, texto) {
+  if (locBox) locBox.className = 'checkin-loc-box checkin-loc-' + estado;
+  if (locStatusSpan) locStatusSpan.textContent = texto;
 }
 
-checkLocalizacao.addEventListener("change",()=>{
-
-    if(!checkLocalizacao.checked){
-
-        localizacaoValida = false;
-
-        btnEnviar.disabled = true;
-
-        return;
-
+// ── Abrir / fechar modal ──
+if (abrirModal) {
+  abrirModal.addEventListener('click', () => {
+    if (typeof getUsuario === 'function' && !getUsuario()) {
+      alert('Você precisa estar logado para fazer check-in.');
+      return;
     }
+    modalParque.classList.add('active');
+    if (!parquesCheckin.length) carregarParquesCheckin();
+    resetarModal();
+    solicitarLocalizacao();
+  });
+}
 
-    navigator.geolocation.getCurrentPosition((pos)=>{
+function fecharModalCheckin() {
+  modalParque.classList.remove('active');
+}
 
-        const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
+if (btnFecharCheckin) btnFecharCheckin.addEventListener('click', fecharModalCheckin);
 
-        campoEncontrada.value =
-            lat.toFixed(6)+", "+lng.toFixed(6);
+modalParque.addEventListener('click', (e) => {
+  if (e.target === modalParque) fecharModalCheckin();
+});
 
-        const parque = campoParque.value.split(",");
+function resetarModal() {
+  parqueSelecionado = null;
+  localizacaoValida = false;
+  arquivosFoto = [];
+  if (campoNomeParque) campoNomeParque.value = '';
+  if (preview) preview.innerHTML = '';
+  if (inputFotos) inputFotos.value = '';
+  if (listaParques) { listaParques.innerHTML = ''; listaParques.style.display = 'none'; }
+  btnEnviar.disabled = true;
+}
 
-        const latParque = parseFloat(parque[0]);
-        const lngParque = parseFloat(parque[1]);
+// ── Geolocalização ──
+function solicitarLocalizacao() {
+  if (!navigator.geolocation) {
+    setStatus('denied', 'Seu navegador não suporta geolocalização.');
+    return;
+  }
+  setStatus('checking', 'Verificando sua localização...');
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      userPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      avaliarLocalizacao();
+    },
+    () => {
+      userPos = null;
+      localizacaoValida = false;
+      btnEnviar.disabled = true;
+      setStatus('denied', 'Não foi possível obter sua localização. Permita o acesso e tente novamente.');
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
 
-        const distancia =
-            calcularDistancia(lat,lng,latParque,lngParque);
+function avaliarLocalizacao() {
+  if (!userPos) { solicitarLocalizacao(); return; }
 
-        if(distancia <= 100){
+  if (!parqueSelecionado) {
+    localizacaoValida = false;
+    btnEnviar.disabled = true;
+    setStatus('idle', 'Localização obtida ✓. Agora escolha o parque acima.');
+    return;
+  }
 
-            localizacaoValida = true;
+  const dist = calcularDistancia(userPos.lat, userPos.lng, parqueSelecionado.lat, parqueSelecionado.lng);
 
-            erro.style.display = "none";
+  if (dist <= RAIO_CHECKIN_METROS) {
+    localizacaoValida = true;
+    btnEnviar.disabled = false;
+    setStatus('ok', `Você está no ${parqueSelecionado.nome}! Pode fazer o check-in.`);
+  } else {
+    localizacaoValida = false;
+    btnEnviar.disabled = true;
+    setStatus('far', `Você está a ${Math.round(dist)} m do parque. Aproxime-se para fazer o check-in.`);
+  }
+}
 
-            btnEnviar.disabled = false;
+if (btnVerificarLoc) btnVerificarLoc.addEventListener('click', solicitarLocalizacao);
 
-        }else{
+// ── Autocomplete de parque ──
+function renderizarSugestoes(termo) {
+  if (!listaParques) return;
+  const t = termo.trim().toLowerCase();
+  if (!t) { listaParques.innerHTML = ''; listaParques.style.display = 'none'; return; }
 
-            localizacaoValida = false;
+  const filtrados = parquesCheckin.filter(p => p.nome.toLowerCase().includes(t)).slice(0, 8);
+  listaParques.innerHTML = '';
+  filtrados.forEach(p => {
+    const li = document.createElement('li');
+    li.textContent = p.nome;
+    li.addEventListener('click', () => selecionarParque(p));
+    listaParques.appendChild(li);
+  });
+  listaParques.style.display = filtrados.length ? 'block' : 'none';
+}
 
-            erro.style.display = "block";
+function selecionarParque(parque) {
+  parqueSelecionado = parque;
+  campoNomeParque.value = parque.nome;
+  listaParques.innerHTML = '';
+  listaParques.style.display = 'none';
+  avaliarLocalizacao();
+}
 
-            btnEnviar.disabled = true;
+if (campoNomeParque) {
+  campoNomeParque.addEventListener('input', () => {
+    parqueSelecionado = null;
+    localizacaoValida = false;
+    btnEnviar.disabled = true;
+    renderizarSugestoes(campoNomeParque.value);
+  });
+}
 
-        }
+document.addEventListener('click', (e) => {
+  if (listaParques && campoNomeParque &&
+      !campoNomeParque.contains(e.target) && !listaParques.contains(e.target)) {
+    listaParques.style.display = 'none';
+  }
+});
 
-    },()=>{
+// ── Preview das fotos ──
+const MAX_FOTOS = 2;
 
-        alert("Não foi possível obter sua localização.");
-
-        localizacaoValida = false;
-
-        btnEnviar.disabled = true;
-
+if (inputFotos) {
+  inputFotos.addEventListener('change', () => {
+    arquivosFoto = Array.from(inputFotos.files).slice(0, MAX_FOTOS);
+    if (inputFotos.files.length > MAX_FOTOS) {
+      alert(`Você pode anexar no máximo ${MAX_FOTOS} fotos. Apenas as duas primeiras serão usadas.`);
+    }
+    preview.innerHTML = '';
+    arquivosFoto.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        preview.appendChild(img);
+      };
+      reader.readAsDataURL(file);
     });
+  });
+}
 
-});
+// ── Distância entre coordenadas (Haversine) ──
+function calcularDistancia(lat1, lon1, lat2, lon2) {
+  const R = 6371000;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
 
-formulario.addEventListener("submit",(e)=>{
+// ── Envio do check-in ──
+if (formulario) {
+  formulario.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    if(!localizacaoValida){
+    if (!parqueSelecionado) { alert('Escolha um parque da lista.'); return; }
+    if (!localizacaoValida) { setStatus('far', 'Verifique sua localização antes de enviar.'); return; }
 
-        e.preventDefault();
+    const usuario = getUsuario();
+    if (!usuario) { alert('Você precisa estar logado para fazer check-in.'); return; }
 
-        erro.style.display = "block";
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = 'Enviando...';
 
-        alert("Você precisa estar no parque para fazer o check-in.");
+    try {
+      // Faz upload de até 2 fotos, se houver
+      const imagens = [];
+      for (const arquivo of arquivosFoto.slice(0, MAX_FOTOS)) {
+        const fd = new FormData();
+        fd.append('imagem', arquivo);
+        const up = await fetch('http://localhost:3000/upload', { method: 'POST', body: fd });
+        if (up.ok) imagens.push((await up.json()).caminho);
+      }
 
-        return;
+      await fetch('http://localhost:3000/api/checkins', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          usuario_id: usuario.id,
+          usuario: usuario.nome,
+          parque: parqueSelecionado.nome,
+          data: new Date().toISOString(),
+          imagens: imagens
+        })
+      });
 
+      if (typeof registrarAcao === 'function') registrarAcao('checkin');
+
+      fecharModalCheckin();
+      resetarModal();
+      alert('Check-in realizado com sucesso!');
+      if (typeof carregarCheckins === 'function') carregarCheckins();
+    } catch {
+      alert('Erro ao salvar check-in. Verifique se o servidor está rodando.');
+    } finally {
+      btnEnviar.textContent = 'Fazer Check-in';
     }
+  });
+}
 
-    alert("Check-in realizado com sucesso!");
-
-});
+carregarParquesCheckin();

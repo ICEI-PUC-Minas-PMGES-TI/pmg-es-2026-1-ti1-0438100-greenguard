@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GreenGuard - Parques Recomendados</title>
   <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="stylesheet" href="./assets/css/modal.css" />
   <link rel="stylesheet" href="./assets/css/parques.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,84 +65,46 @@
     </section>
 
     <section class="cards-section">
-
-      <div class="park-card">
-        <div class="card-img">
-          <img src="./assets/images/parque1.png" alt="Parque Municipal de Belo Horizonte">
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Parque Municipal de Belo Horizonte</h3>
-          <p class="card-info">Nivel de seguranca &nbsp;<span class="stars">4.0 / 5</span></p>
-          <p class="card-info">Localizacao : Av. Afonso Pena, 1.377 - Centro</p>
-          <p class="card-info">Horario : <span class="badge-hours">seg - sab de 7:00 as 22:00</span></p>
-          <a class="ver-mais">ver mais !</a>
-          <div class="card-actions">
-            <button class="btn-card">Me leve ate la!</button>
-            <button class="btn-card">Fazer Feedback!</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="park-card">
-        <div class="card-img">
-          <img src="./assets/images/parque3.png" alt="Parque das Mangabeiras">
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Parque das Mangabeiras</h3>
-          <p class="card-info">Nivel de seguranca &nbsp;<span class="stars">3.0 / 5</span></p>
-          <p class="card-info">Av. Ximango, 809</p>
-          <p class="card-info">Horario : <span class="badge-hours">seg - sex de 6:00 as 23:00</span></p>
-          <a class="ver-mais">ver mais !</a>
-          <div class="card-actions">
-            <button class="btn-card">Me leve ate la!</button>
-            <button class="btn-card">Fazer Feedback!</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="park-card">
-        <div class="card-img">
-          <img src="./assets/images/parque2.png" alt="Parque Ecologico da Pampulha">
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Parque Ecologico da Pampulha</h3>
-          <p class="card-info">Nivel de seguranca &nbsp;<span class="stars">4.5 / 5</span></p>
-          <p class="card-info">Localizacao: R. Augusto Jose dos Santos, 366</p>
-          <p class="card-info">Horario : <span class="badge-hours">seg - dom de 7:00 as 18:00</span></p>
-          <a class="ver-mais">ver mais !</a>
-          <div class="card-actions">
-            <button class="btn-card">Me leve ate la!</button>
-            <button class="btn-card">Fazer Feedback!</button>
-          </div>
-        </div>
-      </div>
-
+      <!-- Cards renderizados dinamicamente por parques.js -->
     </section>
   </main>
 
+  <!-- Modal: Avaliar parque (estrelas + comentário) -->
+  <div id="modalAvaliar" class="modal-overlay">
+    <div class="post-card-modal" style="max-width:460px; position:relative;">
+      <button type="button" class="modal-x" id="fecharAvaliar">&times;</button>
+      <h2 class="modal-titulo"><i class="bi bi-star-fill"></i> Avaliar parque</h2>
+      <p id="avaliarNomeParque" class="modal-subtitulo"></p>
+
+      <label class="field-label">Sua nota</label>
+      <div id="estrelasAvaliar" class="estrelas-modal">
+        <i class="bi bi-star" data-nota="1"></i>
+        <i class="bi bi-star" data-nota="2"></i>
+        <i class="bi bi-star" data-nota="3"></i>
+        <i class="bi bi-star" data-nota="4"></i>
+        <i class="bi bi-star" data-nota="5"></i>
+      </div>
+
+      <label class="field-label" style="margin-top:16px;">Comentário (opcional)</label>
+      <textarea id="comentarioAvaliar" class="desc-textarea" placeholder="Conte como foi sua experiência neste parque..." maxlength="300"></textarea>
+
+      <button class="send-btn" id="enviarAvaliacao">Enviar avaliação</button>
+    </div>
+  </div>
+
+  <!-- Modal: Ver avaliações do parque -->
+  <div id="modalAvaliacoes" class="modal-overlay">
+    <div class="post-card-modal" style="max-width:480px; position:relative;">
+      <button type="button" class="modal-x" id="fecharAvaliacoes">&times;</button>
+      <h2 class="modal-titulo"><i class="bi bi-chat-square-text"></i> Avaliações</h2>
+      <p id="avaliacoesNomeParque" class="modal-subtitulo"></p>
+      <div id="listaAvaliacoes" class="lista-avaliacoes"></div>
+    </div>
+  </div>
+
   <script src="./assets/js/login.js"></script>
-  <script>
-    function toggleFilters() {
-      const panel = document.getElementById('filter-panel');
-      panel.classList.toggle('filter-show');
-    }
-    function toggleDropdown(header) {
-      const options = header.nextElementSibling;
-      options.classList.toggle('dropdown-closed');
-    }
-    function selectOption(li) {
-      const headerSpan = li.closest('.filter-group').querySelector('.filter-header span');
-      headerSpan.innerText = li.innerText.trim();
-    }
-    // Animacao de entrada dos cards
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.park-card');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visivel'); });
-      }, { threshold: 0.1 });
-      cards.forEach(c => observer.observe(c));
-    });
-  </script>
+  <script src="./assets/js/missoes-core.js"></script>
+  <script src="./assets/js/parques.js"></script>
 
 </body>
 </html>

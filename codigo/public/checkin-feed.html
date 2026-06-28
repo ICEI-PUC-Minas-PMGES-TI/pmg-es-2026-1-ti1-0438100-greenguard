@@ -39,7 +39,37 @@
   </section>
 
   <script src="./assets/js/login.js"></script>
-  <script src="./assets/js/checkin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!getUsuario()) { window.location.href = 'index.html'; return; }
+
+      fetch('http://localhost:3000/api/checkins')
+        .then(r => r.json())
+        .then(checkins => {
+          const feed = document.getElementById('feed');
+          if (!checkins.length) {
+            feed.innerHTML = '<p style="color:#d4f5d4;text-align:center;padding:30px">Nenhum check-in ainda.</p>';
+            return;
+          }
+          checkins.slice().reverse().forEach(c => {
+            const data = new Date(c.data).toLocaleDateString('pt-BR');
+            const card = document.createElement('article');
+            card.className = 'checkin-card';
+            card.innerHTML = `
+              <div class="card-header">
+                <div class="avatar">${c.usuario ? c.usuario.slice(0,2).toUpperCase() : '??'}</div>
+                <div class="card-meta">
+                  <div class="card-location">${c.parque}</div>
+                  <div class="card-date">${c.usuario || 'Usuário'} · ${data}</div>
+                </div>
+                <span class="checkin-badge">Check-in</span>
+              </div>`;
+            feed.appendChild(card);
+          });
+        })
+        .catch(() => {});
+    });
+  </script>
 
 </body>
 </html>

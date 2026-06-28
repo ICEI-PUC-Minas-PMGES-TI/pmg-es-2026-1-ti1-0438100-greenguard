@@ -97,7 +97,7 @@
   transition: 0.3s;
 }
 
-.forum_denuncia button:hover { transform: scale(1.02); }
+.forum_denuncia button:hover { filter: brightness(1.08); }
 
 /* ── Mapa ── */
 #map-section {
@@ -131,6 +131,23 @@
   margin-bottom: 15px;
   margin-top: 0;
 }
+
+.box-side-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.box-side-head h2 { margin-bottom: 15px; }
+
+.ver-todos {
+  color: var(--verde-escuro);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ver-todos:hover { text-decoration: underline; }
 
 .side-card {
   width: 100%;
