@@ -1,9 +1,9 @@
 # COMO RODAR O PROJETO: 
 
-Abra o terminal command prompt na pasta codigo ( cd codigo )
-npm install
-npm start
-Abra o link http://localhost:3000 no navegador
+1. Abra o terminal command prompt na pasta codigo ( cd codigo )
+2. npm install
+3. npm start
+4. Abra o link http://localhost:3000 no navegador
 
 
 # INTRODUÇÃO
