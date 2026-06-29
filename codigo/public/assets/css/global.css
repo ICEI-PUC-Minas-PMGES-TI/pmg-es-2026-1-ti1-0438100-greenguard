@@ -58,6 +58,120 @@ header > a > div {
 
 #logo { width: 94px; height: 94px; }
 
+/* ── Menu de navegação ── */
+#nav-principal {
+  display: flex;
+  gap: 28px;
+}
+
+#nav-principal a {
+  text-decoration: none;
+  color: #444;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 6px 2px;
+  position: relative;
+  transition: color 0.2s;
+}
+
+#nav-principal a:hover { color: var(--verde-escuro); }
+#nav-principal a.ativo { color: var(--verde); }
+
+#nav-principal a.ativo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  background: var(--verde);
+  border-radius: 2px;
+}
+
+/* ── Autocomplete de endereço ── */
+.endereco-sugestoes {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 100001;
+  display: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.endereco-sugestoes li {
+  padding: 9px 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.endereco-sugestoes li:last-child { border-bottom: none; }
+.endereco-sugestoes li:hover { background: #e6fff0; color: #00A843; }
+
+/* ── Menu lateral mobile ── */
+#hamburguer {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--verde-escuro);
+  cursor: pointer;
+}
+
+#nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  z-index: 10001;
+}
+
+#nav-backdrop.ativo { display: block; }
+
+@media (max-width: 768px) {
+  #hamburguer { display: block; }
+
+  #nav-principal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    background: white;
+    flex-direction: column;
+    gap: 0;
+    padding: 80px 0 20px;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 10002;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.15);
+  }
+
+  #nav-principal.aberto { transform: translateX(0); }
+
+  #nav-principal a {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+
+  #nav-principal a.ativo::after { display: none; }
+  #nav-principal a.ativo { background: #eafff0; }
+}
+
 /* ── Barra verde de voltar ── */
 #btn_voltar {
   width: 100%;

@@ -1,3 +1,9 @@
+// Imagem do parque: a cadastrada, senão foto de parque variada e estável por id
+function imagemDoParque(p) {
+    if (p.imagem && p.imagem.trim()) return p.imagem;
+    return `https://loremflickr.com/600/400/park,nature/?lock=${p.id}`;
+}
+
 async function carregarPreviewForum() {
     try {
         const [posts, usuarios] = await Promise.all([
@@ -95,7 +101,7 @@ async function carregarFavoritos() {
             return `
               <div class="park-item favorite-item">
                 <div class="park-left">
-                  <img src="${imagens[i % 3]}" alt="${parque.nome}">
+                  <img src="${imagemDoParque(parque)}" alt="${parque.nome}" onerror="this.onerror=null;this.src='${imagens[i % 3]}'">
                   <div><p>${parque.nome}</p></div>
                 </div>
                 <div class="favorite-right">
@@ -131,7 +137,7 @@ async function carregarRecomendacoes() {
             return `
               <div class="park-item">
                 <div class="park-left">
-                  <img src="${imagens[i % 3]}" alt="${p.nome}">
+                  <img src="${imagemDoParque(p)}" alt="${p.nome}" onerror="this.onerror=null;this.src='${imagens[i % 3]}'">
                   <div><p>${p.nome}</p></div>
                 </div>
                 <div class="park-right">
@@ -152,12 +158,8 @@ function buscarParques() {
     const busca = document.getElementById('buscaIndex');
     if (busca && busca.value.trim()) params.set('busca', busca.value.trim());
 
-    const grupos = document.querySelectorAll('#filter-panel .filter-group');
-    const chaves = ['turno', 'atividade', 'distancia'];
-    const defaults = ['Turno', 'Atividade', 'Distância'];
-    grupos.forEach((g, i) => {
-        const txt = g.querySelector('.filter-header span').textContent.trim();
-        if (txt && txt !== defaults[i]) params.set(chaves[i], txt);
+    document.querySelectorAll('#filter-panel .filter-group').forEach(g => {
+        if (g.dataset.val) params.set(g.dataset.filtro, g.dataset.val);
     });
 
     const qs = params.toString();
@@ -175,8 +177,19 @@ function toggleDropdown(header) {
 }
 
 function selectOption(li) {
-    const headerSpan = li.closest('.filter-group').querySelector('.filter-header span');
-    headerSpan.innerText = li.innerText.trim();
+    const grupo = li.closest('.filter-group');
+    const val = li.dataset.val || li.innerText.trim();
+
+    // Distância depende do endereço cadastrado → exige login
+    if (grupo.dataset.filtro === 'distancia' && typeof getUsuario === 'function' && !getUsuario()) {
+        alert('Entre na sua conta para filtrar por distância — usamos o endereço do seu cadastro.');
+        abrirModalLogin();
+        return;
+    }
+
+    grupo.querySelector('.filter-header span').innerText = li.innerText.trim();
+    grupo.dataset.val = val;
+    grupo.querySelector('.filter-options').classList.add('dropdown-closed');
 }
 
 // Inicializa o mapa centralizado em BH

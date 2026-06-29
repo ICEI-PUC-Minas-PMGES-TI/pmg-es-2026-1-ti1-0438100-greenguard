@@ -193,6 +193,12 @@
     <a href="index.html">
       <figure><img id="logo" src="./assets/images/logo.png" alt="Logo GreenGuard"></figure>
     </a>
+    <nav id="nav-principal">
+      <a href="index.html">Home</a>
+      <a href="parques.html">Parques</a>
+      <a href="forum.html">Fórum</a>
+      <a href="ranking.html">Ranking</a>
+    </nav>
     <div id="header-usuario"></div>
   </header>
 
@@ -209,7 +215,7 @@
     <!-- Foto de perfil -->
     <label id="foto-upload-label" title="Clique para trocar a foto">
       <img id="foto-preview" src="./assets/images/user-imagem.png" alt="Foto de perfil">
-      <div class="overlay-foto">✏️</div>
+      <div class="overlay-foto"><i class="bi bi-camera-fill"></i></div>
       <input id="foto-file-input" type="file" accept="image/*">
     </label>
     <p id="foto-hint">Clique na foto para alterar</p>
@@ -310,6 +316,11 @@
       document.getElementById('edit-email').value    = usuarioAtual.email    || '';
       document.getElementById('edit-cpf').value      = usuarioAtual.cpf      || '';
       document.getElementById('edit-endereco').value = usuarioAtual.endereco || '';
+
+      // Autocomplete de endereços de BH
+      if (typeof ativarAutocompleteEndereco === 'function') {
+        ativarAutocompleteEndereco(document.getElementById('edit-endereco'));
+      }
 
       const foto = document.getElementById('foto-preview');
       foto.src = usuarioAtual.foto_perfil || './assets/images/user-imagem.png';

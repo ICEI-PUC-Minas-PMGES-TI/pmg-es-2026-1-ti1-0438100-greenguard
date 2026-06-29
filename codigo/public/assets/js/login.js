@@ -134,6 +134,10 @@ function criarModal() {
                 <input id="cad-email" type="email" placeholder="seu@email.com"
                     style="${estiloInput()}">
 
+                <label style="font-size:13px;font-weight:600;color:#555;margin-top:12px;display:block;">Endereço</label>
+                <input id="cad-endereco" type="text" placeholder="Rua, número, bairro, cidade"
+                    style="${estiloInput()}">
+
                 <label style="font-size:13px;font-weight:600;color:#555;margin-top:12px;display:block;">Senha</label>
                 <input id="cad-senha" type="password" placeholder="Crie uma senha"
                     style="${estiloInput()}">
@@ -151,6 +155,8 @@ function criarModal() {
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) fecharLoginModal();
     });
+
+    ativarAutocompleteEndereco(document.getElementById('cad-endereco'));
 }
 
 function estiloInput() {
@@ -229,10 +235,11 @@ async function fazerCadastro() {
     const nome = document.getElementById('cad-nome').value.trim();
     const login = document.getElementById('cad-login').value.trim();
     const email = document.getElementById('cad-email').value.trim();
+    const endereco = document.getElementById('cad-endereco').value.trim();
     const senha = document.getElementById('cad-senha').value.trim();
     const msg = document.getElementById('msg-cadastro');
 
-    if (!nome || !login || !email || !senha) { msg.textContent = 'Preencha todos os campos.'; return; }
+    if (!nome || !login || !email || !endereco || !senha) { msg.textContent = 'Preencha todos os campos.'; return; }
 
     try {
         const res = await fetch(`${API}/usuarios`);
@@ -242,7 +249,8 @@ async function fazerCadastro() {
         if (usuarios.find(u => u.email === email)) { msg.textContent = 'Este e-mail já está cadastrado.'; return; }
 
         const novoUsuario = {
-            login, senha, nome, email,
+            login, senha, nome, email, endereco,
+            cpf: '',
             foto_perfil: './assets/images/user-imagem.png',
             nivel: 1,
             xp: 0
@@ -264,8 +272,88 @@ async function fazerCadastro() {
     }
 }
 
+// ── Autocomplete de endereços (Belo Horizonte) ──
+
+function ativarAutocompleteEndereco(input) {
+    if (!input || input.dataset.acAtivo) return;
+    input.dataset.acAtivo = '1';
+    input.setAttribute('autocomplete', 'off');
+
+    // Envolve o input para posicionar a lista logo abaixo
+    const wrap = document.createElement('div');
+    wrap.style.position = 'relative';
+    input.parentNode.insertBefore(wrap, input);
+    wrap.appendChild(input);
+
+    const lista = document.createElement('ul');
+    lista.className = 'endereco-sugestoes';
+    wrap.appendChild(lista);
+
+    let timer = null;
+    input.addEventListener('input', () => {
+        const q = input.value.trim();
+        clearTimeout(timer);
+        if (q.length < 3) { lista.style.display = 'none'; return; }
+
+        timer = setTimeout(async () => {
+            try {
+                const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=6&countrycodes=br&q=${encodeURIComponent(q + ', Belo Horizonte - MG')}`;
+                const res = await fetch(url, { headers: { 'Accept-Language': 'pt-BR' } });
+                const dados = await res.json();
+
+                lista.innerHTML = '';
+                dados.forEach(d => {
+                    const li = document.createElement('li');
+                    li.textContent = d.display_name;
+                    li.addEventListener('click', () => {
+                        input.value = d.display_name;
+                        lista.style.display = 'none';
+                    });
+                    lista.appendChild(li);
+                });
+                lista.style.display = dados.length ? 'block' : 'none';
+            } catch {
+                lista.style.display = 'none';
+            }
+        }, 350);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrap.contains(e.target)) lista.style.display = 'none';
+    });
+}
+
+// ── Menu lateral (mobile) ──
+
+function montarMenuMobile() {
+    const header = document.querySelector('header');
+    const nav = document.getElementById('nav-principal');
+    if (!header || !nav || document.getElementById('hamburguer')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'hamburguer';
+    btn.setAttribute('aria-label', 'Abrir menu');
+    btn.innerHTML = '<i class="bi bi-list"></i>';
+
+    const backdrop = document.createElement('div');
+    backdrop.id = 'nav-backdrop';
+
+    header.insertBefore(btn, header.firstChild);
+    document.body.appendChild(backdrop);
+
+    const toggle = (abrir) => {
+        nav.classList.toggle('aberto', abrir);
+        backdrop.classList.toggle('ativo', abrir);
+    };
+
+    btn.addEventListener('click', () => toggle(!nav.classList.contains('aberto')));
+    backdrop.addEventListener('click', () => toggle(false));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+}
+
 // ── Init ──
 
 document.addEventListener('DOMContentLoaded', () => {
     renderizarHeader();
+    montarMenuMobile();
 });

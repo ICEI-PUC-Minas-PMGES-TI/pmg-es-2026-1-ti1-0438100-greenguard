@@ -34,7 +34,7 @@ https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2026-1-ti1-0438100-greenguard.
 Atualmente, é difícil encontrar informações organizadas sobre parques em um único lugar. Isso acaba dificultando a escolha do local para se realizar atividades e o planejamento delas. Além disso, a falta de dados atualizados sobre segurança, iluminação e ocorrências criminais nos parques de BH contribui para a sensação de insegurança de quem frequenta esses ambientes a fim de praticar atividades ao ar livre. Em Belo Horizonte, por exemplo, a percepção de segurança no período noturno é considerada baixa, e existem registros de furtos e vandalismo em parques públicos.
 
 ## Objetivo do projeto:
-O objetivo é desenvolver uma aplicação web que facilite a busca e visualização de informações sobre os parques de BH, permitindo que o usuário encontre locais próximos dele, visualize dados relevantes como mapas dos parques, endereços, pontos de apoio e consulte avaliações de outros usuários feitas pelo site. Dessa forma, os praticantes de atividades ao ar livre poderão ter uma noção melhor do ambiente que pretendem visitar antes de visitá-lo, auxiliando na segurança deles.
+O objetivo é desenvolver uma aplicação web que facilite a busca e visualização de informações sobre os parques de BH, permitindo que o usuário encontre locais próximos dele, visualize dados relevantes como endereços, denúncias e consulte avaliações de outros usuários feitas pelo site. Dessa forma, os praticantes de atividades ao ar livre poderão ter uma noção melhor do ambiente que pretendem visitar antes de visitá-lo, auxiliando na segurança deles.
 
 ## Justificativa:
 A falta de acesso prático a mapeamento e informações claras sobre os parques pode causar insegurança nas pessoas que realizam atividades ao ar livre, principalmente em Belo Horizonte, que, como citado anteriormente, possui uma baixa percepção de segurança. Estudos mostram que fatores como iluminação, infraestrutura e histórico de ocorrências influenciam diretamente nessa percepção. Nesse contexto, o projeto se propõe a centralizar essas informações no contexto dos parques da cidade e torná-las mais acessíveis às pessoas que desejam se sentir mais seguras.
@@ -230,14 +230,14 @@ Eu como atleta recreativo que corre e pedala frequentemente, quero visualizar in
 
 ### O sistema deve exibir uma listagem de parques com foto, nome, nível de segurança, endereço e horário de funcionamento.	
 ### O sistema deve permitir busca de parques por nome através de campo de texto.	
-### O sistema deve permitir filtrar parques por turno (dia/noite), tipo de atividade e distância.
+### O sistema deve permitir filtrar parques por tipo de atividade e por distância.
 ### O sistema deve exibir um mapa interativo com marcadores de todos os parques de Belo Horizonte, buscados dinamicamente via Overpass API.	
 ### O sistema deve permitir que usuários criem posts de denúncia no fórum, informando descrição, categoria (Assalto, Reclamação, Segurança), parque e imagem.	
 ### O sistema deve listar os posts do fórum com suporte a filtros por texto, categoria e intervalo de datas.	
 ### O sistema deve permitir que usuários curtam posts do fórum, atualizando o contador de likes via API REST.	
-### O sistema deve permitir que usuários avaliem parques com comentário, classificação positiva/negativa e notas de 1 a 5 estrelas para segurança, iluminação e movimentação.	
-### O sistema deve exibir um feed de check-ins recentes de usuários nos parques, com fotos e botão de curtida.	
-### O sistema deve atribuir pontos (+10 pts) a cada check-in realizado pelo usuário, integrando o sistema de gamificação.	
+### O sistema deve permitir que usuários avaliem parques com uma nota de 1 a 5 estrelas e um comentário, apenas em parques onde já fizeram check-in.	
+### O sistema deve exibir um feed de check-ins recentes do usuário, com as fotos enviadas.	
+### O sistema deve dar XP ao usuário quando ele conclui missões semanais (check-in, posts, curtidas e avaliações), integrando a gamificação.	
 ### O sistema deve exibir um ranking de usuários ordenado por pontuação (XP) acumulada.	
 ### O sistema deve permitir que o usuário visualize e edite seus dados de perfil (nome, endereço, e-mail, foto).	
 
@@ -249,7 +249,7 @@ Eu como atleta recreativo que corre e pedala frequentemente, quero visualizar in
 ### O mapa deve carregar os parques de Belo Horizonte em tempo real via requisição à Overpass API, sem dados fixos no código.
 ### As imagens enviadas no fórum devem ser armazenadas no servidor local e referenciadas por caminho relativo no banco de dados.	
 ### O estado de curtidas do usuário deve ser persistido no localStorage do navegador para evitar curtidas duplicadas entre sessões.	
-### A interface deve utilizar as fontes Poppins e Montserrat e seguir a identidade visual do GreenGuard (paleta verde).	
+### A interface deve utilizar a fonte Poppins e seguir a identidade visual do GreenGuard (paleta verde).	
 ### A aplicação deve ser executada localmente via comando npm start, ficando acessível em http://localhost:3000.	
 
 
@@ -311,29 +311,30 @@ Mesmo assim, cada integrante também assumiu alguma responsabilidade principal, 
 # Solução Implementada:
 ## Funcionalidades e Estrutura de Dados:
 
-### (index.html / Cards.html) Listagem e busca de parques
-Exibe cards de parques com foto, nome, nível de segurança em estrelas, endereço e horário de funcionamento. Conta com campo de busca textual e painel de filtros expansível por turno, atividade e distância.
+### (parques.html + parques.js) Listagem e busca de parques
+Exibe cards de parques com foto, nome e média de avaliações em estrelas, além de botões para favoritar e abrir a rota no mapa. Conta com campo de busca textual e painel de filtros por atividade e distância (a distância usa o endereço cadastrado do usuário).
 Estrutura de dados associada
 ```
 {
   "id": 1,
-  "nome": "Parque Municipal de BH",
-  "endereco": "Av. Afonso Pena, 1.377",
-  "horario": "seg - sáb de 7:00 às 22:00",
-  "seguranca": 4,
-  "foto": "./assets/images/parque1.png"
+  "nome": "Parque Municipal Américo Renné Giannetti",
+  "lat": -19.9227,
+  "lng": -43.9365,
+  "atividades": ["caminhada", "esporte"],
+  "turnos": ["dia"],
+  "imagem": ""
 }
 ```
 
-Acesso: http://localhost:3000 → página inicial com cards de parques
+Acesso: http://localhost:3000/parques.html → listagem de parques com cards
 
-### (Cards.html / kaique.html) Mapa interativo de parques
+### (index.html + home.js) Mapa interativo de parques
 Mapa interativo centralizado em Belo Horizonte que busca dinamicamente todos os parques da cidade via Overpass API (OpenStreetMap) e exibe marcadores verdes para cada parque encontrado. Ao clicar no marcador, o nome do parque é exibido em popup.
 API utilizada
 POST https://overpass-api.de/api/interpreter
 Query: node/way/relation["leisure"="park"] dentro de Belo Horizonte
 Acesso
-http://localhost:3000/Cards.html → seção central do mapa
+http://localhost:3000/ → seção central do mapa (index.html)
 
 ### (forum.html + posts.js) Fórum de denúncias e ocorrências
 Permite que usuários criem posts de denúncia categorizados (Assalto, Reclamação, Segurança), com descrição textual, seleção de parque e upload de imagem. Posts são carregados da API REST e exibidos com suporte a curtidas (likes), filtros por texto, data e categoria.
@@ -353,39 +354,38 @@ Estrutura de dados associada
 ```
 Acesso: http://localhost:3000/forum.html
 
-### (Gabriel.html + gabriel.js) Sistema de avaliação e feedback
-Formulário de feedback que permite ao usuário deixar um comentário sobre o parque, classificar o feedback como positivo ou negativo, e atribuir notas de 1 a 5 estrelas para segurança, iluminação e movimentação.
+### (parques.html + parques.js) Sistema de avaliação e feedback
+Permite que o usuário avalie um parque com uma nota de 1 a 5 estrelas e um comentário. Só é possível avaliar parques em que o usuário já fez check-in. A média das avaliações aparece no card do parque.
 Estrutura de dados associada
 ```
 {
-  "comentario": "Parque bem iluminado e movimentado.",
-  "feedback": "positivo",
-  "classificacaoGeral": {
-    "seguranca": 4,
-    "iluminacao": 5,
-    "movimentacao": 3
-  }
+  "id": 1,
+  "parque_id": 2,
+  "usuario_id": 4,
+  "usuario": "Yandi Orlando",
+  "nota": 5,
+  "comentario": "Parque bem cuidado e seguro.",
+  "data": "2026-06-28T21:00:00.000Z"
 }
 ```
-Acesso: http://localhost:3000/Gabriel.html
+Acesso: http://localhost:3000/parques.html → clique em "Avaliar" em um parque
 
-### (rolagem_check-in.html + .js) Feed de check-ins com gamificação
-Feed com scroll vertical exibindo check-ins recentes de usuários nos parques. Cada card mostra nome do parque, data, fotos e botão de curtida. Cada check-in exibe a pontuação de +10 pts conquistada, integrando o sistema de gamificação da plataforma.
+### (perfil.html + checkin.js) Feed de check-ins com gamificação
+Na página de perfil, o usuário faz check-in em um parque com verificação de localização (precisa estar a até 200m do parque escolhido). Os check-ins aparecem em um feed com as fotos enviadas. A gamificação dá XP ao concluir missões semanais — fazer check-in conta para a missão de check-in.
 Estrutura de dados associada
 ```
 {
-  "usuario": "CM",
-  "parque": "Parque dos Mangabeiras",
-  "data": "22/04/2026",
-  "cidade": "Belo Horizonte",
-  "fotos": ["parque3.png", "parque1.png", "parque2.png"],
-  "likes": 123000,
-  "pontos": 10
+  "id": 6,
+  "usuario_id": 4,
+  "usuario": "Yandi Orlando",
+  "parque": "Parque das Mangabeiras",
+  "data": "2026-06-28T20:30:12.000Z",
+  "imagens": ["./assets/images/posts_sent/post_1782678612560.jpeg"]
 }
 ```
-Acesso: http://localhost:3000/rolagem_check-in.html
+Acesso: http://localhost:3000/perfil.html → card direito com o feed de check-ins
 
-### (forum.html + posts.js) Ranking de usuários
+### (forum.html + posts.js / ranking.html) Ranking de usuários
 Sidebar lateral no fórum exibindo ranking de usuários ordenado por XP acumulado. Os dados são carregados da API REST e exibidos com posição, avatar, nome e pontuação de cada usuário.
 Estrutura de dados associada
 ```
@@ -396,7 +396,7 @@ Estrutura de dados associada
   "xp": 347
 }
 ```
-Acesso: http://localhost:3000/forum.html → sidebar direita
+Acesso: http://localhost:3000/forum.html → sidebar direita · http://localhost:3000/ranking.html → página de ranking completa
 
 ### (pedro.html) Página de perfil do usuário
 Tela de perfil onde o usuário pode visualizar e editar seus dados pessoais (nome, usuário, endereço, e-mail, CPF) e redefinir senha. A foto de perfil é exibida em destaque no topo do card.
@@ -405,13 +405,13 @@ Acesso: http://localhost:3000/pedro.html
 ## Módulos e APIs:
 
 ### JSON Server 0.17.4
-Backend REST simulado a partir do arquivo db.json. Serve as rotas /api/posts, /api/usuarios e /api/parques utilizadas pelo frontend.
+Backend REST simulado a partir do arquivo db.json. Serve as rotas /api/posts, /api/usuarios, /api/parques, /api/checkins, /api/avaliacoes, /api/favoritos e /api/niveis utilizadas pelo frontend.
 
 ### Express 4.17.1
-Servidor Node.js que complementa o JSON Server, adicionando suporte a upload de imagens via rota POST /upload.
+Servidor Node.js que complementa o JSON Server, adicionando suporte a upload de imagens via rotas POST /upload (posts e check-ins) e POST /upload-perfil (foto de perfil).
 
 ### Multer 1.4.5
-Middleware para upload de arquivos. Salva imagens dos posts do fórum em public/assets/images/posts_sent/ com nome baseado em timestamp.
+Middleware para upload de arquivos. Salva as imagens dos posts e check-ins em public/assets/images/posts_sent/ e as fotos de perfil em public/assets/images/perfil/, com nome baseado em timestamp.
 
 ### Leaflet.js (unpkg CDN)
 Biblioteca de mapas interativos. Usada para renderizar o mapa de BH com marcadores verdes para cada parque encontrado.
@@ -422,11 +422,11 @@ API pública que retorna dados geográficos do OpenStreetMap. Usada para buscar 
 ### Bootstrap 5.3.3 + Bootstrap Icons 1.11.3
 Framework CSS e biblioteca de ícones. Usados para estilização de componentes do fórum e das páginas de listagem.
 
-### Google Fonts (Poppins + Montserrat)
-Fontes tipográficas utilizadas em toda a aplicação para padronização visual.
+### Google Fonts (Poppins)
+Fonte tipográfica utilizada em toda a aplicação para padronização visual.
 
 ### localStorage (Web API)
-Armazenamento local do navegador. Usado para persistir sessão do usuário logado e estado de curtidas nos posts do fórum.
+Armazenamento local do navegador. Usado para guardar o estado de curtidas dos posts e o progresso das missões. A sessão do usuário logado fica no sessionStorage, sendo encerrada ao fechar o navegador.
 
 ## Referências Bibliográficas
 

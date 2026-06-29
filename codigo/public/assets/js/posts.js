@@ -42,13 +42,18 @@ async function carregarPosts() {
     }
 }
 
+function normalizarTexto(s) {
+    return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+}
+
 function renderizarPosts() {
     postsContainer.innerHTML = '';
 
     let dados = postsData;
 
     if (filtroAtivo.categoria) {
-        dados = dados.filter(p => p.categoria === filtroAtivo.categoria);
+        const alvo = normalizarTexto(filtroAtivo.categoria);
+        dados = dados.filter(p => normalizarTexto(p.categoria) === alvo);
     }
 
     if (filtroAtivo.texto) {
@@ -152,6 +157,11 @@ function ativarLikes() {
 
     botoesLike.forEach(botao => {
         botao.addEventListener('click', () => {
+
+            if (typeof getUsuario === 'function' && !getUsuario()) {
+                abrirModalLogin();
+                return;
+            }
 
             const postId = Number(botao.dataset.id);
             const post = postsData.find(p => p.id === postId);

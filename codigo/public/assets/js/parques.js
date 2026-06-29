@@ -11,6 +11,12 @@
 const API_PARQUES = 'http://localhost:3000/api';
 const IMAGENS_PARQUE = ['./assets/images/parque1.png', './assets/images/parque2.png', './assets/images/parque3.png'];
 
+// Imagem do parque: a cadastrada, senão uma foto de parque variada e estável por id
+function imagemParque(p) {
+  if (p.imagem && p.imagem.trim()) return p.imagem;
+  return `https://loremflickr.com/600/400/park,nature/?lock=${p.id}`;
+}
+
 let parques = [];
 let avaliacoes = [];
 let favoritos = [];
@@ -97,7 +103,8 @@ function renderizarParques(lista) {
     return `
       <div class="park-card visivel">
         <div class="card-img">
-          <img src="${IMAGENS_PARQUE[idx % 3]}" alt="${p.nome}">
+          <img src="${imagemParque(p)}" alt="${p.nome}"
+               onerror="this.onerror=null;this.src='${IMAGENS_PARQUE[idx % 3]}'">
         </div>
         <div class="card-body">
           <h3 class="card-title">${p.nome}</h3>
@@ -290,10 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================================
-// Filtros em tempo real (busca, atividade, turno, distância)
+// Filtros em tempo real (busca, atividade, distância)
 // ============================================================
 
-const filtros = { busca: '', atividade: '', turno: '', distancia: 0 };
+const filtros = { busca: '', atividade: '', distancia: 0 };
 let userPosParques = null;
 
 function distanciaKm(p) {
@@ -310,20 +317,64 @@ function calcularDistancia(lat1, lon1, lat2, lon2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-function pedirLocalizacao() {
+// Geocodifica um endereço de texto em coordenadas (OpenStreetMap/Nominatim)
+async function geocodificar(endereco) {
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(endereco)}`;
+    const r = await fetch(url, { headers: { 'Accept-Language': 'pt-BR' } });
+    const arr = await r.json();
+    if (arr[0]) return { lat: parseFloat(arr[0].lat), lng: parseFloat(arr[0].lon) };
+  } catch {}
+  return null;
+}
+
+function pedirLocalizacaoGPS() {
   return new Promise(resolve => {
-    if (userPosParques) return resolve(userPosParques);
-    if (!navigator.geolocation) { alert('Seu navegador não suporta geolocalização.'); return resolve(null); }
+    if (!navigator.geolocation) return resolve(null);
     navigator.geolocation.getCurrentPosition(
-      pos => { userPosParques = { lat: pos.coords.latitude, lng: pos.coords.longitude }; resolve(userPosParques); },
-      () => { alert('Não foi possível obter sua localização para filtrar por distância.'); resolve(null); }
+      pos => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+      () => resolve(null)
     );
   });
 }
 
+// Base do filtro de distância: o endereço cadastrado do usuário logado.
+// Exige login (o filtro depende do endereço do cadastro).
+async function obterBaseDistancia() {
+  if (userPosParques) return userPosParques;
+
+  const u = getUsuario();
+  if (!u) {
+    alert('Entre na sua conta para filtrar por distância — usamos o endereço do seu cadastro.');
+    abrirModalLogin();
+    return null;
+  }
+
+  if (u.endereco) {
+    const pos = await geocodificar(u.endereco);
+    if (pos) { userPosParques = pos; return pos; }
+  }
+
+  // Logado mas sem endereço válido: tenta o GPS como alternativa
+  const gps = await pedirLocalizacaoGPS();
+  if (gps) { userPosParques = gps; return gps; }
+
+  alert('Não foi possível usar seu endereço. Atualize o endereço no seu perfil ou permita o acesso à localização.');
+  return null;
+}
+
+function limparFiltroDistancia() {
+  filtros.distancia = 0;
+  const gDist = document.querySelector('.filter-group[data-filtro="distancia"]');
+  if (gDist) gDist.querySelector('.filter-header span').innerText = 'Distância';
+}
+
 async function aplicarFiltros() {
-  // Se for filtrar por distância, garante a localização
-  if (filtros.distancia && !userPosParques) await pedirLocalizacao();
+  // Se for filtrar por distância, garante a localização base (exige login)
+  if (filtros.distancia && !userPosParques) {
+    const base = await obterBaseDistancia();
+    if (!base) limparFiltroDistancia();
+  }
 
   let lista = parques.slice();
 
@@ -333,9 +384,6 @@ async function aplicarFiltros() {
   }
   if (filtros.atividade) {
     lista = lista.filter(p => (p.atividades || []).includes(filtros.atividade));
-  }
-  if (filtros.turno) {
-    lista = lista.filter(p => (p.turnos || []).includes(filtros.turno));
   }
   if (filtros.distancia && userPosParques) {
     lista = lista.filter(p => distanciaKm(p) <= filtros.distancia);
@@ -349,19 +397,18 @@ function aplicarParametrosURL() {
   const p = new URLSearchParams(window.location.search);
   if (p.get('busca'))     filtros.busca = p.get('busca');
   if (p.get('atividade')) filtros.atividade = p.get('atividade').toLowerCase();
-  if (p.get('turno'))     filtros.turno = p.get('turno').toLowerCase();
-  if (p.get('distancia')) filtros.distancia = p.get('distancia').includes('5') ? 5 : 10;
+  if (p.get('distancia')) filtros.distancia = Number(p.get('distancia')) || 0;
 
   // Reflete na UI
   const busca = document.querySelector('.search-container input');
   if (busca && filtros.busca) busca.value = filtros.busca;
-  const grupos = document.querySelectorAll('#filter-panel .filter-group');
-  if (grupos[1] && filtros.atividade) grupos[1].querySelector('.filter-header span').innerText = cap(filtros.atividade);
-  if (grupos[0] && filtros.turno)     grupos[0].querySelector('.filter-header span').innerText = cap(filtros.turno);
-  if (grupos[2] && filtros.distancia) grupos[2].querySelector('.filter-header span').innerText = `Até ${filtros.distancia}km`;
+  const gAtiv = document.querySelector('.filter-group[data-filtro="atividade"]');
+  const gDist = document.querySelector('.filter-group[data-filtro="distancia"]');
+  if (gAtiv && filtros.atividade) gAtiv.querySelector('.filter-header span').innerText = LABEL_ATIVIDADE[filtros.atividade] || filtros.atividade;
+  if (gDist && filtros.distancia) gDist.querySelector('.filter-header span').innerText = `Até ${filtros.distancia}km`;
 }
 
-function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+const LABEL_ATIVIDADE = { 'caminhada': 'Caminhada / trilha', 'esporte': 'Esporte / quadras' };
 
 // ── Controles da UI de filtro ──
 function toggleFilters() { document.getElementById('filter-panel').classList.toggle('filter-show'); }
@@ -369,16 +416,21 @@ function toggleDropdown(header) { header.nextElementSibling.classList.toggle('dr
 
 function selectOption(li) {
   const grupo = li.closest('.filter-group');
+  const filtro = grupo.dataset.filtro;
+  const valor = li.dataset.val || li.innerText.trim().toLowerCase();
+
+  // Distância depende do endereço cadastrado → exige login
+  if (filtro === 'distancia' && !getUsuario()) {
+    alert('Entre na sua conta para filtrar por distância — usamos o endereço do seu cadastro.');
+    abrirModalLogin();
+    return;
+  }
+
   grupo.querySelector('.filter-header span').innerText = li.innerText.trim();
   grupo.querySelector('.filter-options').classList.add('dropdown-closed');
 
-  const grupos = [...document.querySelectorAll('#filter-panel .filter-group')];
-  const idx = grupos.indexOf(grupo);
-  const valor = li.innerText.trim().toLowerCase();
-
-  if (idx === 0) filtros.turno = valor;
-  else if (idx === 1) filtros.atividade = valor;
-  else if (idx === 2) filtros.distancia = valor.includes('5') ? 5 : 10;
+  if (filtro === 'atividade') filtros.atividade = valor;
+  else if (filtro === 'distancia') filtros.distancia = Number(valor) || 0;
 
   aplicarFiltros();
 }

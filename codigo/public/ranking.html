@@ -18,6 +18,12 @@
     <a href="index.html">
       <figure><img id="logo" src="./assets/images/logo.png" alt="Logo GreenGuard"></figure>
     </a>
+    <nav id="nav-principal">
+      <a href="index.html">Home</a>
+      <a href="parques.html">Parques</a>
+      <a href="forum.html">Fórum</a>
+      <a href="ranking.html" class="ativo">Ranking</a>
+    </nav>
     <div id="header-usuario"></div>
   </header>
 
@@ -30,7 +36,7 @@
   </div>
 
   <main id="ranking-main">
-    <h1 id="ranking-titulo"><i class="bi bi-trophy-fill"></i> Ranking GreenGuard</h1>
+    <h1 id="ranking-titulo">Ranking GreenGuard</h1>
     <p id="ranking-sub">Os guardiões mais ativos na proteção dos parques</p>
 
     <section id="podio">
@@ -56,13 +62,11 @@
         const eu = getUsuario();
 
         const top3 = ordenados.slice(0, 3);
-        const medalhas = ['🥇', '🥈', '🥉'];
         top3.forEach((u, i) => {
           const info = calcNivel(u.xp || 0, niveis);
           const el = document.getElementById('podio-' + (i + 1));
           el.classList.add('preenchido');
           el.innerHTML = `
-            <div class="podio-medalha">${medalhas[i]}</div>
             <img class="podio-avatar" src="${u.foto_perfil || './assets/images/user-imagem.png'}"
                  onerror="this.src='./assets/images/user-imagem.png'" alt="${u.nome}">
             <div class="podio-nome">${u.nome.split(' ')[0]}</div>
