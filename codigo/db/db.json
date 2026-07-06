@@ -102,7 +102,7 @@
       "categoria": "Elogio",
       "descricao": "Ótima limpeza e manutenção do local durante o final de semana.",
       "data": "2026-05-01 18:40",
-      "likes": 86,
+      "likes": 87,
       "imagem": "./assets/images/parque_ecologico.jpg"
     }
   ],
@@ -146,39 +146,10 @@
       "data": "2026-05-17 14:20",
       "likes": 43,
       "imagem": "./assets/images/checkins/checkin5.jpg"
-    },
-    {
-      "usuario_id": 4,
-      "usuario": "Yandi Orlando Santos Rivero",
-      "parque": "Parque de Teste (GreenGuard)",
-      "data": "2026-06-28T20:30:12.564Z",
-      "likes": 0,
-      "imagem": "./assets/images/posts_sent/post_1782678612560.jpeg",
-      "id": 6
     }
   ],
   "avaliacoes": [],
   "favoritos": [
-    {
-      "usuario_id": 4,
-      "parque_id": 4,
-      "id": 1
-    },
-    {
-      "usuario_id": 4,
-      "parque_id": 6,
-      "id": 2
-    },
-    {
-      "usuario_id": 4,
-      "parque_id": 5,
-      "id": 3
-    },
-    {
-      "usuario_id": 4,
-      "parque_id": 36,
-      "id": 4
-    },
     {
       "usuario_id": 6,
       "parque_id": 4,
@@ -700,8 +671,8 @@
     },
     {
       "nome": "Parque de Teste (GreenGuard)",
-      "lat": -19.9227,
-      "lng": -43.945,
+      "lat": -19.9221086,
+      "lng": -43.9917251,
       "id": 36,
       "atividades": [
         "caminhada",

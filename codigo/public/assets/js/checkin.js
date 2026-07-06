@@ -7,7 +7,8 @@
 // ============================================================
 
 // Raio máximo (em metros) para considerar o usuário "no parque".
-const RAIO_CHECKIN_METROS = 200;
+// Folga generosa para garantir o check-in durante a apresentação (campus + imprecisão de GPS).
+const RAIO_CHECKIN_METROS = 1000;
 
 const abrirModal       = document.getElementById('btn-checkin');
 const modalParque      = document.getElementById('modalParque');
